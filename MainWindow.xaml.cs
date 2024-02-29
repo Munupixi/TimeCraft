@@ -20,8 +20,8 @@ namespace TimeCraft
         public MainWindow()
         {
             InitializeComponent();
-            RegistrationPage regis = new RegistrationPage();  
-            MainFrame.Navigate(regis);
+            AuthorizationPage a = new AuthorizationPage();
+            MainFrame.Navigate(a);
         }
     }
 }
