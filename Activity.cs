@@ -8,5 +8,21 @@ namespace TimeCraft
 {
     internal class Activity
     {
+        public bool IsStartDateCorrect()
+        {
+            return true;
+        }
+        public bool IsStartTimeCorrect()
+        {
+            return true;
+        }
+        public bool IsEndDateCorrect()
+        {
+            return true;
+        }
+        public bool IsEndTimeCorrect()
+        {
+            return true;
+        }
     }
 }

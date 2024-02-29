@@ -6,19 +6,8 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    public enum DressCode
-    {
-        BlackTie,
-        Cocktail,
-        Business,
-        Casual,
-        Sporty,
-        Beach,
-        Costume,
-        Other
-    }
 
-    internal class Event
+    internal class Event : Activity
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -28,7 +17,7 @@ namespace TimeCraft
         public DateTime EndDate { get; set; }
         public TimeSpan EndTime { get; set; }
         public string Location { get; set; }
-        public string DressCode { get; set; }
+        public DressCode DressCode { get; set; }
         public Priority Priority { get; set; }
         public int IdCategory { get; set; }
         public int IdUser { get; set; }
@@ -36,7 +25,7 @@ namespace TimeCraft
         public Event(int id, string title, int idUser, string description = null,
             DateTime startDate = default, TimeSpan startTime = default,
             DateTime endDate = default, TimeSpan endTime = default,
-            string location = null, string dressCode = null,
+            string location = null, DressCode dressCode = DressCode.NotMatter,
             Priority priority = Priority.Medium, int idCategory = -1)
         {
             Id = id;

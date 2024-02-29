@@ -7,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    public enum Priority
-    {
-        High,
-        Medium,
-        Low
-    }
 
-    internal class Task
+    internal class Task : Activity
     {
         const string DateFormat = "yyyy-MM-dd";
         const string timeFormat = "HH:mm";
