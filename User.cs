@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TimeCraft
@@ -28,6 +29,74 @@ namespace TimeCraft
             Name = name;
             Surname = surname;
             Patronymic = patronymic;
+        }
+        public static bool IsEmailCorrect(string email)
+        {
+            if (email.Contains('@') &&
+                email.Contains('.') && email.Length > 5)
+            {
+                byte at = (byte)email.IndexOf('@');
+                byte dot = (byte)email.IndexOf('.');
+
+                if (at > 0 && dot > at + 1 && dot < email.Length - 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool IsEmailUnique(string email, List<User> users)
+        {
+            foreach (User user in users)
+            {
+                if (user.Login == email)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static bool IsPasswordCorrect(string password)
+        {
+            string pattern = @"^(?=.*[0-9])(?=.*[!@#$%^])(?=.*[A-Z]).{6,}$";
+            Regex regex = new Regex(pattern);
+
+            if (password.Length >= 6 &&
+                (password.Contains('1') || password.Contains('1')
+                                        || password.Contains('2') ||
+                                        password.Contains('3') ||
+                                        password.Contains('4')
+                                        || password.Contains('5')
+                                        || password.Contains('6')
+                                        || password.Contains('7')
+                                        || password.Contains('8')
+                                        || password.Contains('9')
+                                        || password.Contains('0'))
+                                     && (password.Contains('!')
+                                         || password.Contains('@')
+                                         || password.Contains('#')
+                                         || password.Contains('$')
+                                         || password.Contains('%')
+                                         || password.Contains('^')))
+            {
+                foreach (char i in password)
+                {
+                    if (char.IsUpper(i))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool IsAgeCorrect(string age)
+        {
+            return int.TryParse(age, out int ageValue) ?
+                ageValue >= 4 && ageValue <= 120 : false;
         }
     }
 }
