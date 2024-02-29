@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    internal interface JsonManager
+    internal class Activity
     {
-
     }
 }
