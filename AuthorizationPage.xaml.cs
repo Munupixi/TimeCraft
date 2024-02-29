@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for AuthorizationPage.xaml
+    /// </summary>
+    public partial class AuthorizationPage : Page
     {
-        public MainWindow()
+        public AuthorizationPage()
         {
             InitializeComponent();
-            RegistrationPage regis = new RegistrationPage();  
-            MainFrame.Navigate(regis);
         }
     }
 }
