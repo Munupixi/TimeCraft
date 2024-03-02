@@ -58,7 +58,13 @@
     <Compile Include="AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CalendarTaskControl.xaml.cs">
+      <DependentUpon>CalendarTaskControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs" />
+    <Compile Include="DailySchedule.xaml.cs">
+      <DependentUpon>DailySchedule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Event.cs" />
     <Compile Include="JsonManager.cs" />
     <Compile Include="Participant.cs" />
@@ -72,6 +78,14 @@
     <Compile Include="User.cs" />
     <Compile Include="Validate.cs" />
     <Page Include="AuthorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CalendarTaskControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DailySchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
