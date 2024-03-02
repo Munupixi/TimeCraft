@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    /// <summary>
-    /// Interaction logic for DailySchedule.xaml
-    /// </summary>
     public partial class DailySchedule : Page
     {
         public DailySchedule()
         {
             InitializeComponent();
+
+            MainListView.Items.Clear();
+            MainListView.Items.Add(new Task());
         }
     }
 }
