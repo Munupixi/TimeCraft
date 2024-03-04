@@ -31,68 +31,45 @@
             </StackPanel>
         </Viewbox>
 
-        <!-- DataGrid для расписания -->
-        <DataGrid Grid.Row="1" Background="#333" Foreground="#222" BorderBrush="#333"
-                  RowBackground="#333" AlternatingRowBackground="#222" GridLinesVisibility="None"
-                  HeadersVisibility="Column" ColumnHeaderHeight="32" HorizontalScrollBarVisibility="Auto">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Time" Width="Auto">
-                    <ListView x:Name="MainListView">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Mon 26" Width="*">
-                    <ListView x:Name="MainListView">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Tue 27" Width="*" >
-                    <ListView x:Name="MainListView">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Wed 28" Width="*" >
-                    <ListView x:Name="MainListView">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Thu 29" Width="*">
-                    <ListView x:Name="MainListView">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Fri 1" Width="*">
-                    <ListView x:Name="MainListView">
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Sat 2" Width="*" />
-                <DataGridTextColumn Header="Sun 3" Width="*" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+        <Grid Grid.Row="0">
+            <!-- Заголовки дней недели и даты -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Для заголовков -->
+                <RowDefinition Height="*"/>
+                <!-- Для содержимого каждого дня -->
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#222">
+                <!-- Заголовки дней недели -->
+                <!-- Здесь должны быть текстовые блоки с названиями дней недели и числами -->
+            </Grid>
+        </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <!-- Определение семи колонок для каждого дня недели -->
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Определение ListView для каждой колонки -->
+                <!-- Для понедельника -->
+                <ListView Grid.Column="0" Background="Transparent" BorderThickness="0">
+                    <!-- Здесь будет содержимое для понедельника -->
+                </ListView>
+
+                <!-- Для вторника -->
+                <ListView Grid.Column="1" Background="Transparent" BorderThickness="0">
+                    <!-- Здесь будет содержимое для вторника -->
+                </ListView>
+
+                <!-- Повторите ListView для каждого дня недели -->
+            </Grid>
+        </Grid>
 </Page>
