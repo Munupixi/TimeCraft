@@ -20,8 +20,8 @@ namespace TimeCraft
         public MainWindow()
         {
             InitializeComponent();
-            DailySchedule test = new DailySchedule();
-            MainFrame.Navigate(regis);
+            AuthorizationPage test = new AuthorizationPage();
+            MainFrame.Navigate(test);
         }
     }
 }
