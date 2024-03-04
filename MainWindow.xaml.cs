@@ -20,7 +20,7 @@ namespace TimeCraft
         public MainWindow()
         {
             InitializeComponent();
-            WeeklySchedule regis = new WeeklySchedule();  
+            DailySchedule test = new DailySchedule();
             MainFrame.Navigate(regis);
         }
     }
