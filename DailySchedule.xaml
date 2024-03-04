@@ -10,32 +10,27 @@
 
     <Grid Background="#333">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Расписание на день -->
-        <StackPanel Grid.Column="0" Background="#333" VerticalAlignment="Center">
-            <!-- Сюда можно добавить элементы расписания -->
-            <TextBlock Text="No Event Selected" Foreground="White" FontSize="24" HorizontalAlignment="Center" Margin="10"/>
+        <StackPanel x:Name="NoSelectedTextStackPanel" Grid.Column="0" Background="#333" VerticalAlignment="Center">
+            <TextBlock x:Name="NoSelectedTextTextBlock" Text="No Event Selected" Foreground="White" FontSize="24" HorizontalAlignment="Center" Margin="10" />
         </StackPanel>
 
-        <!-- Панель календаря -->
         <Border Grid.Column="1" Background="#222" Padding="10">
             <StackPanel>
-                <!-- Поиск и кнопки навигации -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="auto">
-                    <TextBox Width="200" Margin="10" />
-                    <Button Content="Today" Margin="10" />
-                    <Button Content="&lt;" Margin="10" />
-                    <Button Content="&gt;" Margin="10" />
+                    <Button x:Name="TodayButton" Content="Today" />
+                    <TextBox x:Name="SearchTextBox" Width="200" Margin="10" />
+                    <Button x:Name="PreviousButton" Content="&lt;" Margin="10" />
+                    <Button x:Name="NextButton" Content="&gt;" Margin="10" />
                 </StackPanel>
 
-                <!-- Заголовок и календарь -->
                 <StackPanel VerticalAlignment="Top" Margin="10">
-                    <TextBlock Text="3 March 2024" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Sunday" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-                    <Calendar Margin="10" Background="#333" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="DateTextBlock" Text="3 March 2024" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <TextBlock x:Name="DayOfWeekTextBlock" Text="Sunday" Foreground="White" FontSize="20" HorizontalAlignment="Center" />
+                    <Calendar x:Name="MainCalender" Margin="10" Background="#333" Foreground="White" HorizontalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
         </Border>
