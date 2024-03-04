@@ -15,13 +15,12 @@ using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    public partial class MainWindow : Window
+
+    public partial class MonthlySchedule : Page
     {
-        public MainWindow()
+        public MonthlySchedule()
         {
             InitializeComponent();
-            DailySchedule regis = new DailySchedule();  
-            MainFrame.Navigate(regis);
         }
     }
 }

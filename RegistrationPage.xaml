@@ -8,32 +8,34 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RegistrationPage">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Viewbox>
+        <Grid Width="800" Height="450">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Впервые в TimeCraft?" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,10"/>
+            <TextBlock Grid.Row="0" Text="Впервые в TimeCraft?" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,10"/>
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-            <TextBox Width="200" Margin="0,10,0,10" Text="Имя"/>
-            <TextBox Width="200" Margin="0,10,0,10" Text="Возраст"/>
-            <TextBox Width="200" Margin="0,10,0,10" Text="Логин"/>
-            <TextBox Width="200" Margin="0,10,0,10" Text="Пароль"/>
-            <TextBox Width="200" Margin="0,10,0,10" Text="Повторите пароль"/>
-        </StackPanel>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                <TextBox Width="200" Margin="0,10,0,10" Text="Имя"/>
+                <TextBox Width="200" Margin="0,10,0,10" Text="Возраст"/>
+                <TextBox Width="200" Margin="0,10,0,10" Text="Логин"/>
+                <TextBox Width="200" Margin="0,10,0,10" Text="Пароль"/>
+                <TextBox Width="200" Margin="0,10,0,10" Text="Повторите пароль"/>
+            </StackPanel>
 
-        <CheckBox Grid.Row="2" Content="согласие на обработку персональных данных" HorizontalAlignment="Center" Margin="0,10,0,10"/>
+            <CheckBox Grid.Row="2" Content="согласие на обработку персональных данных" HorizontalAlignment="Center" Margin="0,10,0,10"/>
 
-        <Button Grid.Row="3" Content="Регистрация" Width="200" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+            <Button Grid.Row="3" Content="Регистрация" Width="200" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0"/>
 
-        <TextBlock Grid.Row="4" Text="Уже есть аккаунт?" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-    </Grid>
+            <TextBlock Grid.Row="4" Text="Уже есть аккаунт?" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+        </Grid>
+    </Viewbox>
 </Page>

@@ -1,0 +1,98 @@
+﻿<Page x:Class="TimeCraft.WeeklySchedule"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TimeCraft"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WeeklySchedule">
+
+    <Grid Background="#333">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Viewbox для верхней панели -->
+        <Viewbox Grid.Row="0" Stretch="Uniform">
+            <StackPanel Orientation="Horizontal" Background="#222" HorizontalAlignment="Stretch">
+                <TextBlock Text="March 2024" Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="10"/>
+                <Button Content="Day" Margin="10"/>
+                <Button Content="Week" Margin="10"/>
+                <Button Content="Month" Margin="10"/>
+                <Button Content="Year" Margin="10"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+                    <Button Content="&lt;" Margin="10"/>
+                    <Button Content="Today" Margin="10"/>
+                    <Button Content="&gt;" Margin="10"/>
+                    <TextBox Width="200" Margin="10"/>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
+
+        <!-- DataGrid для расписания -->
+        <DataGrid Grid.Row="1" Background="#333" Foreground="#222" BorderBrush="#333"
+                  RowBackground="#333" AlternatingRowBackground="#222" GridLinesVisibility="None"
+                  HeadersVisibility="Column" ColumnHeaderHeight="32" HorizontalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Time" Width="Auto">
+                    <ListView x:Name="MainListView">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Mon 26" Width="*">
+                    <ListView x:Name="MainListView">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Tue 27" Width="*" >
+                    <ListView x:Name="MainListView">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Wed 28" Width="*" >
+                    <ListView x:Name="MainListView">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Thu 29" Width="*">
+                    <ListView x:Name="MainListView">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Fri 1" Width="*">
+                    <ListView x:Name="MainListView">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Sat 2" Width="*" />
+                <DataGridTextColumn Header="Sun 3" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

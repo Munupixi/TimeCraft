@@ -67,6 +67,9 @@
     </Compile>
     <Compile Include="Event.cs" />
     <Compile Include="JsonManager.cs" />
+    <Compile Include="MonthlySchedule.xaml.cs">
+      <DependentUpon>MonthlySchedule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Participant.cs" />
     <Compile Include="ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -77,6 +80,9 @@
     <Compile Include="Task.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Validate.cs" />
+    <Compile Include="WeeklySchedule.xaml.cs">
+      <DependentUpon>WeeklySchedule.xaml</DependentUpon>
+    </Compile>
     <Page Include="AuthorizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,11 +107,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MonthlySchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WeeklySchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
