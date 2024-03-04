@@ -66,6 +66,9 @@
       <DependentUpon>DailySchedule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Event.cs" />
+    <Compile Include="EventUserControl.xaml.cs">
+      <DependentUpon>EventUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="JsonManager.cs" />
     <Compile Include="MonthlySchedule.xaml.cs">
       <DependentUpon>MonthlySchedule.xaml</DependentUpon>
@@ -92,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DailySchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
