@@ -20,7 +20,7 @@ namespace TimeCraft
         public MainWindow()
         {
             InitializeComponent();
-            ProfilePage test = new ProfilePage();
+            AuthorizationPage test = new   AuthorizationPage();
             MainFrame.Navigate(test);
         }
     }
