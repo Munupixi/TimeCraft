@@ -50,49 +50,49 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ListView x:Name="MondayListView" Grid.Column="0" BorderThickness="2">
+            <ListView x:Name="MondayListView" Grid.Column="0" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MondayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="TuesdayListView" Grid.Column="1" BorderThickness="2">
+            <ListView x:Name="TuesdayListView" Grid.Column="1" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=TuesdayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="WednesdayListView" Grid.Column="2" BorderThickness="2">
+            <ListView x:Name="WednesdayListView" Grid.Column="2" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=WednesdayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="ThursdayListView" Grid.Column="3" BorderThickness="2">
+            <ListView x:Name="ThursdayListView" Grid.Column="3" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=ThursdayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="FridayListView" Grid.Column="4" BorderThickness="2">
+            <ListView x:Name="FridayListView" Grid.Column="4" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=FridayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="SaturdayListView" Grid.Column="5" BorderThickness="2">
+            <ListView x:Name="SaturdayListView" Grid.Column="5" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=SaturdayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="SundayListView" Grid.Column="6" BorderThickness="2">
+            <ListView x:Name="SundayListView" Grid.Column="6" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=SundayListView}" />
