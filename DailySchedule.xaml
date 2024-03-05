@@ -19,20 +19,23 @@
         </StackPanel>
 
         <Border Grid.Column="1" Background="#222" Padding="10">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="auto">
-                    <Button x:Name="TodayButton" Content="Today" />
-                    <TextBox x:Name="SearchTextBox" Width="200" Margin="10" />
-                    <Button x:Name="PreviousButton" Content="&lt;" Margin="10" />
-                    <Button x:Name="NextButton" Content="&gt;" Margin="10" />
-                </StackPanel>
+            <Viewbox>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="207">
+                      
+                        <TextBox x:Name="SearchTextBox" Width="92" Margin="10" Background="#444" Foreground="White" />
+                        <Button x:Name="PreviousButton" Content="&lt;" Background="#444" Foreground="White" Margin="10" />
+                        <Button x:Name="TodayButton" Content="Today" Background="#444" Foreground="White" Height="20" />
+                        <Button x:Name="NextButton" Content="&gt;" Background="#444" Foreground="White" Margin="10" Height="20" />
+                    </StackPanel>
 
-                <StackPanel VerticalAlignment="Top" Margin="10">
-                    <TextBlock x:Name="DateTextBlock" Text="3 March 2024" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
-                    <TextBlock x:Name="DayOfWeekTextBlock" Text="Sunday" Foreground="White" FontSize="20" HorizontalAlignment="Center" />
-                    <Calendar x:Name="MainCalender" Margin="10" Background="#333" Foreground="White" HorizontalAlignment="Center" />
+                    <StackPanel VerticalAlignment="Top" Margin="10">
+                        <TextBlock x:Name="DateTextBlock" Text="3 March 2024" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="DayOfWeekTextBlock" Text="Sunday" Foreground="White" FontSize="20" HorizontalAlignment="Center" />
+                        <Calendar x:Name="MainCalender" Margin="10" Background="White" Foreground="White" HorizontalAlignment="Center" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </Viewbox>
         </Border>
         <ListView x:Name="MainListView">
             <ListView.ItemsPanel>
