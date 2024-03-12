@@ -15,8 +15,8 @@
             </Grid.RowDefinitions>
 
             
-            <TextBlock x:Name="StartTimeTextBlock" Grid.Row="0" Text="8:00 AM" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="EndTimeTextBlock" Grid.Row="1" Text="10:00 AM" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="StartTimeTextBlock" Grid.Row="0" Text="8:00" Foreground="White" FontSize="14"/>
+            <TextBlock x:Name="EndTimeTextBlock" Grid.Row="1" Text="10:00" Foreground="White" FontSize="14"/>
             <TextBlock x:Name="TitleTextBlock" Grid.Row="3" Text="Название" Foreground="White" FontSize="16" FontWeight="Bold" TextWrapping="Wrap"/>
         </Grid>
     </Border>
