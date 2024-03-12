@@ -26,8 +26,8 @@ namespace TimeCraft
             using (AppDBContent db = new AppDBContent())
             {
                 // создаем два объекта User
-                User user1 = new User { Name = "Tom", Age = 33 };
-                User user2 = new User { Name = "Sam", Age = 26 };
+                User user1 = new User(2, "Tom", "werg", 5);
+                User user2 = new User(2, "Tod", "werginia", 8);
 
                 // добавляем их в бд
                 db.Users.Add(user1);

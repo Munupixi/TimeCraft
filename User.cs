@@ -93,9 +93,9 @@ namespace TimeCraft
             //return false;
         }
 
-        public bool IsAgeCorrect(int age)
-        {
-            return ageValue >= 4 && ageValue <= 120 : false;
-        }
+        //public bool IsAgeCorrect(int age)
+        //{
+        //    return ageValue >= 4 && ageValue <= 120 : false;
+        //}
     }
 }
