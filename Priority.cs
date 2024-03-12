@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    internal interface JsonManager
+    public enum Priority
     {
-
+        High,
+        Medium,
+        Low
     }
 }

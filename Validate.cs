@@ -8,5 +8,9 @@ namespace TimeCraft
 {
     internal class Validate
     {
+        public static bool IsInt(string input)
+        {
+            return int.TryParse(input, out _);
+        }
     }
 }

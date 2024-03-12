@@ -136,13 +136,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppDBContent.cs" />
+    <Compile Include="Activity.cs" />
     <Compile Include="AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Category.cs" />
+    <Compile Include="DressCode.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="JsonManager.cs" />
     <Compile Include="Participant.cs" />
+    <Compile Include="Priority.cs" />
     <Compile Include="ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
