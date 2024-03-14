@@ -25,18 +25,15 @@ namespace TimeCraft
 
             using (AppDBContent db = new AppDBContent())
             {
-                // создаем два объекта User
-                User user1 = new User(2, "Tom", "werg", 5);
-                User user2 = new User(2, "Tod", "werginia", 8);
 
-                // добавляем их в бд
+                User user1 = new User(2, "Tom", "werg", 5);
+                User user2 = new User(3, "Tod", "werginia", 8);
+
                 db.Users.Add(user1);
                 db.Users.Add(user2);
                 db.SaveChanges();
 
-                // получаем объекты из бд и выводим на консоль
                 var users = db.Users;
-                Console.WriteLine("Список объектов:");
                 foreach (User u in users)
                 {
                     MessageBox.Show(u.Id + u.Name + u.Age);
