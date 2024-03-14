@@ -20,11 +20,11 @@ namespace TimeCraft
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(u => u.Id);
-            modelBuilder.Entity<Task>().HasKey(u => u.Id);
-            modelBuilder.Entity<Event>().HasKey(u => u.Id);
-            modelBuilder.Entity<Category>().HasKey(u => u.Id);
-            modelBuilder.Entity<Participant>().HasKey(u => u.Id);
+            modelBuilder.Entity<User>().HasKey(u => u.UserId);
+            modelBuilder.Entity<Task>().HasKey(u => u.TaskId);
+            modelBuilder.Entity<Event>().HasKey(u => u.EventId);
+            modelBuilder.Entity<Category>().HasKey(u => u.CategoryId);
+            modelBuilder.Entity<Participant>().HasKey(u => u.ParticipantId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

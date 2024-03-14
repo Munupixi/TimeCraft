@@ -8,13 +8,13 @@ namespace TimeCraft
 {
     internal class Category
     {
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public Category(int id, string title, string description = null)
+        public Category(int categoryId, string title, string description = null)
         {
-            Id = id;
+            CategoryId = categoryId;
             Title = title;
             Description = description;
         }
