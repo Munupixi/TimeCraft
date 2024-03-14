@@ -26,8 +26,8 @@ namespace TimeCraft
             using (AppDBContent db = new AppDBContent())
             {
 
-                User user1 = new User(2, "Tom", "werg", 5, "we","Xs","s");
-                User user2 = new User(3, "Tod", "werginia", 8, "we", "Xs", "s");
+                User user1 = new User(83, "To4m4", "werg", 5, "we","Xs","s");
+                User user2 = new User(49, "To44d", "werginia", 8, "we", "Xs", "s");
 
                 db.User.Add(user1);
                 db.User.Add(user2);
@@ -36,7 +36,7 @@ namespace TimeCraft
                 var users = db.User;
                 foreach (User u in users)
                 {
-                    MessageBox.Show(u.Id + u.Name + u.Age);
+                    MessageBox.Show(u.UserId +" "+ u.Name + " "+ u.Age);
                 }
             }
         }
