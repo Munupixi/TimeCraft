@@ -12,7 +12,7 @@ namespace TimeCraft
     {
         const string DateFormat = "yyyy-MM-dd";
         const string timeFormat = "HH:mm";
-        public int Id { get; set; }
+        public int TaskId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
@@ -25,12 +25,12 @@ namespace TimeCraft
         public int IdCategory { get; set; }
         public int IdUser { get; set; }
 
-        public Task(int id, string title, int idUser, string description = null,
+        public Task(int taskId, string title, int idUser, string description = null,
             DateTime startDate = default, TimeSpan startTime = default,
             short repeat = -1, DateTime endDate = default, TimeSpan endTime = default,
             Priority priority = Priority.Medium, bool isDone = false, int idCategory = -1)
         {
-            Id = id;
+            TaskId = taskId;
             Title = title;
             Description = description;
             StartDate = startDate;

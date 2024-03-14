@@ -9,7 +9,7 @@ namespace TimeCraft
 
     internal class Event : Activity
     {
-        public int Id { get; set; }
+        public int EventId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
@@ -22,13 +22,13 @@ namespace TimeCraft
         public int IdCategory { get; set; }
         public int IdUser { get; set; }
 
-        public Event(int id, string title, int idUser, string description = null,
+        public Event(int eventId, string title, int idUser, string description = null,
             DateTime startDate = default, TimeSpan startTime = default,
             DateTime endDate = default, TimeSpan endTime = default,
             string location = null, DressCode dressCode = DressCode.NotMatter,
             Priority priority = Priority.Medium, int idCategory = -1)
         {
-            Id = id;
+            EventId = eventId;
             Title = title;
             Description = description;
             StartDate = startDate;
