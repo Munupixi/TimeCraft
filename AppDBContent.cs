@@ -33,6 +33,17 @@ namespace TimeCraft
                 "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=Faza2005");
         }
 
+        public void AddNewUserBD()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                
+
+                db.User.Add(user);
+                db.SaveChanges();
+            }
+        }
+
 
 
 

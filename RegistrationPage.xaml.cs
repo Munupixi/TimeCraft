@@ -9,6 +9,7 @@ namespace TimeCraft
     public partial class RegistrationPage : Page
     {
         public bool RegistrationEnabled = false;
+        
 
         public RegistrationPage()
         {
@@ -19,6 +20,10 @@ namespace TimeCraft
         {
             if (RegistrationEnabled == true)
             {
+                string name = NameTextBox.Text;
+                int age = int.Parse(AgeTextBox.Text);
+                string password = PasswordTextBox.Text;
+                string passwordChek = PasswordAgainTextBox.Text;
             }
             else
             {

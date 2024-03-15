@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace TimeCraft
 {
@@ -47,11 +48,11 @@ namespace TimeCraft
             return false;
         }
 
-        public bool IsEmailUnique(string email, List<User> users)
+        public bool IsLoginUnique(string login, List<User> users)
         {
             foreach (User user in users)
             {
-                if (user.Login == email)
+                if (user.Login == login)
                 {
                     return false;
                 }
@@ -65,11 +66,20 @@ namespace TimeCraft
             return Regex.IsMatch(password, pattern);
         }
 
+        public void AddNewUserChek(string name, int age, string login, string patronymic)
+        {
+            IsAgeCorrect(age);
+
+
+
+        }
         
-             
-        //public bool IsAgeCorrect(int age)
-        //{
-        //    return ageValue >= 4 && ageValue <= 120 : false;
-        //}
+
+
+
+        public bool IsAgeCorrect(int age)
+        {
+            return age >= 4 && age <= 120 ? true : false;
+        }
     }
 }
