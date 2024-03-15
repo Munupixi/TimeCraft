@@ -65,6 +65,8 @@ namespace TimeCraft
             return Regex.IsMatch(password, pattern);
         }
 
+        
+             
         //public bool IsAgeCorrect(int age)
         //{
         //    return ageValue >= 4 && ageValue <= 120 : false;

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TimeCraft
 {
@@ -20,9 +8,27 @@ namespace TimeCraft
     /// </summary>
     public partial class RegistrationPage : Page
     {
+        public bool RegistrationEnabled = false;
+
         public RegistrationPage()
         {
             InitializeComponent();
+        }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (RegistrationEnabled == true)
+            {
+            }
+            else
+            {
+                MessageBox.Show("Подвердите согласие на обработку данных!");
+            }
+        }
+
+        private void ConfirmProgramPolicyCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            RegistrationEnabled = true;
         }
     }
 }

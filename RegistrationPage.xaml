@@ -31,9 +31,9 @@
                 <TextBox x:Name="PasswordAgainTextBox" Width="200" Margin="0,10,0,10" Text="Повторите пароль" />
             </StackPanel>
 
-            <CheckBox x:Name="ConfirmProgramPolicyCheckBox" Grid.Row="2" Content="согласие на обработку персональных данных" HorizontalAlignment="Center" Margin="0,10,0,10" />
+            <CheckBox x:Name="ConfirmProgramPolicyCheckBox" Grid.Row="2" Content="согласие на обработку персональных данных" HorizontalAlignment="Center" Margin="0,10,0,10" Checked="ConfirmProgramPolicyCheckBox_Checked" />
 
-            <Button x:Name="ConfirmButton" Grid.Row="3" Content="Регистрация" Width="200" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0" />
+            <Button x:Name="ConfirmButton" Grid.Row="3" Content="Регистрация" Width="200" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0" Click="ConfirmButton_Click" />
 
             <TextBlock x:Name="AuthorizationTextBlock" Grid.Row="4" Text="Уже есть аккаунт?" HorizontalAlignment="Center" Margin="0,10,0,0" />
         </Grid>
