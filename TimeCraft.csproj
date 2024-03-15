@@ -158,11 +158,26 @@
     <Compile Include="AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CalendarTaskControl.xaml.cs">
+      <DependentUpon>CalendarTaskControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs" />
     <Compile Include="DressCode.cs" />
+    <Compile Include="DailySchedule.xaml.cs">
+      <DependentUpon>DailySchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DayForMonthUserControl.xaml.cs">
+      <DependentUpon>DayForMonthUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Event.cs" />
     <Compile Include="IEntity.cs" />
+    <Compile Include="EventUserControl.xaml.cs">
+      <DependentUpon>EventUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="JsonManager.cs" />
+    <Compile Include="MonthlySchedule.xaml.cs">
+      <DependentUpon>MonthlySchedule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Participant.cs" />
     <Compile Include="Priority.cs" />
     <Compile Include="ProfilePage.xaml.cs">
@@ -174,7 +189,26 @@
     <Compile Include="Task.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Validate.cs" />
+    <Compile Include="WeeklySchedule.xaml.cs">
+      <DependentUpon>WeeklySchedule.xaml</DependentUpon>
+    </Compile>
     <Page Include="AuthorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CalendarTaskControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DailySchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DayForMonthUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,11 +224,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MonthlySchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WeeklySchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

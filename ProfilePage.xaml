@@ -6,46 +6,50 @@
       xmlns:local="clr-namespace:TimeCraft"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfilePage">
+      Title="ProfilePage" Background="#FF333333">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Viewbox>
+        <Grid Width="800" Height="450" Background="#333">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2" Text="Профиль" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+            <TextBlock x:Name="TitleTextBlock" Grid.ColumnSpan="2" Text="Профиль" FontSize="36" FontWeight="Bold" Foreground="White" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20">
-            <Label Content="Логин"/>
-            <TextBox Width="200" Margin="0,5"/>
-            <Label Content="Пароль"/>
-            <TextBox Width="200" Margin="0,5"/>
-            <Label Content="Пароль*"/>
-            <TextBox Width="200" Margin="0,5"/>
-            <Label Content="Возраст"/>
-            <TextBox Width="200" Margin="0,5"/>
-        </StackPanel>
+            <UniformGrid x:Name="ProfileUniformGrid" Grid.ColumnSpan="2" Grid.Row="1" Columns="2" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <StackPanel x:Name="LeftColumnStackPanel" Margin="20">
+                    <Label Content="Логин" Foreground="White"/>
+                    <TextBox x:Name="LoginTextBox" Width="200" Margin="0,5, 150, 0"/>
+                    <Label Content="Пароль" Foreground="White"/>
+                    <TextBox x:Name="PasswordTextBox" Width="200" Margin="0,5, 150, 0"/>
+                    <Label Content="Пароль*" Foreground="White"/>
+                    <TextBox x:Name="ConfirmPasswordTextBox" Width="200" Margin="0,5, 150, 0"/>
+                    <Label Content="Возраст" Foreground="White"/>
+                    <TextBox x:Name="AgeTextBox" Width="200" Margin="0,5, 150, 0"/>
+                </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20">
-            <Label Content="Имя"/>
-            <TextBox Width="200" Margin="0,5"/>
-            <Label Content="Фамилия"/>
-            <TextBox Width="200" Margin="0,5"/>
-            <Label Content="Отчество"/>
-            <TextBox Width="200" Margin="0,5"/>
-        </StackPanel>
+                <StackPanel x:Name="RightColumnStackPanel" Margin="20">
+                    <Label Content="Имя" Foreground="White"/>
+                    <TextBox x:Name="FirstNameTextBox" Width="200" Margin="0,5, 150, 0"/>
+                    <Label Content="Фамилия" Foreground="White"/>
+                    <TextBox x:Name="LastNameTextBox" Width="200" Margin="0,5, 150, 0"/>
+                    <Label Content="Отчество" Foreground="White"/>
+                    <TextBox x:Name="MiddleNameTextBox" Width="200" Margin="0,5, 150, 0"/>
+                </StackPanel>
+            </UniformGrid>
 
-        <Button Grid.Column="0" Grid.Row="5" Content="Отменить" HorizontalAlignment="Left" Margin="20" Width="100" Height="30"/>
-        <Button Grid.Column="1" Grid.Row="5" Content="Применить" HorizontalAlignment="Right" Margin="20" Width="100" Height="30"/>
-    </Grid>
+            <StackPanel x:Name="ButtonsStackPanel" Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="CancelButton" Content="Отменить" Margin="10" Width="120" Height="40" Foreground="White" Background="#333"/>
+                <Button x:Name="ApplyButton" Content="Применить" Margin="10" Width="120" Height="40" Foreground="White" Background="#333"/>
+            </StackPanel>
+        </Grid>
+    </Viewbox>
 </Page>
