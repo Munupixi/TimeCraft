@@ -161,6 +161,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="DressCode.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="JsonManager.cs" />
     <Compile Include="Participant.cs" />
     <Compile Include="Priority.cs" />
