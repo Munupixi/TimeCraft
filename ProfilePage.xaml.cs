@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    /// <summary>
-    /// Interaction logic for ProfilePage.xaml
-    /// </summary>
     public partial class ProfilePage : Page
     {
         public ProfilePage()

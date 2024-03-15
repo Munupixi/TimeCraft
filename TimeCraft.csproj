@@ -169,6 +169,7 @@
     <Compile Include="DayForMonthUserControl.xaml.cs">
       <DependentUpon>DayForMonthUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entity.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="EventUserControl.xaml.cs">
