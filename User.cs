@@ -63,34 +63,6 @@ namespace TimeCraft
         {
             string pattern = @"^(?=.*[0-9])(?=.*[!@#$%^])(?=.*[A-Z]).{6,}$";
             return Regex.IsMatch(password, pattern);
-
-            //if (password.Length >= 6 &&
-            //    (password.Contains('1') || password.Contains('1')
-            //                            || password.Contains('2') ||
-            //                            password.Contains('3') ||
-            //                            password.Contains('4')
-            //                            || password.Contains('5')
-            //                            || password.Contains('6')
-            //                            || password.Contains('7')
-            //                            || password.Contains('8')
-            //                            || password.Contains('9')
-            //                            || password.Contains('0'))
-            //                         && (password.Contains('!')
-            //                             || password.Contains('@')
-            //                             || password.Contains('#')
-            //                             || password.Contains('$')
-            //                             || password.Contains('%')
-            //                             || password.Contains('^')))
-            //{
-            //    foreach (char i in password)
-            //    {
-            //        if (char.IsUpper(i))
-            //        {
-            //            return true;
-            //        }
-            //    }
-            //}
-            //return false;
         }
 
         //public bool IsAgeCorrect(int age)
