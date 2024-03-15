@@ -32,5 +32,41 @@ namespace TimeCraft
             optionsBuilder.UseNpgsql(
                 "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=Faza2005");
         }
+
+
+        public  void Editing_data()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                // получаем первый объект
+                User user = db.User.FirstOrDefault();
+                if (user != null)
+                {
+                    user.Name = "Артур";
+                    user.Age = 18;
+                    //обновляем объект
+                    db.User.Update(user);
+                    db.SaveChanges();
+                }
+               
+            }
+        }
+
+        public void Deleting_data()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                User user = db.User.Find(2);
+                if (user != null)
+                {
+                    //удаляем объект
+                    db.User.Remove(user);
+                    db.SaveChanges();
+                }
+              
+            }
+        }
+
+
     }
 }

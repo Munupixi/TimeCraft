@@ -17,28 +17,30 @@ namespace TimeCraft
 {
     public partial class MainWindow : Window
     {
+        AppDBContent appDBContent = new AppDBContent();
         public MainWindow()
         {
             InitializeComponent();
             RegistrationPage regis = new RegistrationPage();  
             MainFrame.Navigate(regis);
+            appDBContent.Deleting_data();
 
-            using (AppDBContent db = new AppDBContent())
-            {
+            //using (AppDBContent db = new AppDBContent())
+            //{
 
-                User user1 = new User(83, "To4m4", "werg", 5, "we","Xs","s");
-                User user2 = new User(49, "To44d", "werginia", 8, "we", "Xs", "s");
+            //    User user1 = new User(83, "To4m4", "werg", 5, "we","Xs","s");
+            //    User user2 = new User(49, "To44d", "werginia", 8, "we", "Xs", "s");
 
-                db.User.Add(user1);
-                db.User.Add(user2);
-                db.SaveChanges();
+            //    db.User.Add(user1);
+            //    db.User.Add(user2);
+            //    db.SaveChanges();
 
-                var users = db.User;
-                foreach (User u in users)
-                {
-                    MessageBox.Show(u.UserId +" "+ u.Name + " "+ u.Age);
-                }
-            }
+            //    var users = db.User;
+            //    foreach (User u in users)
+            //    {
+            //        MessageBox.Show(u.UserId +" "+ u.Name + " "+ u.Age);
+            //    }
+            //}
         }
     }
 }
