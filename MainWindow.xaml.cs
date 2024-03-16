@@ -17,12 +17,12 @@ namespace TimeCraft
 {
     public partial class MainWindow : Window
     {
-        AppDBContent appDBContent = new AppDBContent();
+        private readonly AppDBContent appDBContent = new AppDBContent();
         public MainWindow()
         {
             InitializeComponent();
-            RegistrationPage regis = new RegistrationPage();  
-            MainFrame.Navigate(regis);
+            MainFrame.Navigate(new RegistrationPage());
+            User user = new User(1, " ", " ", 5);
         }
     }
 }

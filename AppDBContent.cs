@@ -11,17 +11,27 @@ namespace TimeCraft
     {
         public AppDBContent()
         {
-            try
+            while (true)
             {
-                Database.EnsureCreated();
-            }
-            catch(Npgsql.PostgresException ex)
-            {
-                if (MessageBox.Show($"Не удалось установить соединение с " +
-                    "базой данныз TimeCraft\nПоказать ошибку?", "Error",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                try
+                {
+                    Database.EnsureCreated();
+                }
+                catch (Exception ex)
+                {
+
+                    switch (MessageBox.Show("Не удалось установить соединение с " +
+                        $"базой данных TimeCraft\n\n{ex}\n\n" +
+                        $"Поведение програмыы может быть непредсказуемым.\n" +
+                        $"Продолжать - не советуем.", "Error",
+                        MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error))
                     {
-                    MessageBox.Show($"{ex}", "Error");
+                        case DialogResult.Abort:
+                            Environment.Exit(1);
+                            break;
+                        case DialogResult.Ignore:
+                            return;
+                    }
                 }
             }
         }
@@ -43,7 +53,7 @@ namespace TimeCraft
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=Faza2005");
+                "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=1234");
         }
 
         public Object GetById(int id)
@@ -65,38 +75,6 @@ namespace TimeCraft
         public Tuple<Task> GetTasksByUserId(int userId)
         {
             return null;
-        }
-        public GetEventsByUserIdWhichHeInvited
-
-        public  void Editing_data()
-        {
-            using (AppDBContent db = new AppDBContent())
-            {
-                User user = db.User.FirstOrDefault();
-                if (user != null)
-                {
-                    user.Name = "Артур";
-                    user.Age = 18;
-                    db.User.Update(user);
-                    db.SaveChanges();
-                }
-               
-            }
-        }
-
-        public void Deleting_data()
-        {
-            using (AppDBContent db = new AppDBContent())
-            {
-                User user = db.User.Find(2);
-                if (user != null)
-                {
-                    //удаляем объект
-                    db.User.Remove(user);
-                    db.SaveChanges();
-                }
-              
-            }
         }
 
     }

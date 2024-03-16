@@ -8,7 +8,8 @@ namespace TimeCraft
 {
     internal interface IEntity
     {
-        void DeleteById(int id);
+        void Delete();
+        void Delete(int id);
         void Add();
         void Update();
     }

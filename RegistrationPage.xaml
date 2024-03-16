@@ -24,18 +24,18 @@
             <TextBlock x:Name="TitleTextBlock" Grid.Row="0" Text="Впервые в TimeCraft?" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,10" />
 
             <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                <TextBox x:Name="NameTextBox" Width="200" Margin="0,10,0,10" Text="Имя" />
-                <TextBox x:Name="AgeTextBox" Width="200" Margin="0,10,0,10" Text="Возраст" />
-                <TextBox x:Name="LoginTextBox" Width="200" Margin="0,10,0,10" Text="Логин" />
-                <TextBox x:Name="PasswordTextBox" Width="200" Margin="0,10,0,10" Text="Пароль" />
-                <TextBox x:Name="PasswordAgainTextBox" Width="200" Margin="0,10,0,10" Text="Повторите пароль" />
+                <TextBox x:Name="NameTextBox" Width="200" Margin="0,10,0,10" Text="Имя" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="NameTextBox_TextChanged" />
+                <TextBox x:Name="AgeTextBox" Width="200" Margin="0,10,0,10" Text="Возраст" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="AgeTextBox_TextChanged" />
+                <TextBox x:Name="LoginTextBox" Width="200" Margin="0,10,0,10" Text="Логин" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="LoginTextBox_TextChanged" />
+                <TextBox x:Name="PasswordTextBox" Width="200" Margin="0,10,0,10" Text="Пароль" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="PasswordTextBox_TextChanged" />
+                <TextBox x:Name="PasswordAgainTextBox" Width="200" Margin="0,10,0,10" Text="Повторите пароль" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="PasswordAgainTextBox_TextChanged" />
             </StackPanel>
 
-            <CheckBox x:Name="ConfirmProgramPolicyCheckBox" Grid.Row="2" Content="согласие на обработку персональных данных" HorizontalAlignment="Center" Margin="0,10,0,10" Checked="ConfirmProgramPolicyCheckBox_Checked" />
+            <CheckBox x:Name="ConfirmProgramPolicyCheckBox" Grid.Row="2" Content="согласие на обработку персональных данных" HorizontalAlignment="Center" Margin="0,10,0,10" IsChecked="False" Click="ConfirmProgramPolicyCheckBox_Click" />
 
-            <Button x:Name="ConfirmButton" Grid.Row="3" Content="Регистрация" Width="200" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0" Click="ConfirmButton_Click" />
+            <Button x:Name="ConfirmButton" Grid.Row="3" Content="Регистрация" Width="200" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0" Click="ConfirmButton_Click" IsEnabled="False" />
 
-            <TextBlock x:Name="AuthorizationTextBlock" Grid.Row="4" Text="Уже есть аккаунт?" HorizontalAlignment="Center" Margin="0,10,0,0" />
+            <TextBlock x:Name="AuthorizationTextBlock" Grid.Row="4" Text="Уже есть аккаунт?" HorizontalAlignment="Center" Margin="0,10,0,0" MouseLeftButtonDown="AuthorizationTextBlock_MouseLeftButtonDown" />
         </Grid>
     </Viewbox>
 </Page>

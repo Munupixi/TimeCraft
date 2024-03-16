@@ -172,10 +172,10 @@
     </Compile>
     <Compile Include="Entity.cs" />
     <Compile Include="Event.cs" />
-    <Compile Include="IEntity.cs" />
     <Compile Include="EventUserControl.xaml.cs">
       <DependentUpon>EventUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IEntity.cs" />
     <Compile Include="JsonManager.cs" />
     <Compile Include="MonthlySchedule.xaml.cs">
       <DependentUpon>MonthlySchedule.xaml</DependentUpon>

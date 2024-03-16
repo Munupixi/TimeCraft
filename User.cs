@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace TimeCraft
 {
-    internal class User : Entity
+    internal class User : IEntity
     {
         public int UserId { get; set; }
         public string Login { get; set; }
@@ -31,15 +31,16 @@ namespace TimeCraft
             Surname = surname;
             Patronymic = patronymic;
         }
-        public bool IsEmailCorrect(string email)
-        {
-            if (email.Contains('@') &&
-                email.Contains('.') && email.Length > 5)
-            {
-                byte at = (byte)email.IndexOf('@');
-                byte dot = (byte)email.IndexOf('.');
 
-                if (at > 0 && dot > at + 1 && dot < email.Length - 1)
+        public static bool IsLoginCorrect(string login)
+        {
+            if (login.Contains('@') &&
+                login.Contains('.') && login.Length > 5)
+            {
+                byte at = (byte)login.IndexOf('@');
+                byte dot = (byte)login.IndexOf('.');
+
+                if (at > 0 && dot > at + 1 && dot < login.Length - 1)
                 {
                     return true;
                 }
@@ -48,38 +49,103 @@ namespace TimeCraft
             return false;
         }
 
-        public bool IsLoginUnique(string login, List<User> users)
-        {
-            foreach (User user in users)
-            {
-                if (user.Login == login)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        //public bool IsLoginUnique(string login, List<User> users)
+        //{
+        //    using (AppDBContent db = new AppDBContent())
+        //    {
+        //        if (db.User.Contains(login) == null)
+        //        {
+        //            db.User.Remove(this);
+        //            db.SaveChanges();
+        //            return;
+        //        }
+        //        throw new Exception("Возникли проблемы с удалением пользователя");
+        //    }
 
-        public bool IsPasswordCorrect(string password)
+        //    foreach (User user in users)
+        //    {
+        //        if (user.Login == login)
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
+
+        public static int GetNewId()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return (db.User.Max(u => (int?)u.UserId) ?? 0) + 1;
+            }
+        }
+        public static bool IsPasswordCorrect(string password)
         {
             string pattern = @"^(?=.*[0-9])(?=.*[!@#$%^])(?=.*[A-Z]).{6,}$";
             return Regex.IsMatch(password, pattern);
         }
 
-        public void AddNewUserChek(string name, int age, string login, string patronymic)
+        public static bool IsAgeCorrect(string age)
         {
-            IsAgeCorrect(age);
-
-
-
+            if (int.TryParse(age, out int ageValue))
+            {
+                return ageValue >= 4 && ageValue <= 120 ? true : false;
+            }
+            return false;
         }
-        
 
-
-
-        public bool IsAgeCorrect(int age)
+        public void Delete()
         {
-            return age >= 4 && age <= 120 ? true : false;
+            using (AppDBContent db = new AppDBContent())
+            {
+                if (db.User.Find(UserId) != null)
+                {
+                    db.User.Remove(this);
+                    db.SaveChanges();
+                    return;
+                }
+                throw new Exception("Возникли проблемы с удалением пользователя");
+            }
+        }
+
+        public void Delete(int userId)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                User user = db.User.Find(userId);
+                if (user != null)
+                {
+                    db.User.Remove(user);
+                    db.SaveChanges();
+                    return;
+                }
+                throw new Exception("Возникли проблемы с удалением пользователя");
+            }
+        }
+
+        public void Add()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                db.User.Append(this);
+                db.SaveChanges();
+            }
+        }
+
+        public void Update()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                try
+                {
+                    db.User.Update(this);
+                }
+                catch
+                {
+                    throw new Exception("Неудалось сохранить изменения");
+                }
+                db.SaveChanges();
+            }
         }
     }
 }
