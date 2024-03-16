@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    internal class Activity
+    internal class Activity : Entity
     {
         public bool IsStartDateCorrect()
         {

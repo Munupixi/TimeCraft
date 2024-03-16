@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 namespace TimeCraft
 {
@@ -10,7 +11,19 @@ namespace TimeCraft
     {
         public AppDBContent()
         {
-            Database.EnsureCreated();
+            try
+            {
+                Database.EnsureCreated();
+            }
+            catch(Npgsql.PostgresException ex)
+            {
+                if (MessageBox.Show($"Не удалось установить соединение с " +
+                    "базой данныз TimeCraft\nПоказать ошибку?", "Error",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                    {
+                    MessageBox.Show($"{ex}", "Error");
+                }
+            }
         }
         public DbSet<User> User { get; set; }
         public DbSet<Task> Tasks { get; set; }
@@ -33,31 +46,37 @@ namespace TimeCraft
                 "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=Faza2005");
         }
 
-        public void AddNewUserBD()
+        public Object GetById(int id)
         {
-            using (AppDBContent db = new AppDBContent())
-            {
-                
-
-                db.User.Add(user);
-                db.SaveChanges();
-            }
+            return null;
         }
+        public void DeleteById(int id)
+        {
 
+        }
+        public void ReplaceById(int id)
+        {
 
-
+        }
+        public Tuple<Event> GetEventsByUserId(int userId)
+        {
+            return null;
+        }
+        public Tuple<Task> GetTasksByUserId(int userId)
+        {
+            return null;
+        }
+        public GetEventsByUserIdWhichHeInvited
 
         public  void Editing_data()
         {
             using (AppDBContent db = new AppDBContent())
             {
-                // получаем первый объект
                 User user = db.User.FirstOrDefault();
                 if (user != null)
                 {
                     user.Name = "Артур";
                     user.Age = 18;
-                    //обновляем объект
                     db.User.Update(user);
                     db.SaveChanges();
                 }

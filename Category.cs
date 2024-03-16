@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    internal class Category : IEntity
+    internal class Category : Entity
     {
         public int CategoryId { get; set; }
         public string Title { get; set; }

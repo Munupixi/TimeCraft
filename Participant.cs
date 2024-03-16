@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    internal class Participant
+    internal class Participant : Entity
     {
         public int ParticipantId { get; set; }
         public int IdEvent { get; set; }
