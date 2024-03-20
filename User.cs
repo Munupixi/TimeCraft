@@ -33,6 +33,8 @@ namespace TimeCraft
             Patronymic = patronymic;
         }
 
+
+
         public static bool IsLoginCorrect(string login)
         {
             if (login.Contains('@') &&
@@ -54,7 +56,7 @@ namespace TimeCraft
         //{
         //    using (AppDBContent db = new AppDBContent())
         //    {
-        //        if (db.User.Contains(login) == null)
+        //        if (db.User..Contains(login) == null)
         //        {
         //            db.User.Remove(this);
         //            db.SaveChanges();
@@ -63,6 +65,13 @@ namespace TimeCraft
         //        throw new Exception("Возникли проблемы с удалением пользователя");
         //    }
         //}
+        public static bool IsLoginUnique(string login)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return !db.User.Any(u => u.Login == login);
+            }
+        }
 
         public static int GetNewId()
         {
@@ -71,6 +80,7 @@ namespace TimeCraft
                 return (db.User.Max(u => (int?)u.UserId) ?? 0) + 1;
             }
         }
+        
         public static bool IsPasswordCorrect(string password)
         {
             string pattern = @"^(?=.*[0-9])(?=.*[!@#$%^])(?=.*[A-Z]).{6,}$";
@@ -114,15 +124,17 @@ namespace TimeCraft
                 throw new Exception("Возникли проблемы с удалением пользователя");
             }
         }
-
         public void Add()
         {
             using (AppDBContent db = new AppDBContent())
             {
-                db.User.Append(this);
-                db.SaveChanges();
+                db.User.Add(this); 
+                db.SaveChanges(); 
             }
         }
+
+
+       
 
         public void Update()
         {
