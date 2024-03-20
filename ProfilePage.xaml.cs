@@ -24,6 +24,7 @@ namespace TimeCraft
             SurnameTextBox.Text = User.ActiveUser.Surname;
             PatronymicTextBox.Text = User.ActiveUser.Patronymic;
             PasswordTextBox.Text = User.ActiveUser.Password;
+            PasswordAgainTextBox.Text = User.ActiveUser.Password;
             AgeTextBox.Text = User.ActiveUser.Age.ToString();
             LoginTextBox.Text = User.ActiveUser.Login;
         }
