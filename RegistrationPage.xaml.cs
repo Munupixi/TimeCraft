@@ -6,9 +6,6 @@ using System.Windows.Media;
 
 namespace TimeCraft
 {
-    /// <summary>
-    /// Interaction logic for RegistrationPage.xaml
-    /// </summary>
     public partial class RegistrationPage : Page
     {
         public RegistrationPage()
@@ -33,7 +30,6 @@ namespace TimeCraft
                 User.IsLoginCorrect(LoginTextBox.Text) &&
                 User.IsPasswordCorrect(PasswordTextBox.Text) &&
                 PasswordTextBox.Text == PasswordAgainTextBox.Text);
-            // и проверка на уникальность должна быть
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
@@ -43,10 +39,11 @@ namespace TimeCraft
                 MessageBox.Show("Не все поля заполнены корректно");
                 return;
             }
-            new User(User.GetNewId(), LoginTextBox.Text,
+            User.ActiveUser = new User(User.GetNewId(), LoginTextBox.Text,
                 PasswordTextBox.Text,
                 Convert.ToInt32(AgeTextBox.Text),
-                NameTextBox.Text).Add();
+                NameTextBox.Text);
+            User.ActiveUser.Add();
             NavigationService.Navigate(new WeeklySchedule());
         }
 

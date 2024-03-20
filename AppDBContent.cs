@@ -20,7 +20,6 @@ namespace TimeCraft
                 }
                 catch (Exception ex)
                 {
-
                     switch (MessageBox.Show("Не удалось установить соединение с " +
                         $"базой данных TimeCraft\n\n{ex}\n\n" +
                         $"Поведение програмыы может быть непредсказуемым.\n" +
@@ -54,29 +53,7 @@ namespace TimeCraft
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=1234");
+                "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=123");
         }
-
-        public Object GetById(int id)
-        {
-            return null;
-        }
-        public void DeleteById(int id)
-        {
-
-        }
-        public void ReplaceById(int id)
-        {
-
-        }
-        public Tuple<Event> GetEventsByUserId(int userId)
-        {
-            return null;
-        }
-        public Tuple<Task> GetTasksByUserId(int userId)
-        {
-            return null;
-        }
-
     }
 }

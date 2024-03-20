@@ -11,6 +11,7 @@ namespace TimeCraft
 {
     internal class User : IEntity
     {
+        public static User ActiveUser { get; set; }
         public int UserId { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
@@ -61,15 +62,6 @@ namespace TimeCraft
         //        }
         //        throw new Exception("Возникли проблемы с удалением пользователя");
         //    }
-
-        //    foreach (User user in users)
-        //    {
-        //        if (user.Login == login)
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return true;
         //}
 
         public static int GetNewId()
@@ -145,6 +137,13 @@ namespace TimeCraft
                     throw new Exception("Неудалось сохранить изменения");
                 }
                 db.SaveChanges();
+            }
+        }
+        public static User GetUserByLogin(string login)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.User.FirstOrDefault(u => u.Login == login);
             }
         }
     }
