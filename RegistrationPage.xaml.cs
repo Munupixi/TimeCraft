@@ -28,11 +28,10 @@ namespace TimeCraft
             return (!string.IsNullOrEmpty(NameTextBox.Text) &&
                 User.IsAgeCorrect(AgeTextBox.Text) &&
                 User.IsLoginCorrect(LoginTextBox.Text) &&
-                User.IsLoginUnique(LoginTextBox.Text) && 
                 User.IsPasswordCorrect(PasswordTextBox.Text) &&
-                PasswordTextBox.Text == PasswordAgainTextBox.Text);
+                PasswordTextBox.Text == PasswordAgainTextBox.Text) &&
+                User.IsLoginUnique(LoginTextBox.Text);
         }
-
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
