@@ -16,6 +16,7 @@ namespace TimeCraft
                 try
                 {
                     Database.EnsureCreated();
+                    return;
                 }
                 catch (Exception ex)
                 {
