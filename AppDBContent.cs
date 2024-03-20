@@ -54,7 +54,7 @@ namespace TimeCraft
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=1234");
+                "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=Faza2005");
         }
 
         public Object GetById(int id)
