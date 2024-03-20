@@ -35,6 +35,14 @@ namespace TimeCraft
                 User.IsPasswordCorrect(PasswordTextBox.Text) &&
                 PasswordTextBox.Text == PasswordAgainTextBox.Text);
         }
+        private bool IsAllCorrect()
+        {
+            return (!string.IsNullOrEmpty(NameTextBox.Text) &&
+                User.IsAgeCorrect(AgeTextBox.Text) &&
+                User.IsLoginCorrect(LoginTextBox.Text) &&
+                User.IsPasswordCorrect(PasswordTextBox.Text) &&
+                PasswordTextBox.Text == PasswordAgainTextBox.Text);
+        }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
