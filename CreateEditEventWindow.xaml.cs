@@ -10,17 +10,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    /// <summary>
-    /// Interaction logic for CalendarTaskControl.xaml
-    /// </summary>
-    public partial class CalendarTaskControl : UserControl
+    public partial class CreateEditEventWindow : Window
     {
-        public CalendarTaskControl()
+        public CreateEditEventWindow()
         {
             InitializeComponent();
         }

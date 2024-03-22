@@ -159,8 +159,11 @@
     <Compile Include="AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CalendarTaskControl.xaml.cs">
-      <DependentUpon>CalendarTaskControl.xaml</DependentUpon>
+    <Compile Include="CreateEditEventWindow.xaml.cs">
+      <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateEditTaskWindow.xaml.cs">
+      <DependentUpon>CreateEditTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Category.cs" />
     <Compile Include="DressCode.cs" />
@@ -198,7 +201,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CalendarTaskControl.xaml">
+    <Page Include="CreateEditEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateEditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
