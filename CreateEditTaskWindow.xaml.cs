@@ -10,19 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    public partial class DailySchedule : Page
+    /// <summary>
+    /// Interaction logic for CreateEditTaskWindow.xaml
+    /// </summary>
+    public partial class CreateEditTaskWindow : Window
     {
-        public DailySchedule()
+        public CreateEditTaskWindow()
         {
             InitializeComponent();
-
-            MainListView.Items.Clear();
-            MainListView.Items.Add(new Task());
         }
     }
 }
