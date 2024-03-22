@@ -10,21 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    public partial class MainWindow : Window
+    public partial class CreateEditEventWindow : Window
     {
-        public MainWindow()
+        public CreateEditEventWindow()
         {
             InitializeComponent();
-            WeeklySchedule test = new WeeklySchedule();
-            MainFrame.Navigate(test);
-
-            CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();
-            createEditEventWindow.Show();
         }
     }
 }
