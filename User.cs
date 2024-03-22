@@ -52,19 +52,6 @@ namespace TimeCraft
             return false;
         }
 
-        //public bool IsLoginUnique(string login, List<User> users)
-        //{
-        //    using (AppDBContent db = new AppDBContent())
-        //    {
-        //        if (db.User..Contains(login) == null)
-        //        {
-        //            db.User.Remove(this);
-        //            db.SaveChanges();
-        //            return;
-        //        }
-        //        throw new Exception("Возникли проблемы с удалением пользователя");
-        //    }
-        //}
         public static bool IsLoginUnique(string login)
         {
             using (AppDBContent db = new AppDBContent())

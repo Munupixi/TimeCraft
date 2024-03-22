@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    /// <summary>
-    /// Interaction logic for CreateEditTaskWindow.xaml
-    /// </summary>
     public partial class CreateEditTaskWindow : Window
     {
         public CreateEditTaskWindow()

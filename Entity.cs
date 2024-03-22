@@ -8,13 +8,5 @@ namespace TimeCraft
 {
     internal class Entity
     {
-        public virtual void Delete()
-        {
-
-        }
-        public virtual void Delete(int id)
-        {
-
-        }
     }
 }

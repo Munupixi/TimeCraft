@@ -39,10 +39,10 @@ namespace TimeCraft
         }
 
         public DbSet<User> User { get; set; }
-        public DbSet<Task> Tasks { get; set; }
-        public DbSet<Event> Events { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Participant> Participants { get; set; }
+        public DbSet<Task> Task { get; set; }
+        public DbSet<Event> Event { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Participant> Participant { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
