@@ -62,6 +62,9 @@
     <Compile Include="CreateEditEventWindow.xaml.cs">
       <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateEditTaskWindow.xaml.cs">
+      <DependentUpon>CreateEditTaskWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DailySchedule.xaml.cs">
       <DependentUpon>DailySchedule.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateEditEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateEditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

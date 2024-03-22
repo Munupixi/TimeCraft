@@ -25,6 +25,9 @@ namespace TimeCraft
 
             CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();
             createEditEventWindow.Show();
+
+            CreateEditTaskWindow createEditTaskWindow = new CreateEditTaskWindow();
+            createEditTaskWindow.Show();
         }
     }
 }
