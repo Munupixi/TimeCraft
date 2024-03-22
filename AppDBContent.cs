@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
+
 namespace TimeCraft
 {
     internal class AppDBContent : DbContext
@@ -29,12 +30,14 @@ namespace TimeCraft
                         case DialogResult.Abort:
                             Environment.Exit(1);
                             break;
+
                         case DialogResult.Ignore:
                             return;
                     }
                 }
             }
         }
+
         public DbSet<User> User { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Event> Events { get; set; }
@@ -52,8 +55,8 @@ namespace TimeCraft
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(
-                "Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=Faza2005");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=123");
+            //optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=TimeCraft;Username=postgres;Password=Faza2005");
         }
     }
 }
