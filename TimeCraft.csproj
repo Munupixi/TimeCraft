@@ -58,7 +58,6 @@
     <Compile Include="AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Category.cs" />
     <Compile Include="CreateEditEventWindow.xaml.cs">
       <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
     </Compile>
@@ -71,24 +70,18 @@
     <Compile Include="DayForMonthUserControl.xaml.cs">
       <DependentUpon>DayForMonthUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Event.cs" />
     <Compile Include="EventUserControl.xaml.cs">
       <DependentUpon>EventUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="JsonManager.cs" />
     <Compile Include="MonthlySchedule.xaml.cs">
       <DependentUpon>MonthlySchedule.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Participant.cs" />
     <Compile Include="ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Task.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Validate.cs" />
     <Compile Include="WeeklySchedule.xaml.cs">
       <DependentUpon>WeeklySchedule.xaml</DependentUpon>
     </Compile>

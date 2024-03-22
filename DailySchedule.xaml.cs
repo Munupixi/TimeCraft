@@ -22,7 +22,7 @@ namespace TimeCraft
             InitializeComponent();
 
             MainListView.Items.Clear();
-            MainListView.Items.Add(new Task());
+            //MainListView.Items.Add(new Task());
         }
     }
 }
