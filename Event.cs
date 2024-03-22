@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace TimeCraft
 {
 
-    internal class Event : Activity
+    internal class Event : Activity, IEntity
     {
         public int EventId { get; set; }
         public string Title { get; set; }
@@ -40,6 +41,58 @@ namespace TimeCraft
             Priority = priority;
             IdCategory = idCategory;
             IdUser = idUser;
+        }
+        
+        public void Delete()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                if (db.Events.Find(EventId) != null)
+                {
+                    db.Events.Remove(this);
+                    db.SaveChanges();
+                    return;
+                }
+                throw new Exception("Возникли проблемы с удалением мероприятия");
+            }
+        }
+        public void Delete(int eventId)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                Event _event = db.Events.Find(eventId);
+                if (_event != null)
+                {
+                    db.Events.Remove(_event);
+                    db.SaveChanges();
+                    return;
+                }
+                throw new Exception("Возникли проблемы с удалением пользователя");
+            }
+        }
+        public void Add()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                db.Events.Add(this);
+                db.SaveChanges();
+            }
+        }
+
+        public void Update()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                try
+                {
+                    db.Events.Update(this);
+                }
+                catch
+                {
+                    throw new Exception("Неудалось сохранить изменения");
+                }
+                db.SaveChanges();
+            }
         }
     }
 }

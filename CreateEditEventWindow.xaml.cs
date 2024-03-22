@@ -20,5 +20,47 @@ namespace TimeCraft
         {
             InitializeComponent();
         }
+
+        private void StartTimeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void EndTimeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void StartDateDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void EndDateDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AddParticipantButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClearParticipantsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e) => Close();
+
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteParticipantButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

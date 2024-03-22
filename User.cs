@@ -52,24 +52,11 @@ namespace TimeCraft
             return false;
         }
 
-        //public bool IsLoginUnique(string login, List<User> users)
-        //{
-        //    using (AppDBContent db = new AppDBContent())
-        //    {
-        //        if (db.User..Contains(login) == null)
-        //        {
-        //            db.User.Remove(this);
-        //            db.SaveChanges();
-        //            return;
-        //        }
-        //        throw new Exception("Возникли проблемы с удалением пользователя");
-        //    }
-        //}
         public static bool IsLoginUnique(string login)
         {
             using (AppDBContent db = new AppDBContent())
             {
-                return !db.User.Any(u => u.Login == login);
+                return !db.Users.Any(u => u.Login == login);
             }
         }
 
@@ -77,7 +64,7 @@ namespace TimeCraft
         {
             using (AppDBContent db = new AppDBContent())
             {
-                return (db.User.Max(u => (int?)u.UserId) ?? 0) + 1;
+                return (db.Users.Max(u => (int?)u.UserId) ?? 0) + 1;
             }
         }
         
@@ -100,9 +87,9 @@ namespace TimeCraft
         {
             using (AppDBContent db = new AppDBContent())
             {
-                if (db.User.Find(UserId) != null)
+                if (db.Users.Find(UserId) != null)
                 {
-                    db.User.Remove(this);
+                    db.Users.Remove(this);
                     db.SaveChanges();
                     return;
                 }
@@ -114,10 +101,10 @@ namespace TimeCraft
         {
             using (AppDBContent db = new AppDBContent())
             {
-                User user = db.User.Find(userId);
+                User user = db.Users.Find(userId);
                 if (user != null)
                 {
-                    db.User.Remove(user);
+                    db.Users.Remove(user);
                     db.SaveChanges();
                     return;
                 }
@@ -128,7 +115,7 @@ namespace TimeCraft
         {
             using (AppDBContent db = new AppDBContent())
             {
-                db.User.Add(this); 
+                db.Users.Add(this); 
                 db.SaveChanges(); 
             }
         }
@@ -142,7 +129,7 @@ namespace TimeCraft
             {
                 try
                 {
-                    db.User.Update(this);
+                    db.Users.Update(this);
                 }
                 catch
                 {
@@ -155,7 +142,7 @@ namespace TimeCraft
         {
             using (AppDBContent db = new AppDBContent())
             {
-                return db.User.FirstOrDefault(u => u.Login == login);
+                return db.Users.FirstOrDefault(u => u.Login == login);
             }
         }
     }
