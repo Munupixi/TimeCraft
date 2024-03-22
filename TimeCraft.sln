@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeCraft", "TimeCraft.csproj", "{3E4B51F7-2666-4C55-8393-F8CC9A06FB7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestTimeCraft2", "..\UnitTestTimeCraft2\UnitTestTimeCraft2.csproj", "{1A016666-79A6-4C67-8065-29111D06F2F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3E4B51F7-2666-4C55-8393-F8CC9A06FB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E4B51F7-2666-4C55-8393-F8CC9A06FB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E4B51F7-2666-4C55-8393-F8CC9A06FB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A016666-79A6-4C67-8065-29111D06F2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A016666-79A6-4C67-8065-29111D06F2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A016666-79A6-4C67-8065-29111D06F2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A016666-79A6-4C67-8065-29111D06F2F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace TimeCraft
 {
-    internal class User : IEntity
+    public class User : IEntity
     {
         public static User ActiveUser { get; set; }
         public int UserId { get; set; }
