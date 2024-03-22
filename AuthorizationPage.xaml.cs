@@ -14,6 +14,24 @@ namespace TimeCraft
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
+
+            //4 testin'
+            if (LoginTextBox.Text == "1")
+            {
+                User _user = User.GetUserByLogin("1");
+                if (_user == null)
+                {
+                    _user = new User(User.GetNewId(), "1", "1", 120);
+                    _user.Add();
+                }
+                User.ActiveUser = _user;
+                NavigationService.Navigate(new WeeklySchedule());
+                CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();
+                createEditEventWindow.Show();
+                return;
+            }
+
+
             User user = User.GetUserByLogin(LoginTextBox.Text);
             if (user == null)
             {

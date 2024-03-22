@@ -28,7 +28,7 @@ namespace TimeCraft
         public Task(int taskId, string title, int idUser, string description = null,
             DateTime startDate = default, TimeSpan startTime = default,
             short repeat = -1, DateTime endDate = default, TimeSpan endTime = default,
-            Priority priority = Priority.Medium, bool isDone = false, int idCategory = -1)
+            Priority priority = Priority.Средний, bool isDone = false, int idCategory = -1)
         {
             TaskId = taskId;
             Title = title;

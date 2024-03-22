@@ -8,8 +8,9 @@ namespace TimeCraft
 {
     public enum Priority
     {
-        High,
-        Medium,
-        Low
+        Критичейский,
+        Высокий,
+        Средний,
+        Низкий
     }
 }

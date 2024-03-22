@@ -21,16 +21,19 @@ namespace TimeCraft
         public MainWindow()
         {
             InitializeComponent();
-            WeeklySchedule test = new WeeklySchedule();
-            MainFrame.Navigate(test);
 
-            CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();
-            createEditEventWindow.Show();
+            try
+            {
+                Category.CreateAllCategories();
+            }
+            catch { }
 
-            CreateEditTaskWindow createEditTaskWindow = new CreateEditTaskWindow();
-            createEditTaskWindow.Show();
-            MainFrame.Navigate(new RegistrationPage());
-            User user = new User(1, " ", " ", 5);
+            //CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();
+            //createEditEventWindow.Show();
+
+            //CreateEditTaskWindow createEditTaskWindow = new CreateEditTaskWindow();
+            //createEditTaskWindow.Show();
+           MainFrame.Navigate(new AuthorizationPage());
         }
     }
 }

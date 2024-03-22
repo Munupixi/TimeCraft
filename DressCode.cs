@@ -8,14 +8,14 @@ namespace TimeCraft
 {
     public enum DressCode
     {
-        BlackTie,
-        Cocktail,
-        Business,
-        Casual,
-        Sporty,
-        Beach,
-        Costume,
-        NotMatter,
-        Other
+        ЧерныйГалстук,
+        Коктейльный,
+        Деловой,
+        Повседневный,
+        Спортивный,
+        Пляжный,
+        Костюмированный,
+        НеИмеетЗначения,
+        Другой
     }
 }

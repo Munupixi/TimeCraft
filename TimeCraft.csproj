@@ -154,6 +154,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddParticipant.cs" />
     <Compile Include="AppDBContent.cs" />
     <Compile Include="Activity.cs" />
     <Compile Include="AuthorizationPage.xaml.cs">
@@ -180,6 +181,7 @@
     </Compile>
     <Compile Include="IEntity.cs" />
     <Compile Include="JsonManager.cs" />
+    <Compile Include="LoginToColorConverter.cs" />
     <Compile Include="MonthlySchedule.xaml.cs">
       <DependentUpon>MonthlySchedule.xaml</DependentUpon>
     </Compile>

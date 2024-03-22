@@ -1,28 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace TimeCraft
 {
-    internal class Activity
+    internal abstract class Activity
     {
-        public bool IsStartDateCorrect()
+        public static bool IsStartDateCorrect(DateTime? startDate)
         {
-            return true;
+            if (startDate == null) return false;
+            return startDate.Value >= DateTime.Now;
         }
-        public bool IsStartTimeCorrect()
+
+        public static bool IsTimeCorrect(string time)
         {
-            return true;
+            if (time == null) return false;
+
+            TimeSpan startTimeValue;
+            if (TimeSpan.TryParse(time, out startTimeValue))
+            {
+                return DateTime.TryParseExact(time, "HH:mm",
+                    CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
+            }
+            return false;
         }
-        public bool IsEndDateCorrect()
+
+        public static bool IsEndDateCorrect(DateTime? startDate, string startTime, DateTime? endDate, string endTime)
         {
-            return true;
+            if (endDate == null || !IsTimeCorrect(startTime) || !IsTimeCorrect(endTime)) return false;
+
+            if (endDate.Value == startDate.Value)
+            {
+                return TimeSpan.Parse(endTime) > TimeSpan.Parse(startTime);
+            }
+            else if (endDate.Value > startDate.Value)
+            {
+                return true;
+            }
+            return false;
         }
-        public bool IsEndTimeCorrect()
+        public static bool IsTitleCorrect(string title)
         {
-            return true;
+            return title.Length > 0;
         }
     }
 }

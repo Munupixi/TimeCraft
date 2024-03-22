@@ -20,14 +20,14 @@ namespace TimeCraft
         public string Location { get; set; }
         public DressCode DressCode { get; set; }
         public Priority Priority { get; set; }
-        public int IdCategory { get; set; }
-        public int IdUser { get; set; }
+        public int CategoryId { get; set; }
+        public int UserId { get; set; }
 
-        public Event(int eventId, string title, int idUser, string description = null,
+        public Event(int eventId, string title, int userId, string description = null,
             DateTime? startDate = default, TimeSpan? startTime = default,
             DateTime? endDate = default, TimeSpan? endTime = default,
-            string location = null, DressCode dressCode = DressCode.NotMatter,
-            Priority priority = Priority.Medium, int idCategory = -1)
+            string location = null, DressCode dressCode = DressCode.НеИмеетЗначения,
+            Priority priority = Priority.Средний, int categoryId = 0)
         {
             EventId = eventId;
             Title = title;
@@ -39,8 +39,8 @@ namespace TimeCraft
             Location = location;
             DressCode = dressCode;
             Priority = priority;
-            IdCategory = idCategory;
-            IdUser = idUser;
+            CategoryId = categoryId;
+            UserId = userId;
         }
         
         public void Delete()
@@ -99,6 +99,13 @@ namespace TimeCraft
             using (AppDBContent db = new AppDBContent())
             {
                 return (db.Event.Max(u => (int?)u.EventId) ?? 0) + 1;
+            }
+        }
+        public static bool IsTitleUnique(string title)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return !db.Event.Any(e => e.Title == title);
             }
         }
     }
