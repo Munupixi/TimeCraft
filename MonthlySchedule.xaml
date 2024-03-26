@@ -15,13 +15,25 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="&lt;" FontSize="16"/>
-            <TextBlock Text="Март 2024" FontSize="24" FontWeight="Bold" Margin="10"/>
-            <Button Content="&gt;" FontSize="16"/>
-        </StackPanel>
+        <!-- Вставляем верхний StackPanel из WeeklySchedule -->
+        <Viewbox Grid.Row="0" Stretch="Uniform">
+            <StackPanel Orientation="Horizontal" Background="#222" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+                    <TextBlock x:Name="DateTextBlock" Text="Март 2024" Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="10" />
+                    <Button x:Name="PreviousButton" Content="&lt;" Margin="5" Height="20" Width="20" Background="#FF333333" Foreground="White"/>
+                    <Button x:Name="TodayButton" Content="Сегодня" Margin="5" Width="auto" Height="20" Background="#FF333333" Foreground="White"/>
+                    <Button x:Name="NextButton" Content="&gt;" Margin="5" Width="20" Height="20" Background="#FF333333" Foreground="White"/>
+                    <TextBox x:Name="SearchTextBox" Width="200" Margin="10" />
+                </StackPanel>
 
-        <!-- Обновленная сетка для заголовков дней недели -->
+                <Button x:Name="DayButton" Content="День" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
+                <Button x:Name="WeekButton" Content="Неделя" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
+                <Button x:Name="MonthButton" Content="Месяц" Margin="5" Height="20" Foreground="White" Background="#FF333333" />
+                <Button x:Name="YearButton" Content="Год" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
+            </StackPanel>
+        </Viewbox>
+
+        <!-- Сетка для заголовков дней недели -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -41,8 +53,11 @@
             <TextBlock Grid.Column="6" Text="Вс" FontSize="16" TextAlignment="Center"/>
         </Grid>
 
+        <!-- Область для дней месяца -->
         <UniformGrid Grid.Row="2" Columns="7" Rows="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <!-- Здесь будут добавлены ячейки календаря динамически или через привязку данных -->
+            <local:DayForMonthUserControl />
+            <local:DayForMonthUserControl />
+            <local:DayForMonthUserControl />
         </UniformGrid>
     </Grid>
 </Page>

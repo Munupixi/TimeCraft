@@ -20,7 +20,7 @@ namespace TimeCraft
         public MainWindow()
         {
             InitializeComponent();
-            MonthlySchedule test = new MonthlySchedule();
+            WeeklySchedule test = new WeeklySchedule();
             MainFrame.Navigate(test);
 
             CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();

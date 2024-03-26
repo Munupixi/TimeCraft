@@ -29,7 +29,12 @@
                 <Button x:Name="MonthButton" Content="Месяц" Margin="5" Height="20" Foreground="White" Background="#FF333333" />
                 <Button x:Name="YearButton" Content="Год" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
 
+                <!-- Новые кнопки -->
+                <Button x:Name="ProfileButton" Content="Профиль" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
+                <Button x:Name="SettingsButton" Content="Настройки" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
+                <Button x:Name="TasksButton" Content="Список задач" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
             </StackPanel>
+
         </Viewbox>
 
         <Grid Grid.Row="0">
@@ -51,8 +56,8 @@
             </Grid.ColumnDefinitions>
 
             <ListView x:Name="MondayListView" Grid.Column="0" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
+                <ListView.ItemsPanel >
+                    <ItemsPanelTemplate >
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MondayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
@@ -74,7 +79,7 @@
             <ListView x:Name="ThursdayListView" Grid.Column="3" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=ThursdayListView}" />
+                        <WrapPanel  Orientation="Vertical" Width="{Binding ActualWidth, ElementName=ThursdayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
