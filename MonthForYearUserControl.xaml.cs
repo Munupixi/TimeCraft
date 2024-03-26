@@ -15,19 +15,14 @@ using System.Windows.Shapes;
 
 namespace TimeCraft
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для MonthForYearUserControl.xaml
+    /// </summary>
+    public partial class MonthForYearUserControl : UserControl
     {
-        public MainWindow()
+        public MonthForYearUserControl()
         {
             InitializeComponent();
-            MonthlySchedule test = new MonthlySchedule();
-            MainFrame.Navigate(test);
-
-            CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();
-            createEditEventWindow.Show();
-
-            CreateEditTaskWindow createEditTaskWindow = new CreateEditTaskWindow();
-            createEditTaskWindow.Show();
         }
     }
 }

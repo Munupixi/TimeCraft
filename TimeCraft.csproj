@@ -73,6 +73,9 @@
     <Compile Include="EventUserControl.xaml.cs">
       <DependentUpon>EventUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MonthForYearUserControl.xaml.cs">
+      <DependentUpon>MonthForYearUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MonthlySchedule.xaml.cs">
       <DependentUpon>MonthlySchedule.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,9 @@
     </Compile>
     <Compile Include="WeeklySchedule.xaml.cs">
       <DependentUpon>WeeklySchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YearlySchedule.xaml.cs">
+      <DependentUpon>YearlySchedule.xaml</DependentUpon>
     </Compile>
     <Page Include="AuthorizationPage.xaml">
       <SubType>Designer</SubType>
@@ -121,6 +127,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MonthForYearUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MonthlySchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WeeklySchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YearlySchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
