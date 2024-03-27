@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace TimeCraft
 {
@@ -32,8 +27,6 @@ namespace TimeCraft
             Surname = surname;
             Patronymic = patronymic;
         }
-
-
 
         public static bool IsLoginCorrect(string login)
         {
@@ -67,7 +60,7 @@ namespace TimeCraft
                 return (db.User.Max(u => (int?)u.UserId) ?? 0) + 1;
             }
         }
-        
+
         public static bool IsPasswordCorrect(string password)
         {
             string pattern = @"^(?=.*[0-9])(?=.*[!@#$%^])(?=.*[A-Z]).{6,}$";
@@ -111,17 +104,15 @@ namespace TimeCraft
                 throw new Exception("Возникли проблемы с удалением пользователя");
             }
         }
+
         public void Add()
         {
             using (AppDBContent db = new AppDBContent())
             {
-                db.User.Add(this); 
-                db.SaveChanges(); 
+                db.User.Add(this);
+                db.SaveChanges();
             }
         }
-
-
-       
 
         public void Update()
         {
@@ -138,11 +129,26 @@ namespace TimeCraft
                 db.SaveChanges();
             }
         }
+
         public static User GetUserByLogin(string login)
         {
             using (AppDBContent db = new AppDBContent())
             {
                 return db.User.FirstOrDefault(u => u.Login == login);
+            }
+        }
+
+        public bool IsFreeTime(DateTime? startDate, TimeSpan? startTime, DateTime? endDate, TimeSpan? endTime)
+        {
+            if (startDate == null || endDate == null || startTime == null || endTime == null) { return false; }
+            DateTime? startDateTime = startDate + startTime;
+            DateTime? endDateTime = endDate + endTime;
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.Event.Count(e =>
+                    (e.StartDate < endDateTime && e.EndDate > startDateTime) || // Если начало события в пределах диапазона или конец события в пределах диапазона
+                    (e.StartDate >= startDateTime && e.EndDate <= endDateTime) || // Если событие полностью внутри указанного диапазона
+                    (e.StartDate <= startDateTime && e.EndDate >= endDateTime)) == 0; // Если указанный диапазон полностью внутри события
             }
         }
     }

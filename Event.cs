@@ -5,9 +5,9 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace TimeCraft
 {
-
     internal class Event : Activity, IEntity
     {
         public int EventId { get; set; }
@@ -42,7 +42,7 @@ namespace TimeCraft
             CategoryId = categoryId;
             UserId = userId;
         }
-        
+
         public void Delete()
         {
             using (AppDBContent db = new AppDBContent())
@@ -56,6 +56,7 @@ namespace TimeCraft
                 throw new Exception("Возникли проблемы с удалением мероприятия");
             }
         }
+
         public void Delete(int eventId)
         {
             using (AppDBContent db = new AppDBContent())
@@ -70,6 +71,7 @@ namespace TimeCraft
                 throw new Exception("Возникли проблемы с удалением пользователя");
             }
         }
+
         public void Add()
         {
             using (AppDBContent db = new AppDBContent())
@@ -94,6 +96,7 @@ namespace TimeCraft
                 db.SaveChanges();
             }
         }
+
         public static int GetNewId()
         {
             using (AppDBContent db = new AppDBContent())
@@ -101,6 +104,7 @@ namespace TimeCraft
                 return (db.Event.Max(u => (int?)u.EventId) ?? 0) + 1;
             }
         }
+
         public static bool IsTitleUnique(string title)
         {
             using (AppDBContent db = new AppDBContent())

@@ -42,18 +42,39 @@ namespace TimeCraft
 
         private bool IsAllCorrect()
         {
-            if (Event.IsTimeCorrect(StartTimeTextBox.Text) &&
-                Event.IsTimeCorrect(EndTimeTextBox.Text) &&
-                Event.IsStartDateCorrect(  StartDateDatePicker.SelectedDate) &&
-                Event.IsEndDateCorrect(
+            if (!Event.IsTimeCorrect(StartTimeTextBox.Text) ||
+                !Event.IsTimeCorrect(EndTimeTextBox.Text) ||
+                !Event.IsStartDateCorrect(StartDateDatePicker.SelectedDate) ||
+                !Event.IsEndDateCorrect(
                    StartDateDatePicker.SelectedDate, StartTimeTextBox.Text,
-                   EndDateDatePicker.SelectedDate, EndTimeTextBox.Text) &&
-                   Event.IsTitleCorrect(TitleTextBox.Text) && 
-                   Event.IsTitleUnique(TitleTextBox.Text) && IsAllParticipantsExists())
+                   EndDateDatePicker.SelectedDate, EndTimeTextBox.Text))
             {
-                return true;
+                MessageBox.Show("Неверный формат времени");
+                return false;
             }
-            return false;
+
+            if (!Event.IsTitleCorrect(TitleTextBox.Text))
+            {
+                MessageBox.Show("Заполните поле названия");
+                return false;
+            }
+            if (!Event.IsTitleUnique(TitleTextBox.Text))
+            {
+                MessageBox.Show("Мероприятие с этим названием уже существует");
+                return false;
+            }
+            if (!IsAllParticipantsExists())
+            {
+                MessageBox.Show("Не все указанные участники найдены в системы");
+                return false;
+            }
+            if (!User.ActiveUser.IsFreeTime(StartDateDatePicker.SelectedDate, TimeSpan.Parse(StartTimeTextBox.Text),
+               EndDateDatePicker.SelectedDate, TimeSpan.Parse(EndTimeTextBox.Text)))
+            {
+                MessageBox.Show("Данные время у вас занято другим меропритием");
+                return false;
+            }
+            return true;
         }
 
         private void ShowStartDateTimeEndDateTimeCorrectnessStatus()
@@ -102,6 +123,7 @@ namespace TimeCraft
             ParticipantsDataGrid.ItemsSource = addParticipants;
             ParticipantsDataGrid.Items.Refresh();
         }
+
         private bool IsAllParticipantsExists()
         {
             foreach (AddParticipant addParticipant in addParticipants)
