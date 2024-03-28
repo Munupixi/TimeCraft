@@ -89,7 +89,7 @@ namespace TimeCraft
                 throw new Exception("Возникли проблемы с удалением пользователя");
             }
         }
-
+        
         public void Delete(int userId)
         {
             using (AppDBContent db = new AppDBContent())
