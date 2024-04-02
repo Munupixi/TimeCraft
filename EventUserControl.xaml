@@ -7,18 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="75">
     <Border Background="#7B4D7E" CornerRadius="10" Padding="10"
-            >
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            
             <TextBlock x:Name="StartTimeTextBlock" Grid.Row="0" Text="8:00" Foreground="White" FontSize="14"/>
             <TextBlock x:Name="EndTimeTextBlock" Grid.Row="1" Text="10:00" Foreground="White" FontSize="14"/>
-            <TextBlock x:Name="TitleTextBlock" Grid.Row="3" Text="Название" Foreground="White" FontSize="16" FontWeight="Bold" TextWrapping="Wrap"/>
+            <TextBlock x:Name="TitleTextBlock" Grid.Row="2" Text="Название" Foreground="White" FontSize="16" FontWeight="Bold" TextWrapping="Wrap"/>
         </Grid>
     </Border>
 </UserControl>
