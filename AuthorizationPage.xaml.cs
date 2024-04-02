@@ -18,7 +18,7 @@ namespace TimeCraft
             //4 testin'
             if (LoginTextBox.Text == "1")
             {
-                User _user = User.GetUserByLogin("1");
+                User _user = User.Get("1");
                 if (_user == null)
                 {
                     _user = new User(User.GetNewId(), "1", "1", 120);
@@ -26,13 +26,12 @@ namespace TimeCraft
                 }
                 User.ActiveUser = _user;
                 NavigationService.Navigate(new WeeklySchedule());
-                CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();
-                createEditEventWindow.Show();
+                new CreateEditEventWindow(Event.Get(1)).Show();
                 return;
             }
 
 
-            User user = User.GetUserByLogin(LoginTextBox.Text);
+            User user = User.Get(LoginTextBox.Text);
             if (user == null)
             {
                 MessageBox.Show("Пользователь с данным логином не найден");

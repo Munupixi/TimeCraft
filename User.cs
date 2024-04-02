@@ -130,11 +130,18 @@ namespace TimeCraft
             }
         }
 
-        public static User GetUserByLogin(string login)
+        public static User Get(string login)
         {
             using (AppDBContent db = new AppDBContent())
             {
                 return db.User.FirstOrDefault(u => u.Login == login);
+            }
+        }
+        public static User Get(int userId)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.User.FirstOrDefault(u => u.UserId == userId);
             }
         }
 

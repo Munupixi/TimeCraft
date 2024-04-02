@@ -26,29 +26,19 @@ namespace TimeCraft
         }
         public void Delete()
         {
-            using (AppDBContent db = new AppDBContent())
-            {
-                if (db.Event.Find(ParticipantId) != null)
-                {
-                    db.Participant.Remove(this);
-                    db.SaveChanges();
-                    return;
-                }
-                throw new Exception("Возникли проблемы с удалением мероприятия");
-            }
+            return;
         }
         public void Delete(int eventId)
         {
+            return;
+        }
+        public static void DeleteAllByEventId(int eventId)
+        {
             using (AppDBContent db = new AppDBContent())
             {
-                Event _event = db.Event.Find(eventId);
-                if (_event != null)
-                {
-                    db.Event.Remove(_event);
-                    db.SaveChanges();
-                    return;
-                }
-                throw new Exception("Возникли проблемы с удалением пользователя");
+                db.Participant.RemoveRange(
+                    db.Participant.Where(p => p.IdEvent == eventId));
+                db.SaveChanges();
             }
         }
         public void Add()
@@ -80,6 +70,13 @@ namespace TimeCraft
             using (AppDBContent db = new AppDBContent())
             {
                 return (db.Participant.Max(u => (int?)u.ParticipantId) ?? 0) + 1;
+            }
+        }
+        public static List<Participant> GetAllParticipantByIdEvent(int idEvent)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.Participant.Where(p => p.IdEvent == idEvent).ToList();
             }
         }
     }

@@ -16,5 +16,24 @@ namespace TimeCraft
             Login = login;
             Role = role;
         }
+
+        public static bool IsAllParticipantsExists(List<AddParticipant> addParticipants)
+        {
+            foreach (AddParticipant addParticipant in addParticipants)
+            {
+                if (User.IsLoginUnique(addParticipant.Login))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static List<AddParticipant> ConvertParticipants(List<Participant> participants)
+        {
+            return participants.Select(participant =>
+                new AddParticipant(User.Get(participant.IdUser).Login, participant.Role))
+                .ToList();
+        }
     }
 }

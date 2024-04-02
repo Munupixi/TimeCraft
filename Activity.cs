@@ -9,7 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace TimeCraft
 {
-    internal abstract class Activity
+    public abstract class Activity
     {
         public static bool IsStartDateCorrect(DateTime? startDate)
         {

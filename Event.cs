@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    internal class Event : Activity, IEntity
+    public partial class Event : Activity, IEntity
     {
         public int EventId { get; set; }
         public string Title { get; set; }
@@ -104,12 +104,50 @@ namespace TimeCraft
                 return (db.Event.Max(u => (int?)u.EventId) ?? 0) + 1;
             }
         }
+        public static Event Get(int eventId)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.Event.FirstOrDefault(e => e.EventId == eventId);
+            }
+        }
+        public static Event Get(string title)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.Event.FirstOrDefault(e => e.Title == title);
+            }
+        }
+        public static Event Get(DateTime? startDate, TimeSpan? startTime, DateTime? endDate, TimeSpan? endTime)
+        {
+            if (startDate == null || endDate == null || startTime == null || endTime == null)
+            {
+                return null;
+            }
+
+            DateTime? startDateTime = startDate + startTime;
+            DateTime? endDateTime = endDate + endTime;
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.Event.FirstOrDefault(e =>
+                    (e.StartDate < endDateTime && e.EndDate > startDateTime) || // Если начало события в пределах диапазона или конец события в пределах диапазона
+                    (e.StartDate >= startDateTime && e.EndDate <= endDateTime) || // Если событие полностью внутри указанного диапазона
+                    (e.StartDate <= startDateTime && e.EndDate >= endDateTime));  // Если указанный диапазон полностью внутри события
+            }
+        }
 
         public static bool IsTitleUnique(string title)
         {
             using (AppDBContent db = new AppDBContent())
             {
                 return !db.Event.Any(e => e.Title == title);
+            }
+        }
+        public bool IsEventExists(int eventId)
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.Event.Any(e => e.EventId == eventId);
             }
         }
     }

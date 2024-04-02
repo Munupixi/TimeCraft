@@ -1,4 +1,7 @@
-﻿namespace TimeCraft
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace TimeCraft
 {
     internal class Category
     {
@@ -34,6 +37,14 @@
             {
                 db.Category.AddRange(categories);
                 db.SaveChanges();
+            }
+        }
+
+        public static List<string> GetAllTitles()
+        {
+            using (AppDBContent db = new AppDBContent())
+            {
+                return db.Category.Select(c => c.Title).ToList();
             }
         }
     }

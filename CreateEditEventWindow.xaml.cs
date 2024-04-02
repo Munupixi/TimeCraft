@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -11,22 +11,59 @@ namespace TimeCraft
     public partial class CreateEditEventWindow : Window
     {
         private List<AddParticipant> addParticipants = new List<AddParticipant>();
+        private int idEvent = Event.GetNewId();
+        private bool isEdit = false;
 
+        //Конструктор для создания мероприятия
         public CreateEditEventWindow()
         {
             InitializeComponent();
+            SetUpComboBox();
+
+            StartDateDatePicker.SelectedDate = DateTime.Now.AddDays(1);
+            StartTimeTextBox.Text = (DateTime.Now).ToString("HH:mm");
+        }
+
+        //Конструктор для редактирования мероприятия
+        public CreateEditEventWindow(Event _event)
+        {
+            InitializeComponent();
+            SetUpComboBox();
+
+            idEvent = _event.EventId;
+            TitleTextBox.Text = _event.Title;
+            LocationTextBox.Text = _event.Location;
+            StartDateDatePicker.SelectedDate = _event.StartDate;
+            StartTimeTextBox.Text = _event.StartTime.ToString().Substring(
+                0, _event.StartTime.ToString().Length - 3);
+            EndDateDatePicker.SelectedDate = _event.EndDate;
+            EndTimeTextBox.Text = _event.EndTime.ToString().Substring(
+                0, _event.EndTime.ToString().Length - 3);
+            DressCodeComboBox.SelectedIndex = (int)_event.DressCode;
+            CategoryComboBox.SelectedIndex = _event.CategoryId;
+            PriorityComboBox.SelectedIndex = (int)_event.Priority;
+            DescriptionRichTextBox.Document.Blocks.Clear();
+            DescriptionRichTextBox.AppendText(_event.Description);
+            addParticipants = AddParticipant.ConvertParticipants(
+                Participant.GetAllParticipantByIdEvent(_event.EventId));
+            RefreshParticipantsDataGrid();
+            ShowStartDateTimeEndDateTimeCorrectnessStatus();
+            ShowCorrectnessStatus(TitleTextBox,
+             Event.IsTitleCorrect(TitleTextBox.Text) &&
+             (Event.IsTitleUnique(TitleTextBox.Text) ||
+             Event.Get(TitleTextBox.Text).EventId == idEvent));
+            isEdit = true;
+        }
+
+        private void SetUpComboBox()
+        {
             DressCodeComboBox.ItemsSource = Enum.GetNames(typeof(DressCode));
             DressCodeComboBox.SelectedIndex = 7;
             PriorityComboBox.ItemsSource = Enum.GetNames(typeof(Priority));
             PriorityComboBox.SelectedIndex = 2;
 
-            using (AppDBContent db = new AppDBContent())
-            {
-                CategoryComboBox.ItemsSource = db.Category.Select(c => c.Title).ToList();
-            }
+            CategoryComboBox.ItemsSource = Category.GetAllTitles();
             CategoryComboBox.SelectedIndex = 0;
-            StartDateDatePicker.SelectedDate = DateTime.Now.AddDays(1);
-            StartTimeTextBox.Text = (DateTime.Now).ToString("HH:mm");
         }
 
         public void ShowCorrectnessStatus(Control element, bool correctnessStatus)
@@ -58,18 +95,31 @@ namespace TimeCraft
                 MessageBox.Show("Заполните поле названия");
                 return false;
             }
-            if (!Event.IsTitleUnique(TitleTextBox.Text))
+            if (!Event.IsTitleUnique(TitleTextBox.Text) &&
+                Event.Get(TitleTextBox.Text).EventId != idEvent)
             {
                 MessageBox.Show("Мероприятие с этим названием уже существует");
                 return false;
             }
-            if (!IsAllParticipantsExists())
+            if (!AddParticipant.IsAllParticipantsExists(addParticipants))
             {
                 MessageBox.Show("Не все указанные участники найдены в системы");
                 return false;
             }
-            if (!User.ActiveUser.IsFreeTime(StartDateDatePicker.SelectedDate, TimeSpan.Parse(StartTimeTextBox.Text),
-               EndDateDatePicker.SelectedDate, TimeSpan.Parse(EndTimeTextBox.Text)))
+            //Условие проверяет, доступно ли выбранное время для создания события
+            //(через метод IsFreeTime) или
+            //существует ли уже событие с таким временным диапазоном (через метод Event.Get),
+            //при условии редактирования.
+            if (!User.ActiveUser.IsFreeTime(
+                StartDateDatePicker.SelectedDate,
+                TimeSpan.Parse(StartTimeTextBox.Text),
+               EndDateDatePicker.SelectedDate,
+               TimeSpan.Parse(EndTimeTextBox.Text)) &&
+               Event.Get(
+                StartDateDatePicker.SelectedDate,
+                TimeSpan.Parse(StartTimeTextBox.Text),
+               EndDateDatePicker.SelectedDate,
+               TimeSpan.Parse(EndTimeTextBox.Text)).EventId != idEvent)
             {
                 MessageBox.Show("Данные время у вас занято другим меропритием");
                 return false;
@@ -124,18 +174,6 @@ namespace TimeCraft
             ParticipantsDataGrid.Items.Refresh();
         }
 
-        private bool IsAllParticipantsExists()
-        {
-            foreach (AddParticipant addParticipant in addParticipants)
-            {
-                if (User.IsLoginUnique(addParticipant.Login))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
         private void AddParticipantButton_Click(object sender, RoutedEventArgs e)
         {
             addParticipants.Add(new AddParticipant());
@@ -154,24 +192,29 @@ namespace TimeCraft
         {
             if (!IsAllCorrect())
             {
-                MessageBox.Show("Не все поля заполнены корректно");
                 return;
             }
-            int idEvent = Event.GetNewId();
             Event _event = new Event(idEvent, TitleTextBox.Text,
                 User.ActiveUser.UserId,
                 new TextRange(DescriptionRichTextBox.Document.ContentStart,
                 DescriptionRichTextBox.Document.ContentEnd).Text,
-        StartDateDatePicker.SelectedDate,
-        TimeSpan.Parse(StartTimeTextBox.Text),
-        EndDateDatePicker.SelectedDate,
-        TimeSpan.Parse(EndTimeTextBox.Text),
-        LocationTextBox.Text,
-     (DressCode)Enum.Parse(typeof(DressCode), DressCodeComboBox.Text),
-     (Priority)Enum.Parse(typeof(Priority), PriorityComboBox.Text),
-    CategoryComboBox.SelectedIndex + 1);
-            _event.Add();
-
+                StartDateDatePicker.SelectedDate,
+                TimeSpan.Parse(StartTimeTextBox.Text),
+                EndDateDatePicker.SelectedDate,
+                TimeSpan.Parse(EndTimeTextBox.Text),
+                LocationTextBox.Text,
+                (DressCode)Enum.Parse(typeof(DressCode), DressCodeComboBox.Text),
+                (Priority)Enum.Parse(typeof(Priority), PriorityComboBox.Text),
+                CategoryComboBox.SelectedIndex + 1);
+            if (isEdit)
+            {
+                _event.Update();
+                Participant.DeleteAllByEventId(_event.EventId);
+            }
+            else
+            {
+                _event.Add();
+            }
             foreach (AddParticipant addParticipant in addParticipants)
             {
                 new Participant(Participant.GetNewId(), idEvent,
@@ -197,7 +240,8 @@ namespace TimeCraft
         {
             ShowCorrectnessStatus(TitleTextBox,
             Event.IsTitleCorrect(TitleTextBox.Text) &&
-            Event.IsTitleUnique(TitleTextBox.Text));
+            (Event.IsTitleUnique(TitleTextBox.Text) ||
+            Event.Get(TitleTextBox.Text).EventId == idEvent));
         }
     }
 }
