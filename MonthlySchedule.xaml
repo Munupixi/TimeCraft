@@ -8,6 +8,28 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MonthlySchedule">
 
+    <Page.Resources>
+        <!-- Define style for all buttons -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFEEEEEE"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="5"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,25 +37,38 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Вставляем верхний StackPanel из WeeklySchedule -->
         <Viewbox Grid.Row="0" Stretch="Uniform">
-            <StackPanel Orientation="Horizontal" Background="#222" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal" Background="#FFFFFF" HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
-                    <TextBlock x:Name="DateTextBlock" Text="Март 2024" Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="10" />
-                    <Button x:Name="PreviousButton" Content="&lt;" Margin="5" Height="20" Width="20" Background="#FF333333" Foreground="White"/>
-                    <Button x:Name="TodayButton" Content="Сегодня" Margin="5" Width="auto" Height="20" Background="#FF333333" Foreground="White"/>
-                    <Button x:Name="NextButton" Content="&gt;" Margin="5" Width="20" Height="20" Background="#FF333333" Foreground="White"/>
-                    <TextBox x:Name="SearchTextBox" Width="200" Margin="10" />
+                    <TextBlock x:Name="DateTextBlock" Text="Март 2024" Foreground="#333333" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="10" />
+                    <Button x:Name="PreviousButton" Content="&lt;" Width="20"/>
+                    <Button x:Name="TodayButton" Content="Сегодня" Width="auto"/>
+                    <Button x:Name="NextButton" Content="&gt;" Width="20"/>
+                    <TextBox x:Name="SearchTextBox" Width="100" Margin="10" />
                 </StackPanel>
 
-                <Button x:Name="DayButton" Content="День" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
-                <Button x:Name="WeekButton" Content="Неделя" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
-                <Button x:Name="MonthButton" Content="Месяц" Margin="5" Height="20" Foreground="White" Background="#FF333333" />
-                <Button x:Name="YearButton" Content="Год" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
+                <Button x:Name="DayButton" Content="День"/>
+                <Button x:Name="WeekButton" Content="Неделя"/>
+                <Button x:Name="MonthButton" Content="Месяц"/>
+                <Button x:Name="YearButton" Content="Год"/>
+                <Button x:Name="ProfileButton" Margin="5" Height="20" Width="20" Background="#00000000" BorderBrush="#00000000">
+                    <Button.Content>
+                        <Image Source="/Images/profile_icon.png" Stretch="Fill"/>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="SettingsButton" Margin="5" Height="20" Width="20" Background="#00000000" BorderBrush="#00000000">
+                    <Button.Content>
+                        <Image Source="/Images/settings.png" Stretch="Fill"/>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="TasksButton" Margin="5" Height="20" Width="20" Background="#00000000" BorderBrush="#00000000">
+                    <Button.Content>
+                        <Image Source="/Images/clipboard.png" Stretch="Fill"/>
+                    </Button.Content>
+                </Button>
             </StackPanel>
         </Viewbox>
 
-        <!-- Сетка для заголовков дней недели -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -53,11 +88,10 @@
             <TextBlock Grid.Column="6" Text="Вс" FontSize="16" TextAlignment="Center"/>
         </Grid>
 
-        <!-- Область для дней месяца -->
         <UniformGrid Grid.Row="2" Columns="7" Rows="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <local:DayForMonthUserControl />
-            <local:DayForMonthUserControl />
-            <local:DayForMonthUserControl />
+
+            <!-- Add more DayForMonthUserControls as needed -->
         </UniformGrid>
     </Grid>
 </Page>
