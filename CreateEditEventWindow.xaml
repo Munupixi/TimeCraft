@@ -11,46 +11,45 @@
     </Window.Resources>
     <Grid Margin="5,0,5,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="*" MinHeight="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="33"/>
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="*" MinHeight="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="33" />
         </Grid.RowDefinitions>
-        <Label x:Name="MainLabel" Content="Создание мероприятия" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text="Новое мероприятие" Grid.Row="1" VerticalContentAlignment="Center" ToolTip="Название" Margin="0,5,0,5" TextChanged="TitleTextBox_TextChanged"/>
-        <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="Местоположение или онлайн" Grid.Row="2" VerticalContentAlignment="Center" ToolTip="Местоположение" Margin="0,5,0,5"/>
+        <Label x:Name="MainLabel" Content="Создание мероприятия" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text="Новое мероприятие" Grid.Row="1" VerticalContentAlignment="Center" ToolTip="Название" Margin="0,5,0,5" TextChanged="TitleTextBox_TextChanged" />
+        <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="Местоположение или онлайн" Grid.Row="2" VerticalContentAlignment="Center" ToolTip="Местоположение" Margin="0,5,0,5" />
         <Grid Grid.Row="3" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="72.5"/>
-                <ColumnDefinition Width="145*"/>
-                <ColumnDefinition Width="73*"/>
+                <ColumnDefinition Width="72.5" />
+                <ColumnDefinition Width="145*" />
+                <ColumnDefinition Width="73*" />
             </Grid.ColumnDefinitions>
-            <DatePicker x:Name="StartDateDatePicker" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="144" SelectedDateChanged="StartDateDatePicker_SelectedDateChanged"/>
-            <Label Content="Начало" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0"/>
-            <TextBox x:Name="StartTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="StartTimeTextBox_TextChanged"/>
+            <DatePicker x:Name="StartDateDatePicker" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="144" SelectedDateChanged="StartDateDatePicker_SelectedDateChanged" />
+            <Label Content="Начало" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0" />
+            <TextBox x:Name="StartTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="StartTimeTextBox_TextChanged" />
         </Grid>
         <Grid Grid.Row="4" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="72.5"/>
-                <ColumnDefinition Width="145*"/>
-                <ColumnDefinition Width="73*"/>
+                <ColumnDefinition Width="72.5" />
+                <ColumnDefinition Width="145*" />
+                <ColumnDefinition Width="73*" />
             </Grid.ColumnDefinitions>
-            <DatePicker x:Name="EndDateDatePicker" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="144" SelectedDateChanged="EndDateDatePicker_SelectedDateChanged"/>
-            <Label Content="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0"/>
-            <TextBox x:Name="EndTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="EndTimeTextBox_TextChanged"/>
-
+            <DatePicker x:Name="EndDateDatePicker" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="144" SelectedDateChanged="EndDateDatePicker_SelectedDateChanged" />
+            <Label Content="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0" />
+            <TextBox x:Name="EndTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="EndTimeTextBox_TextChanged" />
         </Grid>
-        <ComboBox x:Name="CategoryComboBox" Grid.Row="5" Margin="0,5,0,5" Text="Категория"/>
-        <ComboBox x:Name="PriorityComboBox" Grid.Row="6" Margin="0,5,0,5" Text="Приоритет"/>
-        <ComboBox x:Name="DressCodeComboBox" Grid.Row="7" Margin="0,5,0,5" Text="Дресскод"/>
+        <ComboBox x:Name="CategoryComboBox" Grid.Row="5" Margin="0,5,0,5" Text="Категория" />
+        <ComboBox x:Name="PriorityComboBox" Grid.Row="6" Margin="0,5,0,5" Text="Приоритет" />
+        <ComboBox x:Name="DressCodeComboBox" Grid.Row="7" Margin="0,5,0,5" Text="Дресскод" />
         <DataGrid x:Name="ParticipantsDataGrid" Grid.Row="10" d:ItemsSource="{d:SampleData ItemCount=10}" AutoGenerateColumns="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
@@ -71,29 +70,28 @@
         </DataGrid>
         <Grid Grid.Row="11">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="CancelButton" Content="Отменить" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,5,5,5" Click="CancelButton_Click"/>
-            <Button x:Name="CreateButton" Grid.Column="1" Content="Создать" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,5,5" Click="CreateButton_Click"/>
+            <Button x:Name="CancelButton" Content="Отменить" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,5,5,5" Click="CancelButton_Click" />
+            <Button x:Name="CreateButton" Grid.Column="1" Content="Создать" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,5,5" Click="CreateButton_Click" />
         </Grid>
         <Grid Grid.Row="9" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Content="Участники" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button x:Name="ClearParticipantsButton" Grid.Column="1" Content="Очистить" Margin="0,0,2,0" Click="ClearParticipantsButton_Click"/>
-            <Button x:Name="AddParticipantButton" Grid.Column="2" Content="Добавить" Margin="3,0,0,0" Click="AddParticipantButton_Click"/>
+            <Label Content="Участники" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button x:Name="ClearParticipantsButton" Grid.Column="1" Content="Очистить" Margin="0,0,2,0" Click="ClearParticipantsButton_Click" />
+            <Button x:Name="AddParticipantButton" Grid.Column="2" Content="Добавить" Margin="3,0,0,0" Click="AddParticipantButton_Click" />
         </Grid>
         <RichTextBox x:Name="DescriptionRichTextBox" Grid.Row="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,0,5">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="Описание"/>
+                    <Run Text="Описание" />
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-
     </Grid>
 </Window>

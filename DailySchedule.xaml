@@ -8,36 +8,92 @@
       d:DesignHeight="450" d:DesignWidth="800" 
       Title="DailySchedule">
 
-    <Grid Background="#333">
+    <Page.Resources>
+        <!-- Define style for all buttons -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFEEEEEE"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="5"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#FFFFFF">
+        <!-- Определения строк -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Для кнопок вверху -->
+            <RowDefinition Height="*" />
+            <!-- Для остального контента -->
+        </Grid.RowDefinitions>
+
+        <!-- Определения колонок -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="NoSelectedTextStackPanel" Grid.Column="0" Background="#333" VerticalAlignment="Center">
+        <!-- Панель для кнопок вверху -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="0">
+            <Button x:Name="DayButton" Content="День" Margin="5" Height="20" Background="#777777" Foreground="White" />
+            <Button x:Name="WeekButton" Content="Неделя" Margin="5" Height="20" Background="#777777" Foreground="White" />
+            <Button x:Name="MonthButton" Content="Месяц" Margin="5" Height="20" Foreground="White" Background="#777777" />
+            <Button x:Name="YearButton" Content="Год" Margin="5" Height="20" Background="#777777" Foreground="White" />
+        </StackPanel>
+
+        <!-- Панель для кнопок настроек -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Grid.Row="0" Grid.Column="1">
+            <Button x:Name="ProfileButton" Content="Профиль" Margin="5" Height="20" Background="#FFEEEEEE" BorderBrush="#00000000">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Image Source="/Images/profile_icon.png" Stretch="Fill" Width="20" Height="20"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="SettingsButton" Content="Настройки" Margin="5" Height="20" Background="White" BorderBrush="#00000000">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Image Source="/Images/settings.png" Stretch="Fill" Width="20" Height="20"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="TasksButton" Content="Список задач" Margin="5" Height="20" Background="White" BorderBrush="#00000000">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Image Source="/Images/clipboard.png" Stretch="Fill" Width="20" Height="20"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <!-- Существующие элементы, теперь в Grid.Row="1" -->
+        <StackPanel x:Name="NoSelectedTextStackPanel" Grid.Column="0" Background="#333333" VerticalAlignment="Center" Grid.Row="1">
             <TextBlock x:Name="NoSelectedTextTextBlock" Text="No Event Selected" Foreground="White" FontSize="24" HorizontalAlignment="Center" Margin="10" />
         </StackPanel>
 
-        <Border Grid.Column="1" Background="#222" Padding="10">
+        <Border Grid.Column="1" Background="#222222" Padding="10" Grid.Row="1">
             <Viewbox>
                 <StackPanel>
-                    <!-- Новый StackPanel для кнопок выбора периода времени -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                        <Button x:Name="DayButton" Content="День" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
-                        <Button x:Name="WeekButton" Content="Неделя" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
-                        <Button x:Name="MonthButton" Content="Месяц" Margin="5" Height="20" Foreground="White" Background="#FF333333" />
-                        <Button x:Name="YearButton" Content="Год" Margin="5" Height="20" Background="#FF333333" Foreground="White" />
-                    </StackPanel>
-
-                    <TextBox x:Name="SearchTextBox" Width="auto" Margin="10" Background="#444" Foreground="White" />
+                    <TextBox x:Name="SearchTextBox" Width="auto" Margin="10" Background="#444444" Foreground="White" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="auto">
-                        <Button x:Name="PreviousButton" Content="&lt;" Background="#444" Foreground="White" Margin="10" />
-                        <Button x:Name="TodayButton" Content="Сегодня" Background="#444" Foreground="White" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        <Button x:Name="NextButton" Content="&gt;" Background="#444" Foreground="White" Margin="10" Height="20" />
+                        <Button x:Name="PreviousButton" Content="&lt;" Background="#444444" Foreground="White" Margin="10" Width="15" />
+                        <Button x:Name="TodayButton" Content="Сегодня" Background="#444444" Foreground="White" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Button x:Name="NextButton" Content="&gt;" Background="#444444" Foreground="White" Margin="10" Height="20" Width="15" />
                     </StackPanel>
 
-                    <!-- Существующий StackPanel для отображения даты и дня недели -->
                     <StackPanel VerticalAlignment="Top" Margin="10">
                         <TextBlock x:Name="DateTextBlock" Text="13 Марта 2024" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
                         <TextBlock x:Name="DayOfWeekTextBlock" Text="Воскресенье" Foreground="White" FontSize="20" HorizontalAlignment="Center" />
@@ -47,7 +103,7 @@
             </Viewbox>
         </Border>
 
-        <ListView x:Name="MainListView">
+        <ListView x:Name="MainListView" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
