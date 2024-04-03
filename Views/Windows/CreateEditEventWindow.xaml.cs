@@ -185,7 +185,7 @@ namespace TimeCraft
         //private void ClearParticipantsButton_Click(object sender, RoutedEventArgs e)
         //{
         //    addParticipants = new List<AddParticipant>();
-        //    RefreshParticipantsDataGrid();
+        //    RefreshParticipants DataGrid();
         //}
 
         //private void CancelButton_Click(object sender, RoutedEventArgs e) => Close();

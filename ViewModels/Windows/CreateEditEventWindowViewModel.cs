@@ -14,6 +14,10 @@ namespace TimeCraft.ViewModels.Windows
     internal class CreateEditEventWindowViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        private ObservableCollection<AddParticipant> addParticipants = 
+            new ObservableCollection<AddParticipant>();
+        private ObservableCollection<string> categories;
+
         private Event _event = new Event(Event.GetNewId(),
             "Новое мероприятие", User.ActiveUser.UserId, "Описание",
             DateTime.Now.AddDays(1),
@@ -26,6 +30,11 @@ namespace TimeCraft.ViewModels.Windows
             AddParticipantCommand = new RelayCommand(AddParticipantExecute);
             ClearParticipantsCommand = new RelayCommand(ClearParticipantsExecute);
             DeleteParticipantCommand = new RelayCommand(DeleteParticipantExecute);
+            addParticipants.Add(new AddParticipant("login1", "role1"));
+            AddParticipants.Add(new AddParticipant("login2", "role2"));
+            AddParticipants.Add(new AddParticipant("login1", "role1"));
+            AddParticipants.Add(new AddParticipant("login2", "role2"));
+            categories = new ObservableCollection<string>(TimeCraft.Category.GetAllTitles());
         }
 
         public string Title
@@ -145,7 +154,61 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+        public string Description
+        {
+            get { return _event.Description; }
+            set
+            {
+                if (_event.Description != value)
+                {
+                    _event.Description = value;
+                    OnPropertyChanged("Description");
+                }
+            }
+        }
+        public ObservableCollection<String> Categories
+        {
+            get { return categories; }
+            set
+            {
+                categories = new ObservableCollection<string>(TimeCraft.Category.GetAllTitles());
+                OnPropertyChanged(nameof(Categories));
+            }
+        }
+        public Array Priorities
+        {
+            get { return Enum.GetValues(typeof(PriorityEnum)); }
+        }
+        public Array DressCodes
+        {
+            get { return Enum.GetValues(typeof(DressCodeEnum)); }
+        }
 
+        public ObservableCollection<AddParticipant> AddParticipants
+        {
+            get { return addParticipants; }
+                set
+            {
+                addParticipants = value;
+                OnPropertyChanged(nameof(AddParticipants));
+            }
+        }
+        public string Role
+        {
+            set
+            {
+                Role = value;
+                OnPropertyChanged(nameof(Role));
+            }
+        }
+        public string Login
+        {
+            set
+            {
+                Login = value;
+                OnPropertyChanged(nameof(Login));
+            }
+        }
 
         public ICommand CreateCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
@@ -166,7 +229,11 @@ namespace TimeCraft.ViewModels.Windows
 
         private void CancelExecute()
         {
-            // Ваша логика для отмены операции
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+            if (window != null)
+            {
+                window.Close();
+            }
         }
 
         private void AddParticipantExecute( )
