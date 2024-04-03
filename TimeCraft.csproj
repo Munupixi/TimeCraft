@@ -177,6 +177,7 @@
     <Compile Include="ViewModels\Models\ParticipantViewModel.cs" />
     <Compile Include="ViewModels\Models\TaskViewModel.cs" />
     <Compile Include="ViewModels\Models\UserViewModel.cs" />
+    <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />
     <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>

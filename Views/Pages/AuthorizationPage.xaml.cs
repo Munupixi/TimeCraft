@@ -26,7 +26,7 @@ namespace TimeCraft
                 }
                 User.ActiveUser = _user;
                 NavigationService.Navigate(new WeeklySchedule());
-                new CreateEditEventWindow(Event.Get(1)).Show();
+                new CreateEditEventWindow().Show();
                 return;
             }
 

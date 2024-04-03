@@ -33,7 +33,7 @@ namespace TimeCraft
             Title = title;
             Description = description;
             StartDate = startDate;
-            StartTime = startTime;
+            EndTime = startTime;
             EndDate = endDate;
             EndTime = endTime;
             Location = location;
