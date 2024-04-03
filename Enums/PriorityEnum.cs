@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeCraft
 {
-    public enum Priority
+    public enum PriorityEnum
     {
         Критичейский,
         Высокий,

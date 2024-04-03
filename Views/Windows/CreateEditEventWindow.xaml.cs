@@ -57,9 +57,9 @@ namespace TimeCraft
 
         private void SetUpComboBox()
         {
-            DressCodeComboBox.ItemsSource = Enum.GetNames(typeof(DressCode));
+            DressCodeComboBox.ItemsSource = Enum.GetNames(typeof(DressCodeEnum));
             DressCodeComboBox.SelectedIndex = 7;
-            PriorityComboBox.ItemsSource = Enum.GetNames(typeof(Priority));
+            PriorityComboBox.ItemsSource = Enum.GetNames(typeof(PriorityEnum));
             PriorityComboBox.SelectedIndex = 2;
 
             CategoryComboBox.ItemsSource = Category.GetAllTitles();
@@ -203,8 +203,8 @@ namespace TimeCraft
                 EndDateDatePicker.SelectedDate,
                 TimeSpan.Parse(EndTimeTextBox.Text),
                 LocationTextBox.Text,
-                (DressCode)Enum.Parse(typeof(DressCode), DressCodeComboBox.Text),
-                (Priority)Enum.Parse(typeof(Priority), PriorityComboBox.Text),
+                (DressCodeEnum)Enum.Parse(typeof(DressCodeEnum), DressCodeComboBox.Text),
+                (PriorityEnum)Enum.Parse(typeof(PriorityEnum), PriorityComboBox.Text),
                 CategoryComboBox.SelectedIndex + 1);
             if (isEdit)
             {

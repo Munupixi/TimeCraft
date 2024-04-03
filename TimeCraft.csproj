@@ -154,82 +154,82 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddParticipant.cs" />
-    <Compile Include="AppDBContent.cs" />
-    <Compile Include="Activity.cs" />
-    <Compile Include="AuthorizationPage.xaml.cs">
+    <Compile Include="Models\AddParticipant.cs" />
+    <Compile Include="Data\AppDBContent.cs" />
+    <Compile Include="Models\Activity.cs" />
+    <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateEditEventWindow.xaml.cs">
+    <Compile Include="Views\Windows\CreateEditEventWindow.xaml.cs">
       <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateEditTaskWindow.xaml.cs">
+    <Compile Include="Views\Windows\CreateEditTaskWindow.xaml.cs">
       <DependentUpon>CreateEditTaskWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Category.cs" />
-    <Compile Include="DressCode.cs" />
-    <Compile Include="DailySchedule.xaml.cs">
-      <DependentUpon>DailySchedule.xaml</DependentUpon>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Enums\DressCodeEnum.cs" />
+    <Compile Include="Views\Pages\DailySchedulePage.xaml.cs">
+      <DependentUpon>DailySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DayForMonthUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\DayForMonthUserControl.xaml.cs">
       <DependentUpon>DayForMonthUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entity.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="EventUserControl.xaml.cs">
+    <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Views\UserControls\EventUserControl.xaml.cs">
       <DependentUpon>EventUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IEntity.cs" />
-    <Compile Include="JsonManager.cs" />
-    <Compile Include="LoginToColorConverter.cs" />
-    <Compile Include="MonthForYearUserControl.xaml.cs">
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Services\JsonManager.cs" />
+    <Compile Include="Converters\LoginToColorConverter.cs" />
+    <Compile Include="Views\UserControls\MonthForYearUserControl.xaml.cs">
       <DependentUpon>MonthForYearUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MonthlySchedule.xaml.cs">
-      <DependentUpon>MonthlySchedule.xaml</DependentUpon>
+    <Compile Include="Views\Pages\MonthlySchedulePage.xaml.cs">
+      <DependentUpon>MonthlySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Participant.cs" />
-    <Compile Include="Priority.cs" />
-    <Compile Include="ProfilePage.xaml.cs">
+    <Compile Include="Models\Participant.cs" />
+    <Compile Include="Enums\PriorityEnum.cs" />
+    <Compile Include="Views\Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationPage.xaml.cs">
+    <Compile Include="Views\Pages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Task.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Validate.cs" />
-    <Compile Include="WeeklySchedule.xaml.cs">
-      <DependentUpon>WeeklySchedule.xaml</DependentUpon>
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Services\Validate.cs" />
+    <Compile Include="Views\Pages\WeeklySchedulePage.xaml.cs">
+      <DependentUpon>WeeklySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YearlySchedule.xaml.cs">
-      <DependentUpon>YearlySchedule.xaml</DependentUpon>
+    <Compile Include="Views\Pages\YearlySchedulePage.xaml.cs">
+      <DependentUpon>YearlySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Page Include="AuthorizationPage.xaml">
+    <Page Include="Views\Pages\AuthorizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateEditEventWindow.xaml">
+    <Page Include="Views\Windows\CreateEditEventWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateEditTaskWindow.xaml">
+    <Page Include="Views\Windows\CreateEditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailySchedule.xaml">
+    <Page Include="Views\Pages\DailySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DayForMonthUserControl.xaml">
+    <Page Include="Views\UserControls\DayForMonthUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EventUserControl.xaml">
+    <Page Include="Views\UserControls\EventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -237,31 +237,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MonthForYearUserControl.xaml">
+    <Page Include="Views\UserControls\MonthForYearUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MonthlySchedule.xaml">
+    <Page Include="Views\Pages\MonthlySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProfilePage.xaml">
+    <Page Include="Views\Pages\ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegistrationPage.xaml">
+    <Page Include="Views\Pages\RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WeeklySchedule.xaml">
+    <Page Include="Views\Pages\WeeklySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="YearlySchedule.xaml">
+    <Page Include="Views\Pages\YearlySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,6 +301,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

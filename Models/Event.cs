@@ -18,16 +18,16 @@ namespace TimeCraft
         public DateTime? EndDate { get; set; }
         public TimeSpan? EndTime { get; set; }
         public string Location { get; set; }
-        public DressCode DressCode { get; set; }
-        public Priority Priority { get; set; }
+        public DressCodeEnum DressCode { get; set; }
+        public PriorityEnum Priority { get; set; }
         public int CategoryId { get; set; }
         public int UserId { get; set; }
 
         public Event(int eventId, string title, int userId, string description = null,
             DateTime? startDate = default, TimeSpan? startTime = default,
             DateTime? endDate = default, TimeSpan? endTime = default,
-            string location = null, DressCode dressCode = DressCode.НеИмеетЗначения,
-            Priority priority = Priority.Средний, int categoryId = 0)
+            string location = null, DressCodeEnum dressCode = DressCodeEnum.НеИмеетЗначения,
+            PriorityEnum priority = PriorityEnum.Средний, int categoryId = 0)
         {
             EventId = eventId;
             Title = title;
