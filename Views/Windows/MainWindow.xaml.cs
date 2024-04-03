@@ -12,28 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeCraft.ViewModels.Windows;
 
 namespace TimeCraft
 {
     public partial class MainWindow : Window
     {
-        private readonly AppDBContent appDBContent = new AppDBContent();
         public MainWindow()
         {
             InitializeComponent();
-
-            try
-            {
-                Category.CreateAllCategories();
-            }
-            catch { }
-
-            //CreateEditEventWindow createEditEventWindow = new CreateEditEventWindow();
-            //createEditEventWindow.Show();
-
-            //CreateEditTaskWindow createEditTaskWindow = new CreateEditTaskWindow();
-            //createEditTaskWindow.Show();
-           MainFrame.Navigate(new AuthorizationPage());
+            this.DataContext = new MainWindowViewModel();
         }
     }
 }
