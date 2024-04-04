@@ -170,8 +170,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\AddParticipant.cs" />
-    <Compile Include="Data\AppDBContent.cs" />
+    <Compile Include="Services\AppDBContent.cs" />
     <Compile Include="Models\Activity.cs" />
+    <Compile Include="Services\DataGridHelper.cs" />
     <Compile Include="ViewModels\Models\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Models\EventViewModel.cs" />
     <Compile Include="ViewModels\Models\ParticipantViewModel.cs" />
@@ -325,6 +326,7 @@
     <Resource Include="Images\settings.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Styles\" />
     <Folder Include="ViewModels\Pages\" />
     <Folder Include="ViewModels\UserControls\" />
   </ItemGroup>

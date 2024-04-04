@@ -8,14 +8,20 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using TimeCraft.Services;
+using System.Windows.Controls;
 
 namespace TimeCraft.ViewModels.Windows
 {
     internal class CreateEditEventWindowViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private ObservableCollection<AddParticipant> addParticipants = 
+
+        private bool isEdit = false;
+
+        private ObservableCollection<AddParticipant> addParticipants =
             new ObservableCollection<AddParticipant>();
+
         private ObservableCollection<string> categories;
 
         private Event _event = new Event(Event.GetNewId(),
@@ -23,18 +29,25 @@ namespace TimeCraft.ViewModels.Windows
             DateTime.Now.AddDays(1),
             TimeSpan.Parse((DateTime.Now).ToString("HH:mm")));
 
-        public CreateEditEventWindowViewModel()
+        private void SetUp()
         {
             CreateCommand = new RelayCommand(CreateExecute, CanCreateExecute);
             CancelCommand = new RelayCommand(CancelExecute);
             AddParticipantCommand = new RelayCommand(AddParticipantExecute);
             ClearParticipantsCommand = new RelayCommand(ClearParticipantsExecute);
-            DeleteParticipantCommand = new RelayCommand(DeleteParticipantExecute);
-            addParticipants.Add(new AddParticipant("login1", "role1"));
-            AddParticipants.Add(new AddParticipant("login2", "role2"));
-            AddParticipants.Add(new AddParticipant("login1", "role1"));
-            AddParticipants.Add(new AddParticipant("login2", "role2"));
+            DeleteParticipantCommand = new RelayCommand<object>(sender => DeleteParticipantExecute(sender));
             categories = new ObservableCollection<string>(TimeCraft.Category.GetAllTitles());
+        }
+
+        public CreateEditEventWindowViewModel()
+        {
+            SetUp();
+        }
+
+        public CreateEditEventWindowViewModel(Event _event)
+        {
+            SetUp();
+            this._event = _event;
         }
 
         public string Title
@@ -49,6 +62,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public string Location
         {
             get { return _event.Location; }
@@ -61,6 +75,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public DateTime StartDate
         {
             get { return _event.StartDate.HasValue ? _event.StartDate.Value : DateTime.MinValue; }
@@ -73,6 +88,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public string StartTime
         {
             get { return _event.StartTime.ToString(); }
@@ -101,6 +117,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public string EndTime
         {
             get { return _event.EndTime.ToString(); }
@@ -116,6 +133,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public int Category
         {
             get { return _event.CategoryId; }
@@ -154,6 +172,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public string Description
         {
             get { return _event.Description; }
@@ -166,6 +185,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public ObservableCollection<String> Categories
         {
             get { return categories; }
@@ -175,10 +195,12 @@ namespace TimeCraft.ViewModels.Windows
                 OnPropertyChanged(nameof(Categories));
             }
         }
+
         public Array Priorities
         {
             get { return Enum.GetValues(typeof(PriorityEnum)); }
         }
+
         public Array DressCodes
         {
             get { return Enum.GetValues(typeof(DressCodeEnum)); }
@@ -187,12 +209,13 @@ namespace TimeCraft.ViewModels.Windows
         public ObservableCollection<AddParticipant> AddParticipants
         {
             get { return addParticipants; }
-                set
+            set
             {
                 addParticipants = value;
                 OnPropertyChanged(nameof(AddParticipants));
             }
         }
+
         public string Role
         {
             set
@@ -201,6 +224,7 @@ namespace TimeCraft.ViewModels.Windows
                 OnPropertyChanged(nameof(Role));
             }
         }
+
         public string Login
         {
             set
@@ -218,45 +242,99 @@ namespace TimeCraft.ViewModels.Windows
 
         private void CreateExecute()
         {
-            // Ваша логика для создания события
+            if (!CanCreateExecute())
+            {
+                return;
+            }
+            if (isEdit)
+            {
+                _event.Update();
+                Participant.DeleteAllByEventId(_event.EventId);
+            }
+            else
+            {
+                _event.Add();
+            }
+            foreach (AddParticipant addParticipant in AddParticipants)
+            {
+                new Participant(Participant.GetNewId(), _event.EventId,
+                    User.ActiveUser.UserId, false, addParticipant.Role).Add();
+            }
+            Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
         }
 
         private bool CanCreateExecute()
         {
-            // Ваша логика проверки, может ли команда быть выполнена
+            if (!Event.IsTimeCorrect(StartTime) || !Event.IsTimeCorrect(EndTime) ||
+                !Event.IsStartDateCorrect(StartDate) ||
+                !Event.IsEndDateCorrect(StartDate, StartTime, EndDate, EndTime))
+            {
+                MessageBox.Show("Неверный формат времени");
+                return false;
+            }
+
+            if (!Event.IsTitleCorrect(Title))
+            {
+                MessageBox.Show("Заполните поле названия");
+                return false;
+            }
+            if (!Event.IsTitleUnique(Title) &&
+                Event.Get(Title).EventId != _event.EventId)
+            {
+                MessageBox.Show("Мероприятие с этим названием уже существует");
+                return false;
+            }
+            if (!AddParticipant.IsAllParticipantsExists(AddParticipants.ToList()))
+            {
+                MessageBox.Show("Не все указанные участники найдены в системы");
+                return false;
+            }
+            //Условие проверяет, доступно ли выбранное время для создания события
+            //(через метод IsFreeTime) или
+            //существует ли уже событие с таким временным диапазоном (через метод Event.Get),
+            //при условии редактирования.
+            if (!User.ActiveUser.IsFreeTime(
+                StartDate, TimeSpan.Parse(StartTime), EndDate,
+               TimeSpan.Parse(EndTime)) &&
+               Event.Get(StartDate, TimeSpan.Parse(StartTime),
+               EndDate, TimeSpan.Parse(EndTime)).EventId != _event.EventId)
+            {
+                MessageBox.Show("Данные время у вас занято другим меропритием");
+                return false;
+            }
             return true;
         }
 
         private void CancelExecute()
         {
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
-            if (window != null)
-            {
-                window.Close();
-            }
+            Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
         }
 
-        private void AddParticipantExecute( )
+        private void AddParticipantExecute()
         {
-            // Ваша логика для добавления участника
+            AddParticipants.Add(new AddParticipant());
         }
 
         private void ClearParticipantsExecute()
         {
-            // Ваша логика для очистки списка участников
+            AddParticipants = new ObservableCollection<AddParticipant>();
         }
 
-        private void DeleteParticipantExecute()
+        private void DeleteParticipantExecute(object sender)
         {
-            // Ваша логика для удаления участника
+            if (sender != null && sender is Button button)
+            {
+                int rowIndex = DataGridHelper.GetRowIndex(button);
+                if (rowIndex != -1)
+                {
+                    AddParticipants.RemoveAt(rowIndex);
+                }
+            }
         }
 
         protected void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
