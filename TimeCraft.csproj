@@ -172,7 +172,6 @@
     <Compile Include="Models\AddParticipant.cs" />
     <Compile Include="Services\AppDBContent.cs" />
     <Compile Include="Models\Activity.cs" />
-    <Compile Include="Services\DataGridHelper.cs" />
     <Compile Include="ViewModels\Models\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Models\EventViewModel.cs" />
     <Compile Include="ViewModels\Models\ParticipantViewModel.cs" />
