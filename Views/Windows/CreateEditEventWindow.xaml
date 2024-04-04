@@ -7,7 +7,7 @@
         xmlns:windows="clr-namespace:TimeCraft.ViewModels.Windows"
         d:DataContext="{d:DesignInstance Type=windows:CreateEditEventWindowViewModel}"
         mc:Ignorable="d"
-        Title="CreateEditEventWindow" Height="450" Width="300" MinHeight="450" MinWidth="300" MaxHeight="1000" MaxWidth="600">
+        Title="CreateEditEventWindow" Height="450" Width="300" MinHeight="450" MinWidth="300" MaxWidth="600">
     <Window.Resources>
         <local:LoginToColorConverter x:Key="LoginToColorConverter" />
     </Window.Resources>
@@ -65,7 +65,7 @@
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="DeleteParticipantButton" Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" Command="{Binding DeleteParticipantCommand}" >-</Button>
+                            <Button Command="{Binding DataContext.DeleteParticipantCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Content="-"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

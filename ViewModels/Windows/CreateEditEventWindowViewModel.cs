@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
-using TimeCraft.Services;
-using System.Windows.Controls;
 
 namespace TimeCraft.ViewModels.Windows
 {
@@ -27,7 +22,10 @@ namespace TimeCraft.ViewModels.Windows
         private Event _event = new Event(Event.GetNewId(),
             "Новое мероприятие", User.ActiveUser.UserId, "Описание",
             DateTime.Now.AddDays(1),
-            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")));
+            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
+            DateTime.Now.AddDays(2),
+            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
+            "Онлайн");
 
         private void SetUp()
         {
@@ -35,7 +33,7 @@ namespace TimeCraft.ViewModels.Windows
             CancelCommand = new RelayCommand(CancelExecute);
             AddParticipantCommand = new RelayCommand(AddParticipantExecute);
             ClearParticipantsCommand = new RelayCommand(ClearParticipantsExecute);
-            DeleteParticipantCommand = new RelayCommand<object>(sender => DeleteParticipantExecute(sender));
+            DeleteParticipantCommand = new RelayCommand<object>(DeleteParticipantExecute);
             categories = new ObservableCollection<string>(TimeCraft.Category.GetAllTitles());
         }
 
@@ -59,6 +57,7 @@ namespace TimeCraft.ViewModels.Windows
                 {
                     _event.Title = value;
                     OnPropertyChanged("Title");
+                    ((RelayCommand)CreateCommand).RaiseCanExecuteChanged();
                 }
             }
         }
@@ -91,7 +90,15 @@ namespace TimeCraft.ViewModels.Windows
 
         public string StartTime
         {
-            get { return _event.StartTime.ToString(); }
+            get
+            {
+                if (TimeSpan.TryParse(_event.StartTime.ToString(), out TimeSpan startTime))
+                {
+                    return _event.StartTime.ToString().
+                    Substring(0, _event.StartTime.ToString().Length - 3);
+                }
+                return _event.StartTime.ToString();
+            }
             set
             {
                 if (_event.StartTime.ToString() != value)
@@ -120,7 +127,15 @@ namespace TimeCraft.ViewModels.Windows
 
         public string EndTime
         {
-            get { return _event.EndTime.ToString(); }
+            get
+            {
+                if (TimeSpan.TryParse(_event.EndTime.ToString(), out TimeSpan startTime))
+                {
+                    return _event.EndTime.ToString().
+                    Substring(0, _event.EndTime.ToString().Length - 3);
+                }
+                return _event.EndTime.ToString();
+            }
             set
             {
                 if (_event.EndTime.ToString() != value)
@@ -320,15 +335,11 @@ namespace TimeCraft.ViewModels.Windows
             AddParticipants = new ObservableCollection<AddParticipant>();
         }
 
-        private void DeleteParticipantExecute(object sender)
+        private void DeleteParticipantExecute(object participant)
         {
-            if (sender != null && sender is Button button)
+            if (participant is AddParticipant addParticipant)
             {
-                int rowIndex = DataGridHelper.GetRowIndex(button);
-                if (rowIndex != -1)
-                {
-                    AddParticipants.RemoveAt(rowIndex);
-                }
+                AddParticipants.Remove(addParticipant);
             }
         }
 

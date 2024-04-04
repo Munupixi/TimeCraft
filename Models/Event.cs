@@ -27,7 +27,7 @@ namespace TimeCraft
             DateTime? startDate = default, TimeSpan? startTime = default,
             DateTime? endDate = default, TimeSpan? endTime = default,
             string location = null, DressCodeEnum dressCode = DressCodeEnum.НеИмеетЗначения,
-            PriorityEnum priority = PriorityEnum.Средний, int categoryId = 0)
+            PriorityEnum priority = PriorityEnum.Средний, int categoryId = 1)
         {
             EventId = eventId;
             Title = title;
