@@ -45,7 +45,7 @@ namespace TimeCraft
 
         public void Delete()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 if (db.Event.Find(EventId) != null)
                 {
@@ -59,7 +59,7 @@ namespace TimeCraft
 
         public void Delete(int eventId)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 Event _event = db.Event.Find(eventId);
                 if (_event != null)
@@ -74,7 +74,7 @@ namespace TimeCraft
 
         public void Add()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 db.Event.Add(this);
                 db.SaveChanges();
@@ -83,7 +83,7 @@ namespace TimeCraft
 
         public void Update()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 try
                 {
@@ -99,21 +99,21 @@ namespace TimeCraft
 
         public static int GetNewId()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return (db.Event.Max(u => (int?)u.EventId) ?? 0) + 1;
             }
         }
         public static Event Get(int eventId)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Event.FirstOrDefault(e => e.EventId == eventId);
             }
         }
         public static Event Get(string title)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Event.FirstOrDefault(e => e.Title == title);
             }
@@ -127,7 +127,7 @@ namespace TimeCraft
 
             DateTime? startDateTime = startDate + startTime;
             DateTime? endDateTime = endDate + endTime;
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Event.FirstOrDefault(e =>
                     (e.StartDate < endDateTime && e.EndDate > startDateTime) || // Если начало события в пределах диапазона или конец события в пределах диапазона
@@ -138,14 +138,14 @@ namespace TimeCraft
 
         public static bool IsTitleUnique(string title)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return !db.Event.Any(e => e.Title == title);
             }
         }
         public bool IsEventExists(int eventId)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Event.Any(e => e.EventId == eventId);
             }

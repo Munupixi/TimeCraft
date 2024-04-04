@@ -33,7 +33,7 @@ namespace TimeCraft
                 new Category(10, "Дом", "Категория для событий, связанных с домашними делами", "Gray"),
                 new Category(11, "Финансы", "Категория для событий, связанных с финансами", "Black")};
 
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 db.Category.AddRange(categories);
                 db.SaveChanges();
@@ -42,7 +42,7 @@ namespace TimeCraft
 
         public static List<string> GetAllTitles()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Category.Select(c => c.Title).ToList();
             }

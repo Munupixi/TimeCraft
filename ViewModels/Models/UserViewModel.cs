@@ -4,20 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace TimeCraft.ViewModels
 {
-    internal class UserViewModel: DependencyObject
+    internal class UserViewModel : INotifyPropertyChanged
     {
-        public string Login
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public UserViewModel()
         {
-            get { return (string)GetValue(LoginProperty); }
-            set { SetValue(LoginProperty, value); }
         }
 
-        public static readonly DependencyProperty LoginProperty =
-            DependencyProperty.Register("Login",
-                typeof(string), typeof(UserViewModel), 
-                new PropertyMetadata(string.Empty));
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

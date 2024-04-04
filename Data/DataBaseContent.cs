@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TimeCraft
 {
-    internal class AppDBContent : DbContext
+    internal class DataBaseContent : DbContext
     {
-        public AppDBContent()
+        public DataBaseContent()
         {
             while (true)
             {

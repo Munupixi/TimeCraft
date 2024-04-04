@@ -15,7 +15,7 @@ namespace TimeCraft.ViewModels.Windows
         public event PropertyChangedEventHandler PropertyChanged;
 
         private object _currentPage;
-        AppDBContent appDBContent = new AppDBContent();
+        DataBaseContent appDBContent = new DataBaseContent();
 
         public object CurrentPage
         {

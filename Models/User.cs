@@ -47,7 +47,7 @@ namespace TimeCraft
 
         public static bool IsLoginUnique(string login)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return !db.User.Any(u => u.Login == login);
             }
@@ -55,7 +55,7 @@ namespace TimeCraft
 
         public static int GetNewId()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return (db.User.Max(u => (int?)u.UserId) ?? 0) + 1;
             }
@@ -78,7 +78,7 @@ namespace TimeCraft
 
         public void Delete()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 if (db.User.Find(UserId) != null)
                 {
@@ -92,7 +92,7 @@ namespace TimeCraft
 
         public void Delete(int userId)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 User user = db.User.Find(userId);
                 if (user != null)
@@ -107,7 +107,7 @@ namespace TimeCraft
 
         public void Add()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 db.User.Add(this);
                 db.SaveChanges();
@@ -116,7 +116,7 @@ namespace TimeCraft
 
         public void Update()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 try
                 {
@@ -132,14 +132,14 @@ namespace TimeCraft
 
         public static User Get(string login)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.User.FirstOrDefault(u => u.Login == login);
             }
         }
         public static User Get(int userId)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.User.FirstOrDefault(u => u.UserId == userId);
             }
@@ -150,7 +150,7 @@ namespace TimeCraft
             if (startDate == null || endDate == null || startTime == null || endTime == null) { return false; }
             DateTime? startDateTime = startDate + startTime;
             DateTime? endDateTime = endDate + endTime;
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Event.Count(e =>
                     (e.StartDate < endDateTime && e.EndDate > startDateTime) || // Если начало события в пределах диапазона или конец события в пределах диапазона

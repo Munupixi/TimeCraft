@@ -34,7 +34,7 @@ namespace TimeCraft
         }
         public static void DeleteAllByEventId(int eventId)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 db.Participant.RemoveRange(
                     db.Participant.Where(p => p.IdEvent == eventId));
@@ -43,7 +43,7 @@ namespace TimeCraft
         }
         public void Add()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 db.Participant.Add(this);
                 db.SaveChanges();
@@ -52,7 +52,7 @@ namespace TimeCraft
 
         public void Update()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 try
                 {
@@ -67,14 +67,14 @@ namespace TimeCraft
         }
         public static int GetNewId()
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return (db.Participant.Max(u => (int?)u.ParticipantId) ?? 0) + 1;
             }
         }
         public static List<Participant> GetAllParticipantByIdEvent(int idEvent)
         {
-            using (AppDBContent db = new AppDBContent())
+            using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Participant.Where(p => p.IdEvent == idEvent).ToList();
             }
