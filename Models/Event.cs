@@ -33,7 +33,7 @@ namespace TimeCraft
             Title = title;
             Description = description;
             StartDate = startDate;
-            EndTime = startTime;
+            StartTime = startTime;
             EndDate = endDate;
             EndTime = endTime;
             Location = location;
@@ -104,6 +104,7 @@ namespace TimeCraft
                 return (db.Event.Max(u => (int?)u.EventId) ?? 0) + 1;
             }
         }
+
         public static Event Get(int eventId)
         {
             using (DataBaseContent db = new DataBaseContent())
@@ -111,6 +112,7 @@ namespace TimeCraft
                 return db.Event.FirstOrDefault(e => e.EventId == eventId);
             }
         }
+
         public static Event Get(string title)
         {
             using (DataBaseContent db = new DataBaseContent())
@@ -118,6 +120,7 @@ namespace TimeCraft
                 return db.Event.FirstOrDefault(e => e.Title == title);
             }
         }
+
         public static Event Get(DateTime? startDate, TimeSpan? startTime, DateTime? endDate, TimeSpan? endTime)
         {
             if (startDate == null || endDate == null || startTime == null || endTime == null)
@@ -143,6 +146,7 @@ namespace TimeCraft
                 return !db.Event.Any(e => e.Title == title);
             }
         }
+
         public bool IsEventExists(int eventId)
         {
             using (DataBaseContent db = new DataBaseContent())

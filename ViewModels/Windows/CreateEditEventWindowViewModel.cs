@@ -88,11 +88,24 @@ namespace TimeCraft.ViewModels.Windows
             }
         }
 
+        public DateTime EndDate
+        {
+            get { return _event.EndDate.HasValue ? _event.EndDate.Value : DateTime.MinValue; }
+            set
+            {
+                if (_event.EndDate != value)
+                {
+                    _event.EndDate = value;
+                    OnPropertyChanged("EndDate");
+                }
+            }
+        }
+
         public string StartTime
         {
             get
             {
-                if (TimeSpan.TryParse(_event.StartTime.ToString(), out TimeSpan startTime))
+                if (TimeSpan.TryParse(_event.StartTime.ToString(), out _))
                 {
                     return _event.StartTime.ToString().
                     Substring(0, _event.StartTime.ToString().Length - 3);
@@ -112,24 +125,11 @@ namespace TimeCraft.ViewModels.Windows
             }
         }
 
-        public DateTime EndDate
-        {
-            get { return _event.EndDate.HasValue ? _event.EndDate.Value : DateTime.MinValue; }
-            set
-            {
-                if (_event.EndDate != value)
-                {
-                    _event.EndDate = value;
-                    OnPropertyChanged("EndDate");
-                }
-            }
-        }
-
         public string EndTime
         {
             get
             {
-                if (TimeSpan.TryParse(_event.EndTime.ToString(), out TimeSpan startTime))
+                if (TimeSpan.TryParse(_event.EndTime.ToString(), out _))
                 {
                     return _event.EndTime.ToString().
                     Substring(0, _event.EndTime.ToString().Length - 3);
@@ -284,24 +284,24 @@ namespace TimeCraft.ViewModels.Windows
                 !Event.IsStartDateCorrect(StartDate) ||
                 !Event.IsEndDateCorrect(StartDate, StartTime, EndDate, EndTime))
             {
-                MessageBox.Show("Неверный формат времени");
+                //MessageBox.Show("Неверный формат времени");
                 return false;
             }
 
             if (!Event.IsTitleCorrect(Title))
             {
-                MessageBox.Show("Заполните поле названия");
+                //MessageBox.Show("Заполните поле названия");
                 return false;
             }
             if (!Event.IsTitleUnique(Title) &&
                 Event.Get(Title).EventId != _event.EventId)
             {
-                MessageBox.Show("Мероприятие с этим названием уже существует");
+                //MessageBox.Show("Мероприятие с этим названием уже существует");
                 return false;
             }
             if (!AddParticipant.IsAllParticipantsExists(AddParticipants.ToList()))
             {
-                MessageBox.Show("Не все указанные участники найдены в системы");
+                //MessageBox.Show("Не все указанные участники найдены в системы");
                 return false;
             }
             //Условие проверяет, доступно ли выбранное время для создания события
@@ -314,7 +314,7 @@ namespace TimeCraft.ViewModels.Windows
                Event.Get(StartDate, TimeSpan.Parse(StartTime),
                EndDate, TimeSpan.Parse(EndTime)).EventId != _event.EventId)
             {
-                MessageBox.Show("Данные время у вас занято другим меропритием");
+                //MessageBox.Show("Данные время у вас занято другим меропритием");
                 return false;
             }
             return true;
