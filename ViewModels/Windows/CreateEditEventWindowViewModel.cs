@@ -57,7 +57,6 @@ namespace TimeCraft.ViewModels.Windows
                 {
                     _event.Title = value;
                     OnPropertyChanged("Title");
-                    ((RelayCommand)CreateCommand).RaiseCanExecuteChanged();
                 }
             }
         }
@@ -346,6 +345,7 @@ namespace TimeCraft.ViewModels.Windows
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ((RelayCommand)CreateCommand).RaiseCanExecuteChanged();
         }
     }
 }
