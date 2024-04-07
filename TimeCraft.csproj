@@ -169,14 +169,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ModelsOld\AddParticipant.cs" />
+    <Compile Include="Models\AddParticipant.cs" />
     <Compile Include="Data\DataBaseContent.cs" />
-    <Compile Include="ModelsOld\Activity.cs" />
+    <Compile Include="Models\Activity.cs" />
     <Compile Include="ViewModels\Models\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Models\EventViewModel.cs" />
     <Compile Include="ViewModels\Models\ParticipantViewModel.cs" />
     <Compile Include="ViewModels\Models\TaskViewModel.cs" />
     <Compile Include="ViewModels\Models\UserViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AuthorizationPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />
     <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
@@ -188,7 +190,7 @@
     <Compile Include="Views\Windows\CreateEditTaskWindow.xaml.cs">
       <DependentUpon>CreateEditTaskWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModelsOld\Category.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Enums\DressCodeEnum.cs" />
     <Compile Include="Views\Pages\DailySchedulePage.xaml.cs">
       <DependentUpon>DailySchedulePage.xaml</DependentUpon>
@@ -196,8 +198,8 @@
     <Compile Include="Views\UserControls\DayForMonthUserControl.xaml.cs">
       <DependentUpon>DayForMonthUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModelsOld\Entity.cs" />
-    <Compile Include="ModelsOld\Event.cs" />
+    <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Views\UserControls\EventUserControl.xaml.cs">
       <DependentUpon>EventUserControl.xaml</DependentUpon>
     </Compile>
@@ -210,7 +212,7 @@
     <Compile Include="Views\Pages\MonthlySchedulePage.xaml.cs">
       <DependentUpon>MonthlySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModelsOld\Participant.cs" />
+    <Compile Include="Models\Participant.cs" />
     <Compile Include="Enums\PriorityEnum.cs" />
     <Compile Include="Views\Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -218,8 +220,8 @@
     <Compile Include="Views\Pages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ModelsOld\Task.cs" />
-    <Compile Include="ModelsOld\User.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Views\Pages\WeeklySchedulePage.xaml.cs">
       <DependentUpon>WeeklySchedulePage.xaml</DependentUpon>
     </Compile>
@@ -325,7 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styles\" />
-    <Folder Include="ViewModels\Pages\" />
     <Folder Include="ViewModels\UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
