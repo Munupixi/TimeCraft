@@ -8,72 +8,70 @@
         Title="CreateEditTaskWindow" Height="350" Width="300" MinHeight="350" MinWidth="300" MaxHeight="700" MaxWidth="600">
     <Grid Margin="5,0,5,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="*" MinHeight="33"/>
-            <RowDefinition Height="33"/>
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
+            <RowDefinition Height="*" MinHeight="33" />
+            <RowDefinition Height="33" />
         </Grid.RowDefinitions>
-        <Label x:Name="MainLabel" Content="Создание задачи" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text="Новая задача" Grid.Row="1" VerticalContentAlignment="Center" ToolTip="Название" Margin="0,5,0,5"/>
-        <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="Местоположение или онлайн" Grid.Row="2" VerticalContentAlignment="Center" ToolTip="Местоположение" Margin="0,5,0,5"/>
+        <Label x:Name="MainLabel" Content="Создание задачи" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text="Новая задача" Grid.Row="1" VerticalContentAlignment="Center" ToolTip="Название" Margin="0,5,0,5" />
+        <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="Местоположение или онлайн" Grid.Row="2" VerticalContentAlignment="Center" ToolTip="Местоположение" Margin="0,5,0,5" />
         <Grid Grid.Row="3" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="72.5"/>
-                <ColumnDefinition Width="145*"/>
-                <ColumnDefinition Width="73*"/>
+                <ColumnDefinition Width="72.5" />
+                <ColumnDefinition Width="145*" />
+                <ColumnDefinition Width="73*" />
             </Grid.ColumnDefinitions>
-            <DatePicker x:Name="StartDateDatePicker" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="144"/>
-            <Label Content="Начало" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0"/>
-            <TextBox x:Name="StartTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <DatePicker x:Name="StartDateDatePicker" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="144" />
+            <Label Content="Начало" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0" />
+            <TextBox x:Name="StartTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Grid>
 
         <Grid Grid.Row="5" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="72.5"/>
-                <ColumnDefinition Width="145*"/>
-                <ColumnDefinition Width="73*"/>
+                <ColumnDefinition Width="72.5" />
+                <ColumnDefinition Width="145*" />
+                <ColumnDefinition Width="73*" />
             </Grid.ColumnDefinitions>
-            <DatePicker x:Name="EndDateDatePicker" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="144"/>
-            <Label Content="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0"/>
-            <TextBox x:Name="EndTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-
+            <DatePicker x:Name="EndDateDatePicker" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Width="144" />
+            <Label Content="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0" />
+            <TextBox x:Name="EndTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Grid>
-        <ComboBox x:Name="CategoryComboBox" Grid.Row="2" Margin="0,5,0,5" Text="Категория"/>
-        <ComboBox x:Name="PriorityComboBox" Grid.Row="6" Margin="0,5,0,5" Text="Приоритет"/>
+        <ComboBox x:Name="CategoryComboBox" Grid.Row="2" Margin="0,5,0,5" Text="Категория" />
+        <ComboBox x:Name="PriorityComboBox" Grid.Row="6" Margin="0,5,0,5" Text="Приоритет" />
         <Grid Grid.Row="11">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="CancelButton" Content="Отменить" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,5,5,5"/>
-            <Button x:Name="CreateButton" Grid.Column="1" Content="Создать" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,5,5"/>
+            <Button x:Name="CancelButton" Content="Отменить" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,5,5,5" />
+            <Button x:Name="CreateButton" Grid.Column="1" Content="Создать" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,5,5" />
         </Grid>
         <RichTextBox x:Name="DescriptionRichTextBox" Grid.Row="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,0,5">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="Описание"/>
+                    <Run Text="Описание" />
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
         <Grid Grid.Row="4" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="72.5"/>
-                <ColumnDefinition Width="145*"/>
-                <ColumnDefinition Width="73*"/>
+                <ColumnDefinition Width="72.5" />
+                <ColumnDefinition Width="145*" />
+                <ColumnDefinition Width="73*" />
             </Grid.ColumnDefinitions>
-            <Label Content="Повтор" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="5,0,5,0"/>
-            <CheckBox x:Name="IsRepeatCheckBox" Grid.Column="4" Content="" UseLayoutRounding="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsChecked="False" Padding="0,0,0,0" Margin="10,0,8,0" HorizontalAlignment="Center"/>
+            <Label Content="Повтор" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="5,0,5,0" />
+            <CheckBox x:Name="IsRepeatCheckBox" Grid.Column="4" Content="" UseLayoutRounding="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsChecked="False" Padding="0,0,0,0" Margin="10,0,8,0" HorizontalAlignment="Center" />
             <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button x:Name="DecreaseRepeatButton" Content="-" Width="48" Height="23"/>
-                <TextBox x:Name="RepeatTextBox" TextWrapping="Wrap" Text="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="48" Height="23"/>
-                <Button x:Name="IncreaseRepeatButton" Content="+" Width="48" Height="23"/>
+                <Button x:Name="DecreaseRepeatButton" Content="-" Width="48" Height="23" />
+                <TextBox x:Name="RepeatTextBox" TextWrapping="Wrap" Text="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="48" Height="23" />
+                <Button x:Name="IncreaseRepeatButton" Content="+" Width="48" Height="23" />
             </StackPanel>
         </Grid>
-
     </Grid>
 </Window>

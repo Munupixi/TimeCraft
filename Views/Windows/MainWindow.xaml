@@ -6,6 +6,6 @@
         mc:Ignorable="d"
         Title="TimeCraft" Height="450" Width="800" MinHeight="400" MinWidth="600">
     <Grid>
-        <Frame x:Name="MainFrame" Content="{Binding CurrentPage}"/>
+        <Frame x:Name="MainFrame" Content="{Binding CurrentPage}" />
     </Grid>
 </Window>

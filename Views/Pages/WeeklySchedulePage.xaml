@@ -10,10 +10,10 @@
     <Page.Resources>
         <!-- Define style for all buttons -->
         <Style TargetType="Button">
-            <Setter Property="Background" Value="#FFEEEEEE"/>
-            <Setter Property="Foreground" Value="#333333"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Height" Value="20"/>
+            <Setter Property="Background" Value="#FFEEEEEE" />
+            <Setter Property="Foreground" Value="#333333" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="20" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -21,7 +21,7 @@
                                 CornerRadius="5"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -31,46 +31,46 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Viewbox Grid.Row="0" Stretch="UniformToFill">
             <StackPanel Orientation="Horizontal" Background="White" HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    
-                    <TextBlock x:Name="DateTextBlock" Text="Март 2024" Foreground="#333" FontSize="18" FontWeight="Bold" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Button x:Name="PreviousButton" Content="&lt;" Margin="5" Height="30" Width="30"/>
-                    <Button x:Name="TodayButton" Content="Сегодня" Margin="5" Width="70" Height="30"/>
-                    <Button x:Name="NextButton" Content="&gt;" Margin="5" Width="30" Height="30"/>
-                    <TextBox x:Name="SearchTextBox" Width="200" Margin="10" Height="30"/>
+
+                    <TextBlock x:Name="DateTextBlock" Text="Март 2024" Foreground="#333" FontSize="18" FontWeight="Bold" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Button x:Name="PreviousButton" Content="&lt;" Margin="5" Height="30" Width="30" />
+                    <Button x:Name="TodayButton" Content="Сегодня" Margin="5" Width="70" Height="30" />
+                    <Button x:Name="NextButton" Content="&gt;" Margin="5" Width="30" Height="30" />
+                    <TextBox x:Name="SearchTextBox" Width="200" Margin="10" Height="30" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
-                    <Button x:Name="DayButton" Content="День" Margin="5" Height="30"/>
-                    <Button x:Name="WeekButton" Content="Неделя" Margin="5" Height="30"/>
-                    <Button x:Name="MonthButton" Content="Месяц" Margin="5" Height="30"/>
-                    <Button x:Name="YearButton" Content="Год" Margin="5" Height="30"/>
+                    <Button x:Name="DayButton" Content="День" Margin="5" Height="30" />
+                    <Button x:Name="WeekButton" Content="Неделя" Margin="5" Height="30" />
+                    <Button x:Name="MonthButton" Content="Месяц" Margin="5" Height="30" />
+                    <Button x:Name="YearButton" Content="Год" Margin="5" Height="30" />
 
                     <Button x:Name="ProfileButton" Content="Профиль" Margin="5" Height="30" Background="#FFEEEEEE" BorderBrush="#00000000" Width="30">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Image Source="/Images/profile_icon.png" Stretch="Fill" Width="20" Height="20"/>
+                                <Image Source="/Images/profile_icon.png" Stretch="Fill" Width="20" Height="20" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                     <Button x:Name="SettingsButton" Content="Настройки" Margin="5" Height="30" Background="White" BorderBrush="#00000000" Width="30">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Image Source="/Images/settings.png" Stretch="Fill" Width="20" Height="20"/>
+                                <Image Source="/Images/settings.png" Stretch="Fill" Width="20" Height="20" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                     <Button x:Name="TasksButton" Content="Список задач" Margin="5" Height="30" Background="White" BorderBrush="#00000000" Width="30">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Image Source="/Images/clipboard.png" Stretch="Fill" Width="20" Height="20"/>
+                                <Image Source="/Images/clipboard.png" Stretch="Fill" Width="20" Height="20" />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -81,44 +81,44 @@
         <!-- Day names -->
         <Grid Grid.Row="1" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Пн" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="1" Text="Вт" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="2" Text="Ср" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="3" Text="Чт" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="4" Text="Пт" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="5" Text="Сб" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="6" Text="Вс" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Text="Пн" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="Вт" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="2" Text="Ср" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="3" Text="Чт" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="4" Text="Пт" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="5" Text="Сб" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="6" Text="Вс" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
 
         <Grid Grid.Row="2" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
             <!-- The ListView controls for the days would go here, make sure to set the Grid.Column property for each ListView -->
             <!-- For example: -->
-            <ListView x:Name="MondayListView" Grid.Column="0" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <ListView x:Name="TuesdayListView" Grid.Column="1" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <ListView x:Name="WednesdayListView" Grid.Column="2" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <ListView x:Name="ThursdayListView" Grid.Column="3" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <ListView x:Name="FridayListView" Grid.Column="4" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <ListView x:Name="SaturdayListView" Grid.Column="5" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <ListView x:Name="SundayListView" Grid.Column="6" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+            <ListView x:Name="MondayListView" Grid.Column="0" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+            <ListView x:Name="TuesdayListView" Grid.Column="1" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+            <ListView x:Name="WednesdayListView" Grid.Column="2" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+            <ListView x:Name="ThursdayListView" Grid.Column="3" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+            <ListView x:Name="FridayListView" Grid.Column="4" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+            <ListView x:Name="SaturdayListView" Grid.Column="5" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+            <ListView x:Name="SundayListView" Grid.Column="6" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
         </Grid>
     </Grid>
 </Page>

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace TimeCraft
 {
@@ -44,6 +38,7 @@ namespace TimeCraft
             }
             return false;
         }
+
         public static bool IsTitleCorrect(string title)
         {
             return title.Length > 0;

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using TimeCraft.ViewModels.Pages;
 
 namespace TimeCraft
 {
@@ -10,11 +11,11 @@ namespace TimeCraft
         public AuthorizationPage()
         {
             InitializeComponent();
+            DataContext = new AuthorizationPageViewModel();
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-
             //4 testin'
             if (LoginTextBox.Text == "1")
             {
@@ -29,7 +30,6 @@ namespace TimeCraft
                 new CreateEditEventWindow().Show();
                 return;
             }
-
 
             User user = User.Get(LoginTextBox.Text);
             if (user == null)

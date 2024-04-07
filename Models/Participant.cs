@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TimeCraft
 {
@@ -24,14 +21,17 @@ namespace TimeCraft
             IdEvent = idEvent;
             IdUser = idUser;
         }
+
         public void Delete()
         {
             return;
         }
+
         public void Delete(int eventId)
         {
             return;
         }
+
         public static void DeleteAllByEventId(int eventId)
         {
             using (DataBaseContent db = new DataBaseContent())
@@ -41,6 +41,7 @@ namespace TimeCraft
                 db.SaveChanges();
             }
         }
+
         public void Add()
         {
             using (DataBaseContent db = new DataBaseContent())
@@ -65,6 +66,7 @@ namespace TimeCraft
                 db.SaveChanges();
             }
         }
+
         public static int GetNewId()
         {
             using (DataBaseContent db = new DataBaseContent())
@@ -72,6 +74,7 @@ namespace TimeCraft
                 return (db.Participant.Max(u => (int?)u.ParticipantId) ?? 0) + 1;
             }
         }
+
         public static List<Participant> GetAllParticipantByIdEvent(int idEvent)
         {
             using (DataBaseContent db = new DataBaseContent())

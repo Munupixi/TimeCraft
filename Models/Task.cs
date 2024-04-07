@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace TimeCraft
 {
-
     internal class Task : Activity
     {
-        const string DateFormat = "yyyy-MM-dd";
-        const string timeFormat = "HH:mm";
+        private const string DateFormat = "yyyy-MM-dd";
+        private const string timeFormat = "HH:mm";
         public int TaskId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

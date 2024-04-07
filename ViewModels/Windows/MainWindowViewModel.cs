@@ -1,11 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 
 namespace TimeCraft.ViewModels.Windows
@@ -15,7 +8,7 @@ namespace TimeCraft.ViewModels.Windows
         public event PropertyChangedEventHandler PropertyChanged;
 
         private object _currentPage;
-        DataBaseContent appDBContent = new DataBaseContent();
+        private DataBaseContent appDBContent = new DataBaseContent();
 
         public object CurrentPage
         {

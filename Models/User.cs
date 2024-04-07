@@ -137,6 +137,7 @@ namespace TimeCraft
                 return db.User.FirstOrDefault(u => u.Login == login);
             }
         }
+
         public static User Get(int userId)
         {
             using (DataBaseContent db = new DataBaseContent())
