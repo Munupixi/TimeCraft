@@ -178,6 +178,7 @@
     <Compile Include="ViewModels\Models\TaskViewModel.cs" />
     <Compile Include="ViewModels\Models\UserViewModel.cs" />
     <Compile Include="ViewModels\Pages\AuthorizationPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />

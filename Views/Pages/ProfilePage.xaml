@@ -27,28 +27,28 @@
             <UniformGrid x:Name="ProfileUniformGrid" Grid.ColumnSpan="2" Grid.Row="1" Columns="2" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                 <StackPanel x:Name="LeftColumnStackPanel" Margin="20">
                     <Label Content="Логин" Foreground="White" />
-                    <TextBox x:Name="LoginTextBox" Width="200" Margin="0,5, 150, 0" IsEnabled="False" />
+                    <TextBox x:Name="LoginTextBox" Width="200" Margin="0,5, 150, 0" IsEnabled="False" Text="{Binding Login}"/>
                     <Label Content="Пароль" Foreground="White" />
-                    <TextBox x:Name="PasswordTextBox" Width="200" Margin="0,5, 150, 0" />
+                    <TextBox x:Name="PasswordTextBox" Width="200" Margin="0,5, 150, 0"  Text="{Binding Password}"/>
                     <Label Content="Пароль*" Foreground="White" />
-                    <TextBox x:Name="PasswordAgainTextBox" Width="200" Margin="0,5, 150, 0" />
+                    <TextBox x:Name="PasswordAgainTextBox" Width="200" Margin="0,5, 150, 0"  Text="{Binding AgainPassword}"/>
                     <Label Content="Возраст" Foreground="White" />
-                    <TextBox x:Name="AgeTextBox" Width="200" Margin="0,5, 150, 0" />
+                    <TextBox x:Name="AgeTextBox" Width="200" Margin="0,5, 150, 0"  Text="{Binding Age}"/>
                 </StackPanel>
 
                 <StackPanel x:Name="RightColumnStackPanel" Margin="20">
                     <Label Content="Имя" Foreground="White" />
-                    <TextBox x:Name="NameTextBox" Width="200" Margin="0,5, 150, 0" />
+                    <TextBox x:Name="NameTextBox" Width="200" Margin="0,5, 150, 0" Text="{Binding Name}" />
                     <Label Content="Фамилия" Foreground="White" />
-                    <TextBox x:Name="SurnameTextBox" Width="200" Margin="0,5, 150, 0" />
+                    <TextBox x:Name="SurnameTextBox" Width="200" Margin="0,5, 150, 0"  Text="{Binding Surname}" />
                     <Label Content="Отчество" Foreground="White" />
-                    <TextBox x:Name="PatronymicTextBox" Width="200" Margin="0,5, 150, 0" />
+                    <TextBox x:Name="PatronymicTextBox" Width="200" Margin="0,5, 150, 0"  Text="{Binding Patronymic}"/>
                 </StackPanel>
             </UniformGrid>
 
             <StackPanel x:Name="ButtonsStackPanel" Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="CancelButton" Content="Отменить" Margin="10" Width="120" Height="40" Foreground="White" Background="#333" Click="CancelButton_Click" />
-                <Button x:Name="ConfirmButton" Content="Применить" Margin="10" Width="120" Height="40" Foreground="White" Background="#333" Click="ConfirmButton_Click" />
+                <Button x:Name="CancelButton" Command="{Binding CancelCommand}" Content="Отменить" Margin="10" Width="120" Height="40" Foreground="White" Background="#333" Click="CancelButton_Click" />
+                <Button x:Name="ConfirmButton" Content="Применить" Command="{Binding ApplyCommand}" Margin="10" Width="120" Height="40" Foreground="White" Background="#333" Click="ConfirmButton_Click" />
             </StackPanel>
         </Grid>
     </Viewbox>
