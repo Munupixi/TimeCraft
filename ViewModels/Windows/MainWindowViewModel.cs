@@ -7,10 +7,11 @@ namespace TimeCraft.ViewModels.Windows
     internal class MainWindowViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         public static Frame Frame;
 
         private object _currentPage;
-        private DataBaseContent appDBContent = new DataBaseContent();
+        private DataBaseContent _;
 
         public object CurrentPage
         {
