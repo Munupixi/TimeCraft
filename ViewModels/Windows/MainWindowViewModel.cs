@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TimeCraft.ViewModels.Windows;
 
 namespace TimeCraft.ViewModels.Windows
 {

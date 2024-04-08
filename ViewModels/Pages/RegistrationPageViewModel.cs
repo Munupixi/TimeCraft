@@ -14,6 +14,74 @@ namespace TimeCraft.ViewModels.Pages
         public ICommand AuthorizationCommand { get; private set; }
         public ICommand RegistrationCommand { get; private set; }
 
+        private string ageAsString;
+        private string againPassword;
+
+        public string AgeAsString
+        {
+            get { return ageAsString; }
+            set
+            {
+                if (ageAsString != value)
+                {
+                    ageAsString = value;
+                    OnPropertyChanged("AgeAsString");
+                }
+            }
+        }
+
+        public string Login
+        {
+            get { return _user.Login; }
+            set
+            {
+                if (_user.Login != value)
+                {
+                    _user.Login = value;
+                    OnPropertyChanged("Login");
+                }
+            }
+        }
+
+        public string Password
+        {
+            get { return _user.Password; }
+            set
+            {
+                if (_user.Password != value)
+                {
+                    _user.Password = value;
+                    OnPropertyChanged("Password");
+                }
+            }
+        }
+
+        public string AgainPassword
+        {
+            get { return againPassword; }
+            set
+            {
+                if (againPassword != value)
+                {
+                    againPassword = value;
+                    OnPropertyChanged("Password");
+                }
+            }
+        }
+
+        public string Name
+        {
+            get { return _user.Name; }
+            set
+            {
+                if (_user.Name != value)
+                {
+                    _user.Name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+        }
+
         public RegistrationPageViewModel()
         {
             AuthorizationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
@@ -37,12 +105,12 @@ namespace TimeCraft.ViewModels.Pages
 
         private bool CanRegistrationExecute()
         {
-            return (!string.IsNullOrEmpty(NameTextBox.Text) &&
-      User.IsAgeCorrect(AgeTextBox.Text) &&
-      User.IsLoginCorrect(LoginTextBox.Text) &&
-      User.IsPasswordCorrect(PasswordTextBox.Text) &&
-      PasswordTextBox.Text == PasswordAgainTextBox.Text) &&
-      User.IsLoginUnique(LoginTextBox.Text);
+            return (!string.IsNullOrEmpty(Name) &&
+              User.IsAgeCorrect(AgeAsString) &&
+              User.IsLoginCorrect(Login) &&
+              User.IsPasswordCorrect(Password) &&
+              Password == AgainPassword) &&
+              User.IsLoginUnique(Login);
         }
 
         private void RegistrationExecute()
@@ -55,7 +123,7 @@ namespace TimeCraft.ViewModels.Pages
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            ((RelayCommand)AuthorizationCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)RegistrationCommand).RaiseCanExecuteChanged();
         }
 
         //public void ShowCorrectnessStatus(Control element, bool correctnessStatus)
