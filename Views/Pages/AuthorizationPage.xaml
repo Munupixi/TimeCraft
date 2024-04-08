@@ -28,8 +28,8 @@
                 <TextBox x:Name="PasswordTextBox" Text="{Binding Password}" Width="200" Margin="0,10,0,10" />
             </StackPanel>
 
-            <Button Grid.Row="2" x:Name="ConfirmButton" Command="{Binding AuthorizationCommand}" Content="Войти" Width="200" Height="30" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-            <Button x:Name="RegistrationTextBlock" Command="{Binding RegistrationCommand}" Grid.Row="3" Content="Нет аккаунта?" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
+            <Button Grid.Row="2" x:Name="ConfirmButton" Command="{Binding AuthorizationCommand}" Content="Войти" Width="200" Height="30" HorizontalAlignment="Center" Margin="0,10,0,0" />
+            <Button x:Name="RegistrationTextBlock" Command="{Binding RegistrationCommand}" Grid.Row="3" Content="Нет аккаунта?" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" />
             <Label Content="User Login '1' for testing this App" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" />
         </Grid>
     </Viewbox>

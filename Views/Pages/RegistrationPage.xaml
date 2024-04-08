@@ -1,9 +1,12 @@
 ﻿<Page x:Class="TimeCraft.RegistrationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:TimeCraft"
+      xmlns:pages="clr-namespace:TimeCraft.
+iewModels.Pages" d:DataContext="{d:DesignInstance Type
+
+      V=pages:RegistrationPageViewModel}"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RegistrationPage">
@@ -24,18 +27,18 @@
             <TextBlock x:Name="TitleTextBlock" Grid.Row="0" Text="Впервые в TimeCraft?" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,10" />
 
             <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                <TextBox x:Name="NameTextBox" Width="200" Margin="0,10,0,10" Text="Имя" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="NameTextBox_TextChanged" />
-                <TextBox x:Name="AgeTextBox" Width="200" Margin="0,10,0,10" Text="Возраст" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="AgeTextBox_TextChanged" />
-                <TextBox x:Name="LoginTextBox" Width="200" Margin="0,10,0,10" Text="Логин" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="LoginTextBox_TextChanged" />
-                <TextBox x:Name="PasswordTextBox" Width="200" Margin="0,10,0,10" Text="Пароль" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="PasswordTextBox_TextChanged" />
-                <TextBox x:Name="PasswordAgainTextBox" Width="200" Margin="0,10,0,10" Text="Повторите пароль" BorderBrush="red" SelectionBrush="{x:Null}" TextChanged="PasswordAgainTextBox_TextChanged" />
+                <TextBox x:Name="NameTextBox" Width="200" Margin="0,10,0,10" Text="{Binding Name}" BorderBrush="red" SelectionBrush="{x:Null}" />
+                <TextBox x:Name="AgeTextBox" Width="200" Margin="0,10,0,10" Text="{Binding Age}" BorderBrush="red" SelectionBrush="{x:Null}" />
+                <TextBox x:Name="LoginTextBox" Width="200" Margin="0,10,0,10" Text="{Binding Login}" BorderBrush="red" SelectionBrush="{x:Null}" />
+                <TextBox x:Name="PasswordTextBox" Width="200" Margin="0,10,0,10" Text="{Binding Password}" BorderBrush="red" SelectionBrush="{x:Null}" />
+                <TextBox x:Name="PasswordAgainTextBox" Width="200" Margin="0,10,0,10" Text="{Binding AgainPassword}" BorderBrush="red" SelectionBrush="{x:Null}" />
             </StackPanel>
 
-            <CheckBox x:Name="ConfirmProgramPolicyCheckBox" Grid.Row="2" Content="согласие на обработку персональных данных" HorizontalAlignment="Center" Margin="0,10,0,10" IsChecked="False" Click="ConfirmProgramPolicyCheckBox_Click" />
+            <CheckBox x:Name="ConfirmProgramPolicyCheckBox" Grid.Row="2" Content="согласие на обработку персональных данных" HorizontalAlignment="Center" Margin="0,10,0,10" IsChecked="{Binding ConfirmProgramPolicyCheck}" />
 
-            <Button x:Name="ConfirmButton" Grid.Row="3" Content="Регистрация" Width="200" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0" Click="ConfirmButton_Click" IsEnabled="False" />
+            <Button x:Name="ConfirmButton" Command="{Binding RegistrationCommand}" Grid.Row="3" Content="Регистрация" Width="200" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0" IsEnabled="False" />
 
-            <TextBlock x:Name="AuthorizationTextBlock" Grid.Row="4" Text="Уже есть аккаунт?" HorizontalAlignment="Center" Margin="0,10,0,0" MouseLeftButtonDown="AuthorizationTextBlock_MouseLeftButtonDown" />
+            <Button x:Name="AuthorizationButton" Command="{Binding AuthorizationCommand}" Grid.Row="4" Content="Уже есть аккаунт?" Width="150" Height="40" HorizontalAlignment="Center" Margin="0,20,0,0" />
         </Grid>
     </Viewbox>
 </Page>
