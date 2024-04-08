@@ -16,6 +16,7 @@ namespace TimeCraft.ViewModels.Pages
 
         private string ageAsString;
         private string againPassword;
+        private bool isConfirmProgramPolicy = false;
 
         public string AgeAsString
         {
@@ -82,18 +83,31 @@ namespace TimeCraft.ViewModels.Pages
             }
         }
 
+        public bool ConfirmProgramPolicyCheck
+        {
+            get { return isConfirmProgramPolicy; }
+            set
+            {
+                if (isConfirmProgramPolicy != value)
+                {
+                    isConfirmProgramPolicy = value;
+                    OnPropertyChanged("ConfirmProgramPolicyCheck");
+                }
+            }
+        }
+
         public RegistrationPageViewModel()
         {
-            AuthorizationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
-            RegistrationCommand = new RelayCommand(AuthorizationExecute);
+            RegistrationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
+            AuthorizationCommand = new RelayCommand(AuthorizationExecute);
 
             _user = new User(User.GetNewId(), "Логин", "Пароль", 4);
         }
 
         public RegistrationPageViewModel(User user)
         {
-            AuthorizationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
-            RegistrationCommand = new RelayCommand(AuthorizationExecute);
+            RegistrationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
+            AuthorizationCommand = new RelayCommand(AuthorizationExecute);
 
             _user = user;
         }
@@ -105,11 +119,11 @@ namespace TimeCraft.ViewModels.Pages
 
         private bool CanRegistrationExecute()
         {
-            return (!string.IsNullOrEmpty(Name) &&
+            return (!string.IsNullOrEmpty(Name)) &&
               User.IsAgeCorrect(AgeAsString) &&
               User.IsLoginCorrect(Login) &&
               User.IsPasswordCorrect(Password) &&
-              Password == AgainPassword) &&
+              (Password == AgainPassword) &&
               User.IsLoginUnique(Login);
         }
 
