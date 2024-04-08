@@ -11,6 +11,7 @@ namespace TimeCraft.ViewModels.Pages
     internal class AuthorizationPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         private DataBaseContent db = new DataBaseContent();
         private string login;
         private string password;
@@ -24,6 +25,7 @@ namespace TimeCraft.ViewModels.Pages
             AuthorizationCommand = new RelayCommand(AuthorizationExecute, CanAuthorizationExecute);
             RegistrationCommand = new RelayCommand(RegistrationExecute);
         }
+
         public string Login
         {
             get { return login; }
@@ -36,6 +38,7 @@ namespace TimeCraft.ViewModels.Pages
                 }
             }
         }
+
         public string Password
         {
             get { return password; }
@@ -48,6 +51,7 @@ namespace TimeCraft.ViewModels.Pages
                 }
             }
         }
+
         public string ErrorMessage
         {
             get { return errorMessage; }
@@ -102,6 +106,7 @@ namespace TimeCraft.ViewModels.Pages
             User.ActiveUser = User.Get(login);
             MainWindowViewModel.Frame.Content = new WeeklySchedule();
         }
+
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
