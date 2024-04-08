@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using TimeCraft.ViewModels.Windows;
@@ -17,6 +18,20 @@ namespace TimeCraft.ViewModels.Pages
         private string ageAsString;
         private string againPassword;
         private bool isConfirmProgramPolicy = false;
+        private string errorMessage = "";
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set
+            {
+                if (errorMessage != value)
+                {
+                    errorMessage = value;
+                    OnPropertyChanged("ErrorMessage");
+                }
+            }
+        }
 
         public string AgeAsString
         {
@@ -119,12 +134,43 @@ namespace TimeCraft.ViewModels.Pages
 
         private bool CanRegistrationExecute()
         {
-            return (!string.IsNullOrEmpty(Name)) &&
-              User.IsAgeCorrect(AgeAsString) &&
-              User.IsLoginCorrect(Login) &&
-              User.IsPasswordCorrect(Password) &&
-              (Password == AgainPassword) &&
-              User.IsLoginUnique(Login);
+            if (string.IsNullOrEmpty(Name))
+            {
+                ErrorMessage = "Имя не может быть пустым";
+                return false;
+            }
+            if (!User.IsAgeCorrect(AgeAsString))
+            {
+                ErrorMessage = "Возраст некоректен";
+                return false;
+            }
+            if (!User.IsLoginCorrect(Login))
+            {
+                ErrorMessage = "Логин некоректен";
+                return false;
+            }
+            if (!User.IsPasswordCorrect(Password))
+            {
+                ErrorMessage = "Пароль некоректен";
+                return false;
+            }
+            if (Password != AgainPassword)
+            {
+                ErrorMessage = "Пароли несовпадают";
+                return false;
+            }
+            if (!ConfirmProgramPolicyCheck)
+            {
+                ErrorMessage = "Не принята политика компании";
+                return false;
+            }
+            if (!User.IsLoginUnique(Login))
+            {
+                ErrorMessage = "Логин не уникален";
+                return false;
+            }
+
+            return true;
         }
 
         private void RegistrationExecute()
