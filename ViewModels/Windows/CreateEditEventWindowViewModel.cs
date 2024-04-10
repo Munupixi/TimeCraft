@@ -14,8 +14,8 @@ namespace TimeCraft.ViewModels.Windows
 
         private bool isEdit = false;
 
-        private ObservableCollection<AddParticipant> addParticipants =
-            new ObservableCollection<AddParticipant>();
+        private ObservableCollection<DataGridParticipantModel> addParticipants =
+            new ObservableCollection<DataGridParticipantModel>();
 
         private ObservableCollection<string> categories;
 
@@ -220,7 +220,7 @@ namespace TimeCraft.ViewModels.Windows
             get { return Enum.GetValues(typeof(DressCodeEnum)); }
         }
 
-        public ObservableCollection<AddParticipant> AddParticipants
+        public ObservableCollection<DataGridParticipantModel> AddParticipants
         {
             get { return addParticipants; }
             set
@@ -269,7 +269,7 @@ namespace TimeCraft.ViewModels.Windows
             {
                 _event.Add();
             }
-            foreach (AddParticipant addParticipant in AddParticipants)
+            foreach (DataGridParticipantModel addParticipant in AddParticipants)
             {
                 new Participant(Participant.GetNewId(), _event.EventId,
                     User.ActiveUser.UserId, false, addParticipant.Role).Add();
@@ -298,7 +298,7 @@ namespace TimeCraft.ViewModels.Windows
                 //MessageBox.Show("Мероприятие с этим названием уже существует");
                 return false;
             }
-            if (!AddParticipant.IsAllParticipantsExists(AddParticipants.ToList()))
+            if (!DataGridParticipantModel.IsAllParticipantsExists(AddParticipants.ToList()))
             {
                 //MessageBox.Show("Не все указанные участники найдены в системы");
                 return false;
@@ -326,17 +326,17 @@ namespace TimeCraft.ViewModels.Windows
 
         private void AddParticipantExecute()
         {
-            AddParticipants.Add(new AddParticipant());
+            AddParticipants.Add(new DataGridParticipantModel());
         }
 
         private void ClearParticipantsExecute()
         {
-            AddParticipants = new ObservableCollection<AddParticipant>();
+            AddParticipants = new ObservableCollection<DataGridParticipantModel>();
         }
 
         private void DeleteParticipantExecute(object participant)
         {
-            if (participant is AddParticipant addParticipant)
+            if (participant is DataGridParticipantModel addParticipant)
             {
                 AddParticipants.Remove(addParticipant);
             }

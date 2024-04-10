@@ -3,20 +3,20 @@ using System.Linq;
 
 namespace TimeCraft
 {
-    internal class AddParticipant
+    internal class DataGridParticipantModel
     {
         public string Login { get; set; }
         public string Role { get; set; }
 
-        public AddParticipant(string login = "Логин", string role = "Нет")
+        public DataGridParticipantModel(string login = "Логин", string role = "Нет")
         {
             Login = login;
             Role = role;
         }
 
-        public static bool IsAllParticipantsExists(List<AddParticipant> addParticipants)
+        public static bool IsAllParticipantsExists(List<DataGridParticipantModel> addParticipants)
         {
-            foreach (AddParticipant addParticipant in addParticipants)
+            foreach (DataGridParticipantModel addParticipant in addParticipants)
             {
                 if (User.IsLoginUnique(addParticipant.Login))
                 {
@@ -26,10 +26,10 @@ namespace TimeCraft
             return true;
         }
 
-        public static List<AddParticipant> ConvertParticipants(List<Participant> participants)
+        public static List<DataGridParticipantModel> ConvertParticipants(List<Participant> participants)
         {
             return participants.Select(participant =>
-                new AddParticipant(User.Get(participant.IdUser).Login, participant.Role))
+                new DataGridParticipantModel(User.Get(participant.IdUser).Login, participant.Role))
                 .ToList();
         }
     }

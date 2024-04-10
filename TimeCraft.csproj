@@ -169,14 +169,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\ServiceModels\AddParticipant.cs" />
+    <Compile Include="Models\ServiceModels\DataGridParticipantModel.cs" />
     <Compile Include="Data\DataBaseContent.cs" />
-    <Compile Include="Models\ServiceModels\Activity.cs" />
-    <Compile Include="ViewModels\Models\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\Models\EventViewModel.cs" />
-    <Compile Include="ViewModels\Models\ParticipantViewModel.cs" />
-    <Compile Include="ViewModels\Models\TaskViewModel.cs" />
-    <Compile Include="ViewModels\Models\UserViewModel.cs" />
+    <Compile Include="Service\Activity.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\EventViewModel.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\ParticipantViewModel.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\TaskViewModel.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\Models\ServiceModelsViewModels\DataGridParticipantViewModel.cs" />
     <Compile Include="ViewModels\Pages\AuthorizationPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
@@ -199,7 +200,6 @@
     <Compile Include="Views\UserControls\DayForMonthUserControl.xaml.cs">
       <DependentUpon>DayForMonthUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\ServiceModels\Entity.cs" />
     <Compile Include="Models\DatabaseModels\Event.cs" />
     <Compile Include="Views\UserControls\EventUserControl.xaml.cs">
       <DependentUpon>EventUserControl.xaml</DependentUpon>
