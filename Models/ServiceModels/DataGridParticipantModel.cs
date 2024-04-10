@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TimeCraft.ViewModels;
 
 namespace TimeCraft
 {
@@ -18,7 +19,7 @@ namespace TimeCraft
         {
             foreach (DataGridParticipantModel addParticipant in addParticipants)
             {
-                if (User.IsLoginUnique(addParticipant.Login))
+                if (UserViewModel.IsLoginUnique(addParticipant.Login))
                 {
                     return false;
                 }
@@ -29,7 +30,7 @@ namespace TimeCraft
         public static List<DataGridParticipantModel> ConvertParticipants(List<Participant> participants)
         {
             return participants.Select(participant =>
-                new DataGridParticipantModel(User.Get(participant.IdUser).Login, participant.Role))
+                new DataGridParticipantModel(UserViewModel.Get(participant.IdUser).Login, participant.Role))
                 .ToList();
         }
     }

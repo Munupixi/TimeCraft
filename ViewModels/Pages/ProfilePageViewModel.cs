@@ -16,6 +16,7 @@ namespace TimeCraft.ViewModels.Pages
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private User _user;
+        private UserViewModel _userViewModel;
 
         public ICommand CancelCommand { get; private set; }
         public ICommand ApllyCommand { get; private set; }
@@ -28,7 +29,6 @@ namespace TimeCraft.ViewModels.Pages
 
         private string ageAsString;
         private string againPassword;
-        private bool isConfirmProgramPolicy = false;
         private string errorMessage = "";
 
         public string ErrorMessage
@@ -145,12 +145,17 @@ namespace TimeCraft.ViewModels.Pages
                 ErrorMessage = "Имя не может быть пустым";
                 return false;
             }
-            if (!User.IsAgeCorrect(AgeAsString))
+            if (!UserViewModel.IsAgeCorrect(ageAsString))
             {
                 ErrorMessage = "Возраст некоректен";
                 return false;
             }
-            if (!User.IsPasswordCorrect(Password))
+            else if (_user.Age != Convert.ToInt32(ageAsString))
+            {
+                _user.Age = Convert.ToInt32(ageAsString);
+                OnPropertyChanged("Age");
+            }
+            if (!_userViewModel.IsPasswordCorrect())
             {
                 ErrorMessage = "Пароль некоректен";
                 return false;
@@ -160,20 +165,21 @@ namespace TimeCraft.ViewModels.Pages
                 ErrorMessage = "Пароли несовпадают";
                 return false;
             }
-
+            ErrorMessage = "";
             return true;
         }
 
         private void ApllyExecute()
         {
             User.ActiveUser = _user;
-            User.ActiveUser.Update();
+            _userViewModel.Update();
             MainWindowViewModel.Frame.Content = new WeeklySchedule();
         }
 
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _userViewModel = new UserViewModel(_user);
             ((RelayCommand)ApllyCommand).RaiseCanExecuteChanged();
         }
 

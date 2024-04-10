@@ -74,7 +74,7 @@ namespace TimeCraft.ViewModels.Pages
                 ErrorMessage = string.Empty; // must be delete
                 return true; // must be delete
             } // must be delete
-            User user = User.Get(login);
+            User user = UserViewModel.Get(login);
             if (user == null)
             {
                 ErrorMessage = "Пользователь с данным логином не найден";
@@ -93,14 +93,14 @@ namespace TimeCraft.ViewModels.Pages
         {
             if (login == "1") // must be delete
             { // must be delete
-                User _user = User.Get("1"); // must be delete
+                User _user = UserViewModel.Get("1"); // must be delete
                 if (_user == null) // must be delete
                 { // must be delete
-                    _user = new User(User.GetNewId(), "1", "1", 120); // must be delete
-                    _user.Add(); // must be delete
+                    _user = new User(UserViewModel.GetNewId(), "1", "1", 120); // must be delete
+                    new UserViewModel(_user).Add(); // must be delete
                 } // must be delete
             } // must be delete
-            User.ActiveUser = User.Get(login);
+            User.ActiveUser = UserViewModel.Get(login);
             MainWindowViewModel.Frame.Content = new WeeklySchedule();
         }
 
