@@ -8,7 +8,6 @@ namespace TimeCraft.ViewModels
     internal class UserViewModel : INotifyPropertyChanged
     {
         private User _user;
-        private string ageAsString;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -16,100 +15,6 @@ namespace TimeCraft.ViewModels
         {
             _user = user;
         }
-
-        public string Name
-        {
-            get { return _user.Name; }
-            set
-            {
-                if (_user.Name != value)
-                {
-                    _user.Name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-        }
-
-        public string Surname
-        {
-            get { return _user.Surname; }
-            set
-            {
-                if (_user.Surname != value)
-                {
-                    _user.Surname = value;
-                    OnPropertyChanged("Surname");
-                }
-            }
-        }
-
-        public string Patronymic
-        {
-            get { return _user.Patronymic; }
-            set
-            {
-                if (_user.Patronymic != value)
-                {
-                    _user.Patronymic = value;
-                    OnPropertyChanged("Patronymic");
-                }
-            }
-        }
-
-        public string Age
-        {
-            get { return ageAsString; }
-            set
-            {
-                ageAsString = value;
-                if (int.TryParse(ageAsString, out int _age))
-                {
-                    _user.Age = _age;
-                    OnPropertyChanged("Age");
-                }
-                OnPropertyChanged("ageAsString");
-            }
-        }
-
-        public int UserId
-        {
-            get { return _user.UserId; }
-            set
-            {
-                if (_user.UserId != value)
-                {
-                    _user.UserId = value;
-                    OnPropertyChanged("UserId");
-                }
-            }
-        }
-
-        public string Login
-        {
-            get { return _user.Login; }
-            set
-            {
-                if (_user.Login != value)
-                {
-                    _user.Login = value;
-                    OnPropertyChanged("Login");
-                }
-            }
-        }
-
-        public string Password
-        {
-            get { return _user.Password; }
-            set
-            {
-                if (_user.Password != value)
-                {
-                    _user.Password = value;
-                    OnPropertyChanged("Password");
-                }
-            }
-        }
-
         public bool IsLoginCorrect()
         {
             string login = _user.Login;
@@ -135,6 +40,13 @@ namespace TimeCraft.ViewModels
                 return !db.User.Any(u => u.Login == _user.Login);
             }
         }
+        public static bool IsLoginUnique(string login)
+        {
+            using (DataBaseContent db = new DataBaseContent())
+            {
+                return !db.User.Any(u => u.Login == login);
+            }
+        }
 
         public static int GetNewId()
         {
@@ -149,8 +61,7 @@ namespace TimeCraft.ViewModels
             string pattern = @"^(?=.*[0-9])(?=.*[!@#$%^])(?=.*[A-Z]).{6,}$";
             return Regex.IsMatch(_user.Password, pattern);
         }
-
-        public bool IsAgeCorrect()
+        public static bool IsAgeCorrect(string ageAsString)
         {
             if (int.TryParse(ageAsString, out int _age))
             {
@@ -158,12 +69,16 @@ namespace TimeCraft.ViewModels
             }
             return false;
         }
+        public bool IsAgeCorrect()
+        {
+                return _user.Age >= 4 && _user.Age <= 120 ? true : false;
+        }
 
         public void Delete()
         {
             using (DataBaseContent db = new DataBaseContent())
             {
-                if (db.User.Find(UserId) != null)
+                if (db.User.Find(_user.UserId) != null)
                 {
                     db.User.Remove(_user);
                     db.SaveChanges();

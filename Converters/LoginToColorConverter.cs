@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using TimeCraft.ViewModels;
 
 namespace TimeCraft
 {
@@ -10,7 +11,7 @@ namespace TimeCraft
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null) return Brushes.Red;
-            return !User.IsLoginUnique(value.ToString()) ? Brushes.Green : Brushes.Red;
+            return !UserViewModel.IsLoginUnique(value.ToString()) ? Brushes.Green : Brushes.Red;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

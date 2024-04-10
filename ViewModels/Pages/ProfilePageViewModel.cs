@@ -16,6 +16,7 @@ namespace TimeCraft.ViewModels.Pages
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private User _user;
+        private UserViewModel _userViewModel;
 
         public ICommand CancelCommand { get; private set; }
         public ICommand ApllyCommand { get; private set; }
@@ -145,12 +146,12 @@ namespace TimeCraft.ViewModels.Pages
                 ErrorMessage = "Имя не может быть пустым";
                 return false;
             }
-            if (!User.IsAgeCorrect(AgeAsString))
+            if (!_userViewModel.IsAgeCorrect())
             {
                 ErrorMessage = "Возраст некоректен";
                 return false;
             }
-            if (!User.IsPasswordCorrect(Password))
+            if (!_userViewModel.IsPasswordCorrect())
             {
                 ErrorMessage = "Пароль некоректен";
                 return false;
@@ -167,13 +168,14 @@ namespace TimeCraft.ViewModels.Pages
         private void ApllyExecute()
         {
             User.ActiveUser = _user;
-            User.ActiveUser.Update();
+            _userViewModel.Update();
             MainWindowViewModel.Frame.Content = new WeeklySchedule();
         }
 
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _userViewModel = new UserViewModel(_user);
             ((RelayCommand)ApllyCommand).RaiseCanExecuteChanged();
         }
 

@@ -307,11 +307,7 @@ namespace TimeCraft.ViewModels.Windows
             //(через метод IsFreeTime) или
             //существует ли уже событие с таким временным диапазоном (через метод Event.Get),
             //при условии редактирования.
-            if (!User.ActiveUser.IsFreeTime(
-                StartDate, TimeSpan.Parse(StartTime), EndDate,
-               TimeSpan.Parse(EndTime)) &&
-               Event.Get(StartDate, TimeSpan.Parse(StartTime),
-               EndDate, TimeSpan.Parse(EndTime)).EventId != _event.EventId)
+            if (!new UserViewModel(User.ActiveUser).IsFreeTime(_event))
             {
                 //MessageBox.Show("Данные время у вас занято другим меропритием");
                 return false;

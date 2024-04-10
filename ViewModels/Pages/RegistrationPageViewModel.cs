@@ -11,6 +11,7 @@ namespace TimeCraft.ViewModels.Pages
         public event PropertyChangedEventHandler PropertyChanged;
 
         private User _user;
+        private UserViewModel _userViewModel;
 
         public ICommand AuthorizationCommand { get; private set; }
         public ICommand RegistrationCommand { get; private set; }
@@ -116,7 +117,8 @@ namespace TimeCraft.ViewModels.Pages
             RegistrationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
             AuthorizationCommand = new RelayCommand(AuthorizationExecute);
 
-            _user = new User(User.GetNewId(), "Логин", "Пароль", 4);
+            _user = new User(UserViewModel.GetNewId(), "Логин", "Пароль", 4);
+            _userViewModel = new UserViewModel(_user);
         }
 
         public RegistrationPageViewModel(User user)
@@ -139,17 +141,22 @@ namespace TimeCraft.ViewModels.Pages
                 ErrorMessage = "Имя не может быть пустым";
                 return false;
             }
-            if (!User.IsAgeCorrect(AgeAsString))
+            if (!UserViewModel.IsAgeCorrect(ageAsString))
             {
                 ErrorMessage = "Возраст некоректен";
                 return false;
             }
-            if (!User.IsLoginCorrect(Login))
+            else if (_user.Age != Convert.ToInt32(ageAsString))
+            {
+                _user.Age = Convert.ToInt32(ageAsString);
+                OnPropertyChanged("Age");
+            }
+            if (!_userViewModel.IsLoginCorrect())
             {
                 ErrorMessage = "Логин некоректен";
                 return false;
             }
-            if (!User.IsPasswordCorrect(Password))
+            if (!_userViewModel.IsPasswordCorrect())
             {
                 ErrorMessage = "Пароль некоректен";
                 return false;
@@ -164,25 +171,26 @@ namespace TimeCraft.ViewModels.Pages
                 ErrorMessage = "Не принята политика компании";
                 return false;
             }
-            if (!User.IsLoginUnique(Login))
+            if (!_userViewModel.IsLoginUnique())
             {
                 ErrorMessage = "Логин не уникален";
                 return false;
             }
-
+            ErrorMessage = "";
             return true;
         }
 
         private void RegistrationExecute()
         {
             User.ActiveUser = _user;
-            User.ActiveUser.Add();
+            _userViewModel.Add();
             MainWindowViewModel.Frame.Content = new WeeklySchedule();
         }
 
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _userViewModel = new UserViewModel(_user);
             ((RelayCommand)RegistrationCommand).RaiseCanExecuteChanged();
         }
 
