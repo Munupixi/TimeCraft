@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using TimeCraft.ViewModels.Models.ServiceModelsViewModels;
 
 namespace TimeCraft.ViewModels.Windows
 {
@@ -14,18 +15,14 @@ namespace TimeCraft.ViewModels.Windows
 
         private bool isEdit = false;
 
-        private ObservableCollection<DataGridParticipantModel> addParticipants =
-            new ObservableCollection<DataGridParticipantModel>();
+        private ObservableCollection<DataGridParticipant> addParticipants =
+            new ObservableCollection<DataGridParticipant>();
 
         private ObservableCollection<string> categories;
 
-        private Event _event = new Event(Event.GetNewId(),
-            "Новое мероприятие", User.ActiveUser.UserId, "Описание",
-            DateTime.Now.AddDays(1),
-            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
-            DateTime.Now.AddDays(2),
-            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
-            "Онлайн");
+        private Event _event;
+
+        private EventViewModel _eventViewModel;
 
         private void SetUp()
         {
@@ -34,18 +31,27 @@ namespace TimeCraft.ViewModels.Windows
             AddParticipantCommand = new RelayCommand(AddParticipantExecute);
             ClearParticipantsCommand = new RelayCommand(ClearParticipantsExecute);
             DeleteParticipantCommand = new RelayCommand<object>(DeleteParticipantExecute);
-            categories = new ObservableCollection<string>(TimeCraft.Category.GetAllTitles());
+            categories = new ObservableCollection<string>(CategoryViewModel.GetAllTitles());
         }
 
         public CreateEditEventWindowViewModel()
         {
             SetUp();
+            this._event = new Event(EventViewModel.GetNewId(),
+            "Новое мероприятие", User.ActiveUser.UserId, "Описание",
+            DateTime.Now.AddDays(1),
+            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
+            DateTime.Now.AddDays(2),
+            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
+            "Онлайн");
+            _eventViewModel = new EventViewModel(_event);
         }
 
         public CreateEditEventWindowViewModel(Event _event)
         {
             SetUp();
             this._event = _event;
+            _eventViewModel = new EventViewModel(_event);
         }
 
         public string Title
@@ -200,12 +206,12 @@ namespace TimeCraft.ViewModels.Windows
             }
         }
 
-        public ObservableCollection<String> Categories
+        public ObservableCollection<string> Categories
         {
             get { return categories; }
             set
             {
-                categories = new ObservableCollection<string>(TimeCraft.Category.GetAllTitles());
+                categories = new ObservableCollection<string>(CategoryViewModel.GetAllTitles());
                 OnPropertyChanged(nameof(Categories));
             }
         }
@@ -220,7 +226,7 @@ namespace TimeCraft.ViewModels.Windows
             get { return Enum.GetValues(typeof(DressCodeEnum)); }
         }
 
-        public ObservableCollection<DataGridParticipantModel> AddParticipants
+        public ObservableCollection<DataGridParticipant> AddParticipants
         {
             get { return addParticipants; }
             set
@@ -262,17 +268,17 @@ namespace TimeCraft.ViewModels.Windows
             }
             if (isEdit)
             {
-                _event.Update();
-                Participant.DeleteAllByEventId(_event.EventId);
+                _eventViewModel.Update();
+                ParticipantViewModel.DeleteAllByEventId(_event.EventId);
             }
             else
             {
-                _event.Add();
+                _eventViewModel.Add();
             }
-            foreach (DataGridParticipantModel addParticipant in AddParticipants)
+            foreach (DataGridParticipant addParticipant in AddParticipants)
             {
-                new Participant(Participant.GetNewId(), _event.EventId,
-                    User.ActiveUser.UserId, false, addParticipant.Role).Add();
+                new ParticipantViewModel(new Participant(ParticipantViewModel.GetNewId(), _event.EventId,
+                    User.ActiveUser.UserId, false, addParticipant.Role)).Add();
             }
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
         }
@@ -292,13 +298,13 @@ namespace TimeCraft.ViewModels.Windows
                 //MessageBox.Show("Заполните поле названия");
                 return false;
             }
-            if (!Event.IsTitleUnique(Title) &&
-                Event.Get(Title).EventId != _event.EventId)
+            if (!_eventViewModel.IsTitleUnique() &&
+                EventViewModel.Get(Title).EventId != _event.EventId)
             {
                 //MessageBox.Show("Мероприятие с этим названием уже существует");
                 return false;
             }
-            if (!DataGridParticipantModel.IsAllParticipantsExists(AddParticipants.ToList()))
+            if (!DataGridParticipantViewModel.IsAllParticipantsExists(AddParticipants.ToList()))
             {
                 //MessageBox.Show("Не все указанные участники найдены в системы");
                 return false;
@@ -322,17 +328,17 @@ namespace TimeCraft.ViewModels.Windows
 
         private void AddParticipantExecute()
         {
-            AddParticipants.Add(new DataGridParticipantModel());
+            AddParticipants.Add(new DataGridParticipant());
         }
 
         private void ClearParticipantsExecute()
         {
-            AddParticipants = new ObservableCollection<DataGridParticipantModel>();
+            AddParticipants = new ObservableCollection<DataGridParticipant>();
         }
 
         private void DeleteParticipantExecute(object participant)
         {
-            if (participant is DataGridParticipantModel addParticipant)
+            if (participant is DataGridParticipant addParticipant)
             {
                 AddParticipants.Remove(addParticipant);
             }
@@ -341,6 +347,7 @@ namespace TimeCraft.ViewModels.Windows
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _eventViewModel = new EventViewModel(_event);
             ((RelayCommand)CreateCommand).RaiseCanExecuteChanged();
         }
     }

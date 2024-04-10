@@ -157,10 +157,5 @@ namespace TimeCraft.ViewModels
                     (e.StartDate <= startDateTime && e.EndDate >= endDateTime)) == 0; // Если указанный диапазон полностью внутри события
             }
         }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

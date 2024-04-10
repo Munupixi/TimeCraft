@@ -31,7 +31,7 @@ namespace TimeCraft.ViewModels.Windows
             Frame = frame;
             try
             {
-                Category.CreateAllCategories();
+                CategoryViewModel.CreateAllCategories();
             }
             catch { }
             CurrentPage = new AuthorizationPage();

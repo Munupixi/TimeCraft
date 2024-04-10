@@ -169,7 +169,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\ServiceModels\DataGridParticipantModel.cs" />
+    <Compile Include="Models\ServiceModels\DataGridParticipant.cs" />
     <Compile Include="Data\DataBaseContent.cs" />
     <Compile Include="Service\Activity.cs" />
     <Compile Include="ViewModels\Models\DatabaseModelsViewModels\CategoryViewModel.cs" />
