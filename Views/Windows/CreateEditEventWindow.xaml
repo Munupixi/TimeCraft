@@ -23,6 +23,7 @@
             <RowDefinition Height="33" />
             <RowDefinition Height="33" />
             <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
             <RowDefinition Height="*" MinHeight="33" />
             <RowDefinition Height="33" />
             <RowDefinition Height="3*" />
