@@ -8,10 +8,10 @@ namespace TimeCraft
 {
     public partial class ProfilePage : Page
     {
-        public ProfilePage()
+        public ProfilePage(User user)
         {
             InitializeComponent();
-            DataContext = new ProfilePageViewModel();
+            DataContext = new ProfilePageViewModel(user);
         }
     }
 }

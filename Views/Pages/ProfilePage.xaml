@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:TimeCraft"
+      xmlns:local="clr-namespace:TimeCraft" xmlns:pages="clr-namespace:TimeCraft.ViewModels.Pages"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProfilePage" Background="#FF333333">
@@ -33,7 +33,7 @@
                     <Label Content="Пароль*" Foreground="White" />
                     <TextBox x:Name="PasswordAgainTextBox" Width="200" Margin="0,5, 150, 0"  Text="{Binding AgainPassword}"/>
                     <Label Content="Возраст" Foreground="White" />
-                    <TextBox x:Name="AgeTextBox" Width="200" Margin="0,5, 150, 0"  Text="{Binding Age}"/>
+                    <TextBox x:Name="AgeTextBox" Width="200" Margin="0,5, 150, 0"  Text="{Binding AgeAsString}"/>
                 </StackPanel>
 
                 <StackPanel x:Name="RightColumnStackPanel" Margin="20">
@@ -46,9 +46,12 @@
                 </StackPanel>
             </UniformGrid>
 
+            <Label Content="{Binding ErrorMessage}" Foreground="Red"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+
             <StackPanel x:Name="ButtonsStackPanel" Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="CancelButton" Command="{Binding CancelCommand}" Content="Отменить" Margin="10" Width="120" Height="40" Foreground="White" Background="#333" Click="CancelButton_Click" />
-                <Button x:Name="ConfirmButton" Content="Применить" Command="{Binding ApplyCommand}" Margin="10" Width="120" Height="40" Foreground="White" Background="#333" Click="ConfirmButton_Click" />
+                <Button x:Name="CancelButton" Command="{Binding CancelCommand}" Content="Отменить" Margin="10" Width="120" Height="40" Foreground="White" Background="#333"/>
+                <Button x:Name="ConfirmButton" Content="Применить" Command="{Binding ApplyCommand}" Margin="10" Width="120" Height="40" Foreground="White" Background="#333"/>
             </StackPanel>
         </Grid>
     </Viewbox>
