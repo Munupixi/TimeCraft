@@ -38,11 +38,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -136,6 +148,9 @@
       <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -154,76 +169,91 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddParticipant.cs" />
-    <Compile Include="AppDBContent.cs" />
-    <Compile Include="Activity.cs" />
-    <Compile Include="AuthorizationPage.xaml.cs">
+    <Compile Include="Models\ServiceModels\DataGridParticipant.cs" />
+    <Compile Include="Data\DataBaseContent.cs" />
+    <Compile Include="Service\Activity.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\EventViewModel.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\ParticipantViewModel.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\TaskViewModel.cs" />
+    <Compile Include="ViewModels\Models\DatabaseModelsViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\Models\ServiceModelsViewModels\DataGridParticipantViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AuthorizationPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
+    <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />
+    <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateEditEventWindow.xaml.cs">
+    <Compile Include="Views\Windows\CreateEditEventWindow.xaml.cs">
       <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateEditTaskWindow.xaml.cs">
+    <Compile Include="Views\Windows\CreateEditTaskWindow.xaml.cs">
       <DependentUpon>CreateEditTaskWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Category.cs" />
-    <Compile Include="DressCode.cs" />
-    <Compile Include="DailySchedule.xaml.cs">
-      <DependentUpon>DailySchedule.xaml</DependentUpon>
+    <Compile Include="Models\DatabaseModels\Category.cs" />
+    <Compile Include="Enums\DressCodeEnum.cs" />
+    <Compile Include="Views\Pages\DailySchedulePage.xaml.cs">
+      <DependentUpon>DailySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DayForMonthUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\DayForMonthUserControl.xaml.cs">
       <DependentUpon>DayForMonthUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entity.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="EventUserControl.xaml.cs">
+    <Compile Include="Models\DatabaseModels\Event.cs" />
+    <Compile Include="Views\UserControls\EventUserControl.xaml.cs">
       <DependentUpon>EventUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IEntity.cs" />
-    <Compile Include="JsonManager.cs" />
-    <Compile Include="LoginToColorConverter.cs" />
-    <Compile Include="MonthlySchedule.xaml.cs">
-      <DependentUpon>MonthlySchedule.xaml</DependentUpon>
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Data\JsonManager.cs" />
+    <Compile Include="Converters\LoginToColorConverter.cs" />
+    <Compile Include="Views\UserControls\MonthForYearUserControl.xaml.cs">
+      <DependentUpon>MonthForYearUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Participant.cs" />
-    <Compile Include="Priority.cs" />
-    <Compile Include="ProfilePage.xaml.cs">
+    <Compile Include="Views\Pages\MonthlySchedulePage.xaml.cs">
+      <DependentUpon>MonthlySchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatabaseModels\Participant.cs" />
+    <Compile Include="Enums\PriorityEnum.cs" />
+    <Compile Include="Views\Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationPage.xaml.cs">
+    <Compile Include="Views\Pages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Task.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Validate.cs" />
-    <Compile Include="WeeklySchedule.xaml.cs">
-      <DependentUpon>WeeklySchedule.xaml</DependentUpon>
+    <Compile Include="Models\DatabaseModels\Task.cs" />
+    <Compile Include="Models\DatabaseModels\User.cs" />
+    <Compile Include="Views\Pages\WeeklySchedulePage.xaml.cs">
+      <DependentUpon>WeeklySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Page Include="AuthorizationPage.xaml">
+    <Compile Include="Views\Pages\YearlySchedulePage.xaml.cs">
+      <DependentUpon>YearlySchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\Pages\AuthorizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateEditEventWindow.xaml">
+    <Page Include="Views\Windows\CreateEditEventWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateEditTaskWindow.xaml">
+    <Page Include="Views\Windows\CreateEditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailySchedule.xaml">
+    <Page Include="Views\Pages\DailySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DayForMonthUserControl.xaml">
+    <Page Include="Views\UserControls\DayForMonthUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EventUserControl.xaml">
+    <Page Include="Views\UserControls\EventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -231,23 +261,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MonthlySchedule.xaml">
+    <Page Include="Views\UserControls\MonthForYearUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProfilePage.xaml">
+    <Page Include="Views\Pages\MonthlySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegistrationPage.xaml">
+    <Page Include="Views\Pages\ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WeeklySchedule.xaml">
+    <Page Include="Views\Pages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\WeeklySchedulePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\YearlySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +316,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profile_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clipboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Styles\" />
+    <Folder Include="ViewModels\UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
