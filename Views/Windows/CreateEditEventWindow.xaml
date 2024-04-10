@@ -7,7 +7,7 @@
         xmlns:windows="clr-namespace:TimeCraft.ViewModels.Windows"
         d:DataContext="{d:DesignInstance Type=windows:CreateEditEventWindowViewModel}"
         mc:Ignorable="d"
-        Title="CreateEditEventWindow" Height="450" Width="300" MinHeight="450" MinWidth="300" MaxWidth="600">
+        Title="CreateEditEventWindow" Height="450" Width="300" MinHeight="500" MinWidth="300" MaxWidth="600">
     <Window.Resources>
         <local:LoginToColorConverter x:Key="LoginToColorConverter" />
     </Window.Resources>
@@ -22,15 +22,16 @@
             <RowDefinition Height="33" />
             <RowDefinition Height="33" />
             <RowDefinition Height="33" />
+            <RowDefinition Height="33" />
             <RowDefinition Height="*" MinHeight="33" />
             <RowDefinition Height="33" />
             <RowDefinition Height="3*" />
             <RowDefinition Height="33" />
         </Grid.RowDefinitions>
         <Label x:Name="MainLabel" Content="Создание мероприятия" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text="{Binding Title}" Grid.Row="1" VerticalContentAlignment="Center" ToolTip="Название" Margin="0,5,0,5" />
-        <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="{Binding Location}" Grid.Row="2" VerticalContentAlignment="Center" ToolTip="Местоположение" Margin="0,5,0,5" />
-        <Grid Grid.Row="3" Margin="0,5,0,5">
+        <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text="{Binding Title}" Grid.Row="2" VerticalContentAlignment="Center" ToolTip="Название" Margin="0,5,0,5" />
+        <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="{Binding Location}" Grid.Row="3" VerticalContentAlignment="Center" ToolTip="Местоположение" Margin="0,5,0,5" />
+        <Grid Grid.Row="4" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72.5" />
                 <ColumnDefinition Width="145*" />
@@ -40,7 +41,7 @@
             <Label Content="Начало" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0" />
             <TextBox x:Name="StartTimeTextBox" Grid.Column="2" Text="{Binding StartTime}" HorizontalAlignment="Center" TextWrapping="Wrap" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Grid>
-        <Grid Grid.Row="4" Margin="0,5,0,5">
+        <Grid Grid.Row="5" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72.5" />
                 <ColumnDefinition Width="145*" />
@@ -50,10 +51,10 @@
             <Label Content="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0" />
             <TextBox x:Name="EndTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding EndTime}" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Grid>
-        <ComboBox x:Name="CategoryComboBox" Grid.Row="5" Margin="0,5,0,5" SelectedItem="{Binding Category}" ItemsSource="{Binding Categories}" />
-        <ComboBox x:Name="PriorityComboBox" Grid.Row="6" Margin="0,5,0,5" SelectedItem="{Binding Priority}" ItemsSource="{Binding Priorities}" />
-        <ComboBox x:Name="DressCodeComboBox" Grid.Row="7" Margin="0,5,0,5" SelectedItem="{Binding DressCode}" ItemsSource="{Binding DressCodes}" />
-        <DataGrid x:Name="ParticipantsDataGrid" ItemsSource="{Binding AddParticipants}" Grid.Row="10" d:ItemsSource="{d:SampleData ItemCount=10}" AutoGenerateColumns="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <ComboBox x:Name="CategoryComboBox" Grid.Row="6" Margin="0,5,0,5" SelectedItem="{Binding Category}" ItemsSource="{Binding Categories}" />
+        <ComboBox x:Name="PriorityComboBox" Grid.Row="7" Margin="0,5,0,5" SelectedItem="{Binding Priority}" ItemsSource="{Binding Priorities}" />
+        <ComboBox x:Name="DressCodeComboBox" Grid.Row="8" Margin="0,5,0,5" SelectedItem="{Binding DressCode}" ItemsSource="{Binding DressCodes}" />
+        <DataGrid x:Name="ParticipantsDataGrid" ItemsSource="{Binding AddParticipants}" Grid.Row="11" d:ItemsSource="{d:SampleData ItemCount=10}" AutoGenerateColumns="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="{Binding Login, Converter={StaticResource LoginToColorConverter}}" />
@@ -71,7 +72,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="11">
+        <Grid Grid.Row="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -79,7 +80,7 @@
             <Button x:Name="CancelButton" Command="{Binding CancelCommand}" Content="Отменить" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,5,5,5" />
             <Button x:Name="CreateButton" Command="{Binding CreateCommand}" Grid.Column="1" Content="Создать" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,5,5" />
         </Grid>
-        <Grid Grid.Row="9" Margin="0,5,0,5">
+        <Grid Grid.Row="10" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
@@ -89,12 +90,13 @@
             <Button x:Name="ClearParticipantsButton" Command="{Binding ClearParticipantsCommand}" Grid.Column="1" Content="Очистить" Margin="0,0,2,0" />
             <Button x:Name="AddParticipantButton" Command="{Binding AddParticipantCommand}" Grid.Column="2" Content="Добавить" Margin="3,0,0,0" />
         </Grid>
-        <RichTextBox x:Name="DescriptionRichTextBox" Grid.Row="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,0,5">
+        <RichTextBox x:Name="DescriptionRichTextBox" Grid.Row="9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,0,5">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="{Binding Description}" />
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+        <Label Content="{Binding ErrorMessage}" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Foreground="Red"/>
     </Grid>
 </Window>

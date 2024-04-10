@@ -24,6 +24,8 @@ namespace TimeCraft.ViewModels.Windows
 
         private EventViewModel _eventViewModel;
 
+        private string errorMessage;
+
         private void SetUp()
         {
             CreateCommand = new RelayCommand(CreateExecute, CanCreateExecute);
@@ -53,7 +55,18 @@ namespace TimeCraft.ViewModels.Windows
             this._event = _event;
             _eventViewModel = new EventViewModel(_event);
         }
-
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set
+            {
+                if (errorMessage != value)
+                {
+                    errorMessage = value;
+                    OnPropertyChanged("ErrorMessage");
+                }
+            }
+        }
         public string Title
         {
             get { return _event.Title; }
@@ -289,24 +302,24 @@ namespace TimeCraft.ViewModels.Windows
                 !Event.IsStartDateCorrect(StartDate) ||
                 !Event.IsEndDateCorrect(StartDate, StartTime, EndDate, EndTime))
             {
-                //MessageBox.Show("Неверный формат времени");
+                ErrorMessage = "Неверный формат времени";
                 return false;
             }
 
             if (!Event.IsTitleCorrect(Title))
             {
-                //MessageBox.Show("Заполните поле названия");
+                ErrorMessage = "Заполните поле названия";
                 return false;
             }
             if (!_eventViewModel.IsTitleUnique() &&
                 EventViewModel.Get(Title).EventId != _event.EventId)
             {
-                //MessageBox.Show("Мероприятие с этим названием уже существует");
+                ErrorMessage = "Мероприятие с этим названием уже существует";
                 return false;
             }
             if (!DataGridParticipantViewModel.IsAllParticipantsExists(AddParticipants.ToList()))
             {
-                //MessageBox.Show("Не все указанные участники найдены в системы");
+                ErrorMessage = "Не все указанные участники найдены в системы";
                 return false;
             }
             //Условие проверяет, доступно ли выбранное время для создания события
@@ -315,9 +328,10 @@ namespace TimeCraft.ViewModels.Windows
             //при условии редактирования.
             if (!new UserViewModel(User.ActiveUser).IsFreeTime(_event))
             {
-                //MessageBox.Show("Данные время у вас занято другим меропритием");
+                ErrorMessage = "Данные время у вас занято другим меропритием";
                 return false;
             }
+            ErrorMessage = string.Empty;
             return true;
         }
 
