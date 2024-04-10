@@ -102,6 +102,7 @@ namespace TimeCraft.ViewModels.Pages
             } // must be delete
             User.ActiveUser = UserViewModel.Get(login);
             MainWindowViewModel.Frame.Content = new WeeklySchedule();
+            new CreateEditEventWindow().Show();
         }
 
         protected void OnPropertyChanged(string propertyName)

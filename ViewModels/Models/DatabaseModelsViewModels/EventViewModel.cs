@@ -10,9 +10,9 @@ namespace TimeCraft.ViewModels
         private Event _event;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public EventViewModel(Event @event)
+        public EventViewModel(Event _event)
         {
-            _event = @event;
+            this._event = _event;
         }
         public void Delete()
         {

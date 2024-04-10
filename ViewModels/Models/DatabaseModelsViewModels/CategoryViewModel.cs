@@ -41,5 +41,12 @@ namespace TimeCraft.ViewModels
                 return db.Category.Select(c => c.Title).ToList();
             }
         }
+        public static Category Get(int id)
+        {
+            using (DataBaseContent db = new DataBaseContent())
+            {
+                return db.Category.FirstOrDefault(c => c.CategoryId == id);
+            }
+        }
     }
 }
