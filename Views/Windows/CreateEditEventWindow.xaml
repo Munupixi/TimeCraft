@@ -23,7 +23,6 @@
             <RowDefinition Height="33" />
             <RowDefinition Height="33" />
             <RowDefinition Height="33" />
-            <RowDefinition Height="33" />
             <RowDefinition Height="*" MinHeight="33" />
             <RowDefinition Height="33" />
             <RowDefinition Height="3*" />
@@ -73,7 +72,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="12">
+        <Grid Grid.Row="13">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -98,6 +97,6 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Label Content="{Binding ErrorMessage}" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Foreground="Red"/>
+        <Label Content="{Binding ErrorMessage}" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Foreground="Red" />
     </Grid>
 </Window>
