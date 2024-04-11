@@ -9,6 +9,7 @@
     <Grid Margin="5,0,5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="33" />
+            <RowDefinition MaxHeight="66" MinHeight="33" />
             <RowDefinition Height="33" />
             <RowDefinition Height="33" />
             <RowDefinition Height="33" />
@@ -19,9 +20,9 @@
             <RowDefinition Height="33" />
         </Grid.RowDefinitions>
         <Label x:Name="MainLabel" Content="Создание задачи" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text="Новая задача" Grid.Row="1" VerticalContentAlignment="Center" ToolTip="Название" Margin="0,5,0,5" />
-        <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="Местоположение или онлайн" Grid.Row="2" VerticalContentAlignment="Center" ToolTip="Местоположение" Margin="0,5,0,5" />
-        <Grid Grid.Row="3" Margin="0,5,0,5">
+        <TextBox x:Name="TitleTextBox" TextWrapping="Wrap" Text="Новая задача" Grid.Row="2" VerticalContentAlignment="Center" ToolTip="Название" Margin="0,5,0,5" />
+        <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Text="Местоположение или онлайн" Grid.Row="3" VerticalContentAlignment="Center" ToolTip="Местоположение" Margin="0,5,0,5" />
+        <Grid Grid.Row="4" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72.5" />
                 <ColumnDefinition Width="145*" />
@@ -42,9 +43,10 @@
             <Label Content="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0" />
             <TextBox x:Name="EndTimeTextBox" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="00:00" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Grid>
-        <ComboBox x:Name="CategoryComboBox" Grid.Row="2" Margin="0,5,0,5" Text="Категория" />
-        <ComboBox x:Name="PriorityComboBox" Grid.Row="6" Margin="0,5,0,5" Text="Приоритет" />
-        <Grid Grid.Row="11">
+        <Label Content="{Binding ErrorMessage}" Grid.Row="1" Foreground="Red" />
+        <ComboBox x:Name="CategoryComboBox" Grid.Row="7" Margin="0,5,0,5" Text="Категория" />
+        <ComboBox x:Name="PriorityComboBox" Grid.Row="8" Margin="0,5,0,5" Text="Приоритет" />
+        <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -52,14 +54,14 @@
             <Button x:Name="CancelButton" Content="Отменить" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,5,5,5" />
             <Button x:Name="CreateButton" Grid.Column="1" Content="Создать" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,5,5" />
         </Grid>
-        <RichTextBox x:Name="DescriptionRichTextBox" Grid.Row="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,0,5">
+        <RichTextBox x:Name="DescriptionRichTextBox" Grid.Row="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,0,5">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="Описание" />
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Grid Grid.Row="4" Margin="0,5,0,5">
+        <Grid Grid.Row="6" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72.5" />
                 <ColumnDefinition Width="145*" />
