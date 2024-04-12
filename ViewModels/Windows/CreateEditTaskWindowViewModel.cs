@@ -79,7 +79,7 @@ namespace TimeCraft.ViewModels.Windows
 
         public DateTime StartDate
         {
-            get { return _task.StartDate; }
+            get { return _task.StartDate.HasValue ? _task.StartDate.Value : DateTime.MinValue; }
             set
             {
                 if (_task.StartDate != value)
@@ -244,41 +244,26 @@ namespace TimeCraft.ViewModels.Windows
 
         private bool CanCreateExecute()
         {
-            //if (!Event.IsTimeCorrect(StartTime) || !Event.IsTimeCorrect(EndTime) ||
-            //    !Event.IsStartDateCorrect(StartDate) ||
-            //    !Event.IsEndDateCorrect(StartDate, StartTime, EndDate, EndTime))
-            //{
-            //    ErrorMessage = "Неверный формат времени";
-            //    return false;
-            //}
+            if (!Task.IsTimeCorrect(StartTime) || !Task.IsTimeCorrect(EndTime) ||
+                !Task.IsStartDateCorrect(StartDate) ||
+                !Task.IsEndDateCorrect(StartDate, StartTime, EndDate, EndTime)) // неверно для напоминания
+            {
+                ErrorMessage = "Неверный формат времени";
+                return false;
+            }
 
-            //if (!Event.IsTitleCorrect(Title))
-            //{
-            //    ErrorMessage = "Заполните поле названия";
-            //    return false;
-            //}
-            //if (!_taskViewModel.IsTitleUnique() &&
-            //    EventViewModel.Get(Title).EventId != _task.EventId)
-            //{
-            //    ErrorMessage = "Мероприятие с этим названием уже существует";
-            //    return false;
-            //}
-            //if (!DataGridParticipantViewModel.IsAllParticipantsExists(AddParticipants.ToList()))
-            //{
-            //    ErrorMessage = "Не все указанные участники найдены в системы";
-            //    return false;
-            //}
-            ////Условие проверяет, доступно ли выбранное время для создания события
-            ////(через метод IsFreeTime) или
-            ////существует ли уже событие с таким временным диапазоном (через метод Event.Get),
-            ////при условии редактирования.
-            //if (!new UserViewModel(User.ActiveUser).IsFreeTime(_task))
-            //{
-            //    ErrorMessage = "Данные время у вас занято меропритием:\n" +
-            //        EventViewModel.Get(_task.StartDate, _task.StartTime, _task.EndDate, _task.EndTime).Title;
-            //    return false;
-            //}
-            //ErrorMessage = string.Empty;
+            if (!Event.IsTitleCorrect(Title))
+            {
+                ErrorMessage = "Заполните поле названия";
+                return false;
+            }
+            if (!_taskViewModel.IsTitleUnique() &&
+                EventViewModel.Get(Title).EventId != _task.EventId)
+            {
+                ErrorMessage = "Мероприятие с этим названием уже существует";
+                return false;
+            }
+            ErrorMessage = string.Empty;
             return true;
         }
 
