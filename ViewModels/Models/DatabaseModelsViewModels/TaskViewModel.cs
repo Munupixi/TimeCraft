@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
 namespace TimeCraft.ViewModels
 {
-    internal class TaskViewModel : INotifyPropertyChanged
+    internal class TaskViewModel : Activity, INotifyPropertyChanged
     {
         private Task _task;
 
@@ -15,7 +16,22 @@ namespace TimeCraft.ViewModels
         {
             _task = task;
         }
-
+        public static bool IsEndDateCorrect(DateTime startDate, string startTime, DateTime endDate, string endTime, short? repeat)
+        {
+            return true;
+            //return repeat == 0 ||
+            //    (Activity.IsEndDateCorrect(startDate, startTime, endDate, endTime) &&
+            // (startDate.AddDays(repeat ?? 0) <= endDate ||
+            // (TimeSpan.Parse(startTime) < TimeSpan.Parse(endTime) &&
+            // startDate.AddDays(repeat ?? 0) == endDate)));
+        }
+        public bool IsTitleUnique()
+        {
+            using (DataBaseContent db = new DataBaseContent())
+            {
+                return !db.Task.Any(t => t.Title == _task.Title);
+            }
+        }
         public void Delete()
         {
             using (DataBaseContent db = new DataBaseContent())

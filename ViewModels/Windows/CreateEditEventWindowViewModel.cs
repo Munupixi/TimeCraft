@@ -44,14 +44,14 @@ namespace TimeCraft.ViewModels.Windows
             DateTime.Now.AddDays(1),
             TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
             DateTime.Now.AddDays(2),
-            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
-            "Онлайн");
+            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")));
             _eventViewModel = new EventViewModel(_event);
         }
 
         public CreateEditEventWindowViewModel(Event _event)
         {
             SetUp();
+            isEdit = true;
             this._event = _event;
             _eventViewModel = new EventViewModel(_event);
         }
@@ -277,10 +277,6 @@ namespace TimeCraft.ViewModels.Windows
 
         private void CreateExecute()
         {
-            if (!CanCreateExecute())
-            {
-                return;
-            }
             if (isEdit)
             {
                 _eventViewModel.Update();

@@ -21,7 +21,7 @@ namespace TimeCraft
         public Event(int eventId, string title, int userId, string description = null,
             DateTime startDate = default, TimeSpan startTime = default,
             DateTime? endDate = default, TimeSpan? endTime = default,
-            string location = null, DressCodeEnum dressCode = DressCodeEnum.НеИмеетЗначения,
+            string location = "Онлайн", DressCodeEnum dressCode = DressCodeEnum.НеИмеетЗначения,
             PriorityEnum priority = PriorityEnum.Средний, int categoryId = 1)
         {
             EventId = eventId;

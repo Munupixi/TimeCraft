@@ -30,7 +30,11 @@ namespace TimeCraft.ViewModels.Windows
         {
             SetUp();
             this._task = new Task(TaskViewModel.GetNewId(), "Новое напоминание", User.ActiveUser.UserId,
-                "Описание", DateTime.Now.AddDays(1), TimeSpan.Parse((DateTime.Now).ToString("HH:mm")));
+                "Описание",
+                DateTime.Now.AddDays(1),
+                TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
+                DateTime.Now.AddDays(1),
+                TimeSpan.Parse((DateTime.Now).ToString("HH:mm")));
             _taskViewModel = new TaskViewModel(_task);
         }
 
@@ -48,7 +52,7 @@ namespace TimeCraft.ViewModels.Windows
             CancelCommand = new RelayCommand(CancelExecute);
             DecreaseRepeatCommand = new RelayCommand(DecreaseRepeatExecute);
             IncreaseRepeatCommand = new RelayCommand<object>(IncreaseRepeatExecute);
-            categories = new ObservableCollection<string>(CategoryViewModel.GetAllTitles());
+            Categories = new ObservableCollection<string>(CategoryViewModel.GetAllTitles());
         }
 
         public string ErrorMessage
@@ -163,6 +167,8 @@ namespace TimeCraft.ViewModels.Windows
                 {
                     if (Int16.TryParse(value, out short repeat))
                     {
+                        EndTime = StartTime;
+                        EndDate = StartDate.AddDays(repeat);
                         _task.Repeat = repeat;
                         OnPropertyChanged("Repeat");
                     }
@@ -172,12 +178,12 @@ namespace TimeCraft.ViewModels.Windows
 
         public int Category
         {
-            get { return _task.IdCategory - 1; }
+            get { return _task.CategoryId - 1; }
             set
             {
-                if (_task.IdCategory != value)
+                if (_task.CategoryId != value)
                 {
-                    _task.IdCategory = value;
+                    _task.CategoryId = value;
                     OnPropertyChanged(nameof(Category));
                 }
             }
@@ -244,37 +250,38 @@ namespace TimeCraft.ViewModels.Windows
 
         private bool CanCreateExecute()
         {
-            if (!Task.IsTimeCorrect(StartTime) || !Task.IsTimeCorrect(EndTime) ||
+            if (!Task.IsTimeCorrect(StartTime) ||
+            !Task.IsTimeCorrect(EndTime) ||
                 !Task.IsStartDateCorrect(StartDate) ||
-                !Task.IsEndDateCorrect(StartDate, StartTime, EndDate, EndTime)) // неверно для напоминания
+                !TaskViewModel.IsEndDateCorrect(StartDate, StartTime,
+                EndDate, EndTime, _task.Repeat))
             {
                 ErrorMessage = "Неверный формат времени";
                 return false;
             }
-
             if (!Event.IsTitleCorrect(Title))
             {
                 ErrorMessage = "Заполните поле названия";
                 return false;
             }
             if (!_taskViewModel.IsTitleUnique() &&
-                EventViewModel.Get(Title).EventId != _task.EventId)
+                TaskViewModel.Get(Title).TaskId != _task.TaskId)
             {
-                ErrorMessage = "Мероприятие с этим названием уже существует";
+                ErrorMessage = "Задача с этим названием уже существует";
                 return false;
             }
-            ErrorMessage = string.Empty;
+            ErrorMessage = "";
             return true;
         }
 
         private void IncreaseRepeatExecute(object obj)
         {
-            _task.Repeat++;
+            Repeat = (short.Parse(Repeat) + 1).ToString();
         }
 
         private void DecreaseRepeatExecute()
         {
-            _task.Repeat = Convert.ToInt16((_task.Repeat != 0) ? _task.Repeat - 1 : 0);
+            Repeat = Repeat != "0" ? (short.Parse(Repeat) - 1).ToString() : Repeat;
         }
 
         private void CancelExecute()

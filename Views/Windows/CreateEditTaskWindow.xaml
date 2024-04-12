@@ -32,7 +32,7 @@
             <TextBox x:Name="StartTimeTextBox" Text="{Binding StartTime}" Grid.Column="2" HorizontalAlignment="Center" TextWrapping="Wrap" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="4" Margin="0,5,0,5">
+        <Grid Grid.Row="5" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72.5" />
                 <ColumnDefinition Width="145*" />
@@ -42,16 +42,16 @@
             <Label Content="Конец" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="5,0,5,0" />
             <TextBox x:Name="EndTimeTextBox" Grid.Column="2"  Text="{Binding EndTime}" HorizontalAlignment="Center" TextWrapping="Wrap" Width="38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Grid>
-        <Label Content="{Binding ErrorMessage}" Grid.Row="1" Foreground="Red" />
-        <ComboBox x:Name="CategoryComboBox" SelectedItem="{Binding Category}" ItemsSource="{Binding Categories}" Grid.Row="6" Margin="0,5,0,5" Text="Категория" />
+        <Label Content="{Binding ErrorMessage}" Grid.Row="1" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <ComboBox x:Name="CategoryComboBox" SelectedIndex="{Binding Category}" ItemsSource="{Binding Categories}" Grid.Row="6" Margin="0,5,0,5" Text="Категория" />
         <ComboBox x:Name="PriorityComboBox" SelectedItem="{Binding Priority}" ItemsSource="{Binding Priorities}" Grid.Row="7" Margin="0,5,0,5" Text="Приоритет" />
         <Grid Grid.Row="9">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="CancelButton" Command="{Binding Cancel}" Content="Отменить" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,5,5,5" />
-            <Button x:Name="CreateButton" Command="{Binding Create}" Grid.Column="1" Content="Создать" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,5,5" />
+            <Button x:Name="CancelButton" Command="{Binding CancelCommand}" Content="Отменить" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,5,5,5" />
+            <Button x:Name="CreateButton" Command="{Binding CreateCommand}" Grid.Column="1" Content="Создать" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,5,5" />
         </Grid>
         <RichTextBox x:Name="DescriptionRichTextBox" Grid.Row="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,5,0,5">
             <FlowDocument>
@@ -60,7 +60,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Grid Grid.Row="5" Margin="0,5,0,5">
+        <Grid Grid.Row="4" Margin="0,5,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72.5" />
                 <ColumnDefinition Width="145*" />
@@ -68,9 +68,9 @@
             </Grid.ColumnDefinitions>
             <Label Content="Повтор" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="5,0,5,0" />
             <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button x:Name="DecreaseRepeatButton" Command="{Binding DecreaseRepeatButton}" Content="-" Width="48" Height="23" />
+                <Button x:Name="DecreaseRepeatButton" Command="{Binding DecreaseRepeatCommand}" Content="-" Width="48" Height="23" />
                 <TextBox x:Name="RepeatTextBox" TextWrapping="Wrap" Text="{Binding Repeat}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="48" Height="23" />
-                <Button x:Name="IncreaseRepeatButton" Content="+" Command="{Binding IncreaseRepeatButton}" Width="48" Height="23" />
+                <Button x:Name="IncreaseRepeatButton" Content="+" Command="{Binding IncreaseRepeatCommand}" Width="48" Height="23" />
             </StackPanel>
         </Grid>
     </Grid>
