@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TimeCraft.ViewModels
 {
@@ -19,28 +20,28 @@ namespace TimeCraft.ViewModels
         {
             using (DataBaseContent db = new DataBaseContent())
             {
-                if (db.Event.Find(_event.EventId) != null)
+                if (db.Task.Find(_task.TaskId) != null)
                 {
-                    db.Event.Remove(_event);
+                    db.Task.Remove(_task);
                     db.SaveChanges();
                     return;
                 }
-                throw new Exception("Возникли проблемы с удалением мероприятия");
+                throw new Exception("Возникли проблемы с удалением напоминания");
             }
         }
 
-        public static void Delete(int eventId)
+        public static void Delete(int taskId)
         {
             using (DataBaseContent db = new DataBaseContent())
             {
-                Event _event = db.Event.Find(eventId);
-                if (_event != null)
+                Task _task = db.Task.Find(taskId);
+                if (_task != null)
                 {
-                    db.Event.Remove(_event);
+                    db.Task.Remove(_task);
                     db.SaveChanges();
                     return;
                 }
-                throw new Exception("Возникли проблемы с удалением пользователя");
+                throw new Exception("Возникли проблемы с удалением напоминания");
             }
         }
 
@@ -48,7 +49,7 @@ namespace TimeCraft.ViewModels
         {
             using (DataBaseContent db = new DataBaseContent())
             {
-                db.Event.Add(_event);
+                db.Task.Add(_task);
                 db.SaveChanges();
             }
         }
@@ -59,7 +60,7 @@ namespace TimeCraft.ViewModels
             {
                 try
                 {
-                    db.Event.Update(_event);
+                    db.Task.Update(_task);
                 }
                 catch
                 {
@@ -73,23 +74,23 @@ namespace TimeCraft.ViewModels
         {
             using (DataBaseContent db = new DataBaseContent())
             {
-                return (db.Event.Max(u => (int?)u.EventId) ?? 0) + 1;
+                return (db.Task.Max(t => (int?)t.TaskId) ?? 0) + 1;
             }
         }
 
-        public static Event Get(int eventId)
+        public static Task Get(int taskId)
         {
             using (DataBaseContent db = new DataBaseContent())
             {
-                return db.Event.FirstOrDefault(e => e.EventId == eventId);
+                return db.Task.FirstOrDefault(t => t.TaskId == taskId);
             }
         }
 
-        public static Event Get(string title)
+        public static Task Get(string title)
         {
             using (DataBaseContent db = new DataBaseContent())
             {
-                return db.Event.FirstOrDefault(e => e.Title == title);
+                return db.Task.FirstOrDefault(t => t.Title == title);
             }
         }
     }
