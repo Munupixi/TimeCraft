@@ -12,8 +12,8 @@ namespace TimeCraft
         public DateTime StartDate { get; set; }
         public TimeSpan StartTime { get; set; }
         public short Repeat { get; set; }
-        public DateTime EndDate { get; set; }
-        public TimeSpan EndTime { get; set; }
+        public DateTime? EndDate { get; set; }
+        public TimeSpan? EndTime { get; set; }
         public PriorityEnum Priority { get; set; }
         public bool IsDone { get; set; }
         public int IdCategory { get; set; }
@@ -21,7 +21,7 @@ namespace TimeCraft
 
         public Task(int taskId, string title, int idUser, string description = null,
             DateTime startDate = default, TimeSpan startTime = default,
-            short repeat = -1, DateTime endDate = default, TimeSpan endTime = default,
+            short repeat = 0, DateTime endDate = default, TimeSpan endTime = default,
             PriorityEnum priority = PriorityEnum.Средний, bool isDone = false, int idCategory = -1)
         {
             TaskId = taskId;

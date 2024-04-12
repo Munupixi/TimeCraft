@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TimeCraft.ViewModels.Models.ServiceModelsViewModels;
 
@@ -25,6 +26,22 @@ namespace TimeCraft.ViewModels.Windows
 
         private string errorMessage;
 
+        public CreateEditTaskWindowViewModel()
+        {
+            SetUp();
+            this._task = new Task(TaskViewModel.GetNewId(), "Новое напоминание", User.ActiveUser.UserId,
+                "Описание", DateTime.Now.AddDays(1), TimeSpan.Parse((DateTime.Now).ToString("HH:mm")));
+            _taskViewModel = new TaskViewModel(_task);
+        }
+
+        public CreateEditTaskWindowViewModel(Task task)
+        {
+            SetUp();
+            isEdit = true;
+            this._task = task;
+            _taskViewModel = new TaskViewModel(task);
+        }
+
         private void SetUp()
         {
             CreateCommand = new RelayCommand(CreateExecute, CanCreateExecute);
@@ -32,36 +49,6 @@ namespace TimeCraft.ViewModels.Windows
             DecreaseRepeatCommand = new RelayCommand(DecreaseRepeatExecute);
             IncreaseRepeatCommand = new RelayCommand<object>(IncreaseRepeatExecute);
             categories = new ObservableCollection<string>(CategoryViewModel.GetAllTitles());
-        }
-
-        private void IncreaseRepeatExecute(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void DecreaseRepeatExecute()
-        {
-            throw new NotImplementedException();
-        }
-
-        public CreateEditTaskWindowViewModel()
-        {
-            SetUp();
-            this._event = new Event(EventViewModel.GetNewId(),
-            "Новое мероприятие", User.ActiveUser.UserId, "Описание",
-            DateTime.Now.AddDays(1),
-            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
-            DateTime.Now.AddDays(2),
-            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
-            "Онлайн");
-            _eventViewModel = new EventViewModel(_event);
-        }
-
-        public CreateEditEventWindowViewModel(Event _event)
-        {
-            SetUp();
-            this._event = _event;
-            _eventViewModel = new EventViewModel(_event);
         }
 
         public string ErrorMessage
@@ -79,38 +66,25 @@ namespace TimeCraft.ViewModels.Windows
 
         public string Title
         {
-            get { return _event.Title; }
+            get { return _task.Title; }
             set
             {
-                if (_event.Title != value)
+                if (_task.Title != value)
                 {
-                    _event.Title = value;
+                    _task.Title = value;
                     OnPropertyChanged("Title");
-                }
-            }
-        }
-
-        public string Location
-        {
-            get { return _event.Location; }
-            set
-            {
-                if (_event.Location != value)
-                {
-                    _event.Location = value;
-                    OnPropertyChanged("Location");
                 }
             }
         }
 
         public DateTime StartDate
         {
-            get { return _event.StartDate.HasValue ? _event.StartDate.Value : DateTime.MinValue; }
+            get { return _task.StartDate; }
             set
             {
-                if (_event.StartDate != value)
+                if (_task.StartDate != value)
                 {
-                    _event.StartDate = value;
+                    _task.StartDate = value;
                     OnPropertyChanged("StartDate");
                 }
             }
@@ -118,12 +92,12 @@ namespace TimeCraft.ViewModels.Windows
 
         public DateTime EndDate
         {
-            get { return _event.EndDate.HasValue ? _event.EndDate.Value : DateTime.MinValue; }
+            get { return _task.EndDate.HasValue ? _task.EndDate.Value : DateTime.MinValue; }
             set
             {
-                if (_event.EndDate != value)
+                if (_task.EndDate != value)
                 {
-                    _event.EndDate = value;
+                    _task.EndDate = value;
                     OnPropertyChanged("EndDate");
                 }
             }
@@ -133,20 +107,20 @@ namespace TimeCraft.ViewModels.Windows
         {
             get
             {
-                if (TimeSpan.TryParse(_event.StartTime.ToString(), out _))
+                if (TimeSpan.TryParse(_task.StartTime.ToString(), out _))
                 {
-                    return _event.StartTime.ToString().
-                    Substring(0, _event.StartTime.ToString().Length - 3);
+                    return _task.StartTime.ToString().
+                    Substring(0, _task.StartTime.ToString().Length - 3);
                 }
-                return _event.StartTime.ToString();
+                return _task.StartTime.ToString();
             }
             set
             {
-                if (_event.StartTime.ToString() != value)
+                if (_task.StartTime.ToString() != value)
                 {
                     if (TimeSpan.TryParse(value, out TimeSpan startTime))
                     {
-                        _event.StartTime = startTime;
+                        _task.StartTime = startTime;
                         OnPropertyChanged("StartTime");
                     }
                 }
@@ -157,21 +131,40 @@ namespace TimeCraft.ViewModels.Windows
         {
             get
             {
-                if (TimeSpan.TryParse(_event.EndTime.ToString(), out _))
+                if (TimeSpan.TryParse(_task.EndTime.ToString(), out _))
                 {
-                    return _event.EndTime.ToString().
-                    Substring(0, _event.EndTime.ToString().Length - 3);
+                    return _task.EndTime.ToString().
+                    Substring(0, _task.EndTime.ToString().Length - 3);
                 }
-                return _event.EndTime.ToString();
+                return _task.EndTime.ToString();
             }
             set
             {
-                if (_event.EndTime.ToString() != value)
+                if (_task.EndTime.ToString() != value)
                 {
                     if (TimeSpan.TryParse(value, out TimeSpan endTime))
                     {
-                        _event.EndTime = endTime;
+                        _task.EndTime = endTime;
                         OnPropertyChanged("EndTime");
+                    }
+                }
+            }
+        }
+
+        public string Repeat
+        {
+            get
+            {
+                return _task.Repeat.ToString();
+            }
+            set
+            {
+                if (_task.Repeat.ToString() != value)
+                {
+                    if (Int16.TryParse(value, out short repeat))
+                    {
+                        _task.Repeat = repeat;
+                        OnPropertyChanged("Repeat");
                     }
                 }
             }
@@ -179,12 +172,12 @@ namespace TimeCraft.ViewModels.Windows
 
         public int Category
         {
-            get { return _event.CategoryId - 1; }
+            get { return _task.IdCategory - 1; }
             set
             {
-                if (_event.CategoryId != value)
+                if (_task.IdCategory != value)
                 {
-                    _event.CategoryId = value;
+                    _task.IdCategory = value;
                     OnPropertyChanged(nameof(Category));
                 }
             }
@@ -192,38 +185,25 @@ namespace TimeCraft.ViewModels.Windows
 
         public PriorityEnum Priority
         {
-            get { return (PriorityEnum)_event.Priority; }
+            get { return (PriorityEnum)_task.Priority; }
             set
             {
-                if ((PriorityEnum)_event.Priority != value)
+                if ((PriorityEnum)_task.Priority != value)
                 {
-                    _event.Priority = value;
+                    _task.Priority = value;
                     OnPropertyChanged(nameof(Priority));
-                }
-            }
-        }
-
-        public DressCodeEnum DressCode
-        {
-            get { return (DressCodeEnum)_event.DressCode; }
-            set
-            {
-                if ((DressCodeEnum)_event.DressCode != value)
-                {
-                    _event.DressCode = value;
-                    OnPropertyChanged(nameof(DressCode));
                 }
             }
         }
 
         public string Description
         {
-            get { return _event.Description; }
+            get { return _task.Description; }
             set
             {
-                if (_event.Description != value)
+                if (_task.Description != value)
                 {
-                    _event.Description = value;
+                    _task.Description = value;
                     OnPropertyChanged("Description");
                 }
             }
@@ -244,39 +224,6 @@ namespace TimeCraft.ViewModels.Windows
             get { return Enum.GetValues(typeof(PriorityEnum)); }
         }
 
-        public Array DressCodes
-        {
-            get { return Enum.GetValues(typeof(DressCodeEnum)); }
-        }
-
-        public ObservableCollection<DataGridParticipant> AddParticipants
-        {
-            get { return addParticipants; }
-            set
-            {
-                addParticipants = value;
-                OnPropertyChanged(nameof(AddParticipants));
-            }
-        }
-
-        public string Role
-        {
-            set
-            {
-                Role = value;
-                OnPropertyChanged(nameof(Role));
-            }
-        }
-
-        public string Login
-        {
-            set
-            {
-                Login = value;
-                OnPropertyChanged(nameof(Login));
-            }
-        }
-
         public ICommand CreateCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
         public ICommand DecreaseRepeatCommand { get; private set; }
@@ -284,88 +231,70 @@ namespace TimeCraft.ViewModels.Windows
 
         private void CreateExecute()
         {
-            if (!CanCreateExecute())
-            {
-                return;
-            }
             if (isEdit)
             {
-                _eventViewModel.Update();
-                ParticipantViewModel.DeleteAllByEventId(_event.EventId);
+                _taskViewModel.Update();
             }
             else
             {
-                _eventViewModel.Add();
-            }
-            foreach (DataGridParticipant addParticipant in AddParticipants)
-            {
-                new ParticipantViewModel(new Participant(ParticipantViewModel.GetNewId(), _event.EventId,
-                    User.ActiveUser.UserId, false, addParticipant.Role)).Add();
+                _taskViewModel.Add();
             }
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
         }
 
         private bool CanCreateExecute()
         {
-            if (!Event.IsTimeCorrect(StartTime) || !Event.IsTimeCorrect(EndTime) ||
-                !Event.IsStartDateCorrect(StartDate) ||
-                !Event.IsEndDateCorrect(StartDate, StartTime, EndDate, EndTime))
-            {
-                ErrorMessage = "Неверный формат времени";
-                return false;
-            }
+            //if (!Event.IsTimeCorrect(StartTime) || !Event.IsTimeCorrect(EndTime) ||
+            //    !Event.IsStartDateCorrect(StartDate) ||
+            //    !Event.IsEndDateCorrect(StartDate, StartTime, EndDate, EndTime))
+            //{
+            //    ErrorMessage = "Неверный формат времени";
+            //    return false;
+            //}
 
-            if (!Event.IsTitleCorrect(Title))
-            {
-                ErrorMessage = "Заполните поле названия";
-                return false;
-            }
-            if (!_eventViewModel.IsTitleUnique() &&
-                EventViewModel.Get(Title).EventId != _event.EventId)
-            {
-                ErrorMessage = "Мероприятие с этим названием уже существует";
-                return false;
-            }
-            if (!DataGridParticipantViewModel.IsAllParticipantsExists(AddParticipants.ToList()))
-            {
-                ErrorMessage = "Не все указанные участники найдены в системы";
-                return false;
-            }
-            //Условие проверяет, доступно ли выбранное время для создания события
-            //(через метод IsFreeTime) или
-            //существует ли уже событие с таким временным диапазоном (через метод Event.Get),
-            //при условии редактирования.
-            if (!new UserViewModel(User.ActiveUser).IsFreeTime(_event))
-            {
-                ErrorMessage = "Данные время у вас занято меропритием:\n" +
-                    EventViewModel.Get(_event.StartDate, _event.StartTime, _event.EndDate, _event.EndTime).Title;
-                return false;
-            }
-            ErrorMessage = string.Empty;
+            //if (!Event.IsTitleCorrect(Title))
+            //{
+            //    ErrorMessage = "Заполните поле названия";
+            //    return false;
+            //}
+            //if (!_taskViewModel.IsTitleUnique() &&
+            //    EventViewModel.Get(Title).EventId != _task.EventId)
+            //{
+            //    ErrorMessage = "Мероприятие с этим названием уже существует";
+            //    return false;
+            //}
+            //if (!DataGridParticipantViewModel.IsAllParticipantsExists(AddParticipants.ToList()))
+            //{
+            //    ErrorMessage = "Не все указанные участники найдены в системы";
+            //    return false;
+            //}
+            ////Условие проверяет, доступно ли выбранное время для создания события
+            ////(через метод IsFreeTime) или
+            ////существует ли уже событие с таким временным диапазоном (через метод Event.Get),
+            ////при условии редактирования.
+            //if (!new UserViewModel(User.ActiveUser).IsFreeTime(_task))
+            //{
+            //    ErrorMessage = "Данные время у вас занято меропритием:\n" +
+            //        EventViewModel.Get(_task.StartDate, _task.StartTime, _task.EndDate, _task.EndTime).Title;
+            //    return false;
+            //}
+            //ErrorMessage = string.Empty;
             return true;
+        }
+
+        private void IncreaseRepeatExecute(object obj)
+        {
+            _task.Repeat++;
+        }
+
+        private void DecreaseRepeatExecute()
+        {
+            _task.Repeat = Convert.ToInt16((_task.Repeat != 0) ? _task.Repeat - 1 : 0);
         }
 
         private void CancelExecute()
         {
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
-        }
-
-        private void AddParticipantExecute()
-        {
-            AddParticipants.Add(new DataGridParticipant());
-        }
-
-        private void ClearParticipantsExecute()
-        {
-            AddParticipants = new ObservableCollection<DataGridParticipant>();
-        }
-
-        private void DeleteParticipantExecute(object participant)
-        {
-            if (participant is DataGridParticipant addParticipant)
-            {
-                AddParticipants.Remove(addParticipant);
-            }
         }
 
         protected void OnPropertyChanged(string propertyName)

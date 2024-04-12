@@ -8,8 +8,8 @@ namespace TimeCraft
         public int EventId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime? StartDate { get; set; }
-        public TimeSpan? StartTime { get; set; }
+        public DateTime StartDate { get; set; }
+        public TimeSpan StartTime { get; set; }
         public DateTime? EndDate { get; set; }
         public TimeSpan? EndTime { get; set; }
         public string Location { get; set; }
@@ -19,7 +19,7 @@ namespace TimeCraft
         public int UserId { get; set; }
 
         public Event(int eventId, string title, int userId, string description = null,
-            DateTime? startDate = default, TimeSpan? startTime = default,
+            DateTime startDate = default, TimeSpan startTime = default,
             DateTime? endDate = default, TimeSpan? endTime = default,
             string location = null, DressCodeEnum dressCode = DressCodeEnum.НеИмеетЗначения,
             PriorityEnum priority = PriorityEnum.Средний, int categoryId = 1)
@@ -37,7 +37,5 @@ namespace TimeCraft
             CategoryId = categoryId;
             UserId = userId;
         }
-
-     
     }
 }

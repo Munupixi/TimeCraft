@@ -55,6 +55,7 @@ namespace TimeCraft.ViewModels.Windows
             this._event = _event;
             _eventViewModel = new EventViewModel(_event);
         }
+
         public string ErrorMessage
         {
             get { return errorMessage; }
@@ -67,6 +68,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public string Title
         {
             get { return _event.Title; }
@@ -95,7 +97,7 @@ namespace TimeCraft.ViewModels.Windows
 
         public DateTime StartDate
         {
-            get { return _event.StartDate.HasValue ? _event.StartDate.Value : DateTime.MinValue; }
+            get { return _event.StartDate; }
             set
             {
                 if (_event.StartDate != value)
