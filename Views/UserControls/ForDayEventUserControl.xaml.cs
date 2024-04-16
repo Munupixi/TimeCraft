@@ -18,9 +18,10 @@ namespace TimeCraft.Views.UserControls
 {
     public partial class ForDayEventUserControl : UserControl
     {
-        public ForDayEventUserControl()
+        public ForDayEventUserControl(Event _event)
         {
             InitializeComponent();
+            DataContext = new ForDayEventUserControlViewModel(_event);
         }
 
         private void UserControl_MouseLeftButtonDown(
