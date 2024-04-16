@@ -44,17 +44,18 @@ namespace TimeCraft.ViewModels.Windows
             DateTime.Now.AddDays(1),
             TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
             DateTime.Now.AddDays(2),
-            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")),
-            "Онлайн");
+            TimeSpan.Parse((DateTime.Now).ToString("HH:mm")));
             _eventViewModel = new EventViewModel(_event);
         }
 
         public CreateEditEventWindowViewModel(Event _event)
         {
             SetUp();
+            isEdit = true;
             this._event = _event;
             _eventViewModel = new EventViewModel(_event);
         }
+
         public string ErrorMessage
         {
             get { return errorMessage; }
@@ -67,6 +68,7 @@ namespace TimeCraft.ViewModels.Windows
                 }
             }
         }
+
         public string Title
         {
             get { return _event.Title; }
@@ -95,7 +97,7 @@ namespace TimeCraft.ViewModels.Windows
 
         public DateTime StartDate
         {
-            get { return _event.StartDate.HasValue ? _event.StartDate.Value : DateTime.MinValue; }
+            get { return _event.StartDate; }
             set
             {
                 if (_event.StartDate != value)
@@ -275,10 +277,6 @@ namespace TimeCraft.ViewModels.Windows
 
         private void CreateExecute()
         {
-            if (!CanCreateExecute())
-            {
-                return;
-            }
             if (isEdit)
             {
                 _eventViewModel.Update();
