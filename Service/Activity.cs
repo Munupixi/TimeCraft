@@ -8,7 +8,8 @@ namespace TimeCraft
         public static bool IsStartDateCorrect(DateTime? startDate)
         {
             if (startDate == null) return false;
-            return startDate.Value >= DateTime.Now;
+           bool t = startDate.Value >= DateTime.Now;
+            return t;
         }
 
         public static bool IsTimeCorrect(string time)

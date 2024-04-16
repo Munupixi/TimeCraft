@@ -103,6 +103,7 @@ namespace TimeCraft.ViewModels.Pages
             User.ActiveUser = UserViewModel.Get(login);
             MainWindowViewModel.Frame.Content = new WeeklySchedule();
             new CreateEditEventWindow().Show();
+            new CreateEditTaskWindow().Show();
         }
 
         protected void OnPropertyChanged(string propertyName)

@@ -169,6 +169,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\UserControls\ForDayEventUserControlViewModel.cs" />
     <Compile Include="Models\ServiceModels\DataGridParticipant.cs" />
     <Compile Include="Data\DataBaseContent.cs" />
     <Compile Include="Service\Activity.cs" />
@@ -179,9 +180,11 @@
     <Compile Include="ViewModels\Models\DatabaseModelsViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\Models\ServiceModelsViewModels\DataGridParticipantViewModel.cs" />
     <Compile Include="ViewModels\Pages\AuthorizationPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\DailySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\CreateEditTaskWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />
     <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
@@ -197,19 +200,16 @@
     <Compile Include="Views\Pages\DailySchedulePage.xaml.cs">
       <DependentUpon>DailySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\DayForMonthUserControl.xaml.cs">
-      <DependentUpon>DayForMonthUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\DayForMonthEventUserControl.xaml.cs">
+      <DependentUpon>DayForMonthEventUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseModels\Event.cs" />
-    <Compile Include="Views\UserControls\EventUserControl.xaml.cs">
-      <DependentUpon>EventUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\ForDayEventUserControl.xaml.cs">
+      <DependentUpon>ForDayEventUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Data\JsonManager.cs" />
     <Compile Include="Converters\LoginToColorConverter.cs" />
-    <Compile Include="Views\UserControls\MonthForYearUserControl.xaml.cs">
-      <DependentUpon>MonthForYearUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Pages\MonthlySchedulePage.xaml.cs">
       <DependentUpon>MonthlySchedulePage.xaml</DependentUpon>
     </Compile>
@@ -245,11 +245,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\DayForMonthUserControl.xaml">
+    <Page Include="Views\UserControls\DayForMonthEventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\EventUserControl.xaml">
+    <Page Include="Views\UserControls\ForDayEventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -265,10 +265,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\UserControls\MonthForYearUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Pages\MonthlySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -328,7 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styles\" />
-    <Folder Include="ViewModels\UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TimeCraft.ViewModels.Windows;
 
 namespace TimeCraft
 {
@@ -7,6 +8,7 @@ namespace TimeCraft
         public CreateEditTaskWindow()
         {
             InitializeComponent();
+            DataContext = new CreateEditTaskWindowViewModel();
         }
     }
 }

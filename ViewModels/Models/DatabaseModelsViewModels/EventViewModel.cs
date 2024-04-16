@@ -2,10 +2,11 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace TimeCraft.ViewModels
 {
-    internal class EventViewModel : INotifyPropertyChanged
+    internal class EventViewModel : Activity, INotifyPropertyChanged
     {
         private Event _event;
         public event PropertyChangedEventHandler PropertyChanged;
