@@ -204,8 +204,8 @@
       <DependentUpon>DayForMonthEventUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseModels\Event.cs" />
-    <Compile Include="Views\UserControls\ForDayEventUserControl.xaml.cs">
-      <DependentUpon>ForDayEventUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\ForWeekEventUserControl.xaml.cs">
+      <DependentUpon>ForWeekEventUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Data\JsonManager.cs" />
@@ -249,7 +249,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ForDayEventUserControl.xaml">
+    <Page Include="Views\UserControls\ForWeekEventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
