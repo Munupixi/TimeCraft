@@ -26,9 +26,9 @@
             <TextBlock x:Name="TitleTextBlock" Grid.Column="0" Grid.Row="0" Text="{Binding Title}" Foreground="White" FontSize="16" FontWeight="Bold" TextWrapping="Wrap" />
             <TextBlock x:Name="StartTimeTextBlock" Grid.Column="0" Grid.Row="1" Text="{Binding StartTime}" Foreground="White" FontSize="14" />
             <TextBlock x:Name="EndTimeTextBlock" Grid.Column="0" Grid.Row="2" Text="{Binding EndTime}" Foreground="White" FontSize="14" />
-            <TextBlock x:Name="GeoPositionTextBlock" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding GeoPosition}" Foreground="White" FontSize="14" TextWrapping="Wrap" />
+            <TextBlock x:Name="GeoPositionTextBlock" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Location}" Foreground="White" FontSize="14" TextWrapping="Wrap" />
 
-            <TextBlock x:Name="DressCodeTextBlock" Grid.Column="1" Grid.Row="0" Text="{Binding DressCode}" Foreground="White" FontSize="14" TextWrapping="Wrap" />
+            <TextBlock x:Name="DressCodeTextBlock" Grid.Column="1" Grid.Row="0"  Text="{Binding DressCode}" Foreground="White" FontSize="14" TextWrapping="Wrap" />
             <TextBlock x:Name="PriorityTextBlock" Grid.Column="1" Grid.Row="1" Text="{Binding Priority}" Foreground="White" FontSize="14" TextWrapping="Wrap" />
             <TextBlock x:Name="CategoryTextBlock" Grid.Column="1" Grid.Row="2" Text="{Binding Category}" Foreground="White" FontSize="14" TextWrapping="Wrap" />
         </Grid>
