@@ -5,9 +5,9 @@ namespace TimeCraft
     /// <summary>
     /// Interaction logic for EventUserControl.xaml
     /// </summary>
-    public partial class EventUserControl : UserControl
+    public partial class ForWeekEventUserControl : UserControl
     {
-        public EventUserControl()
+        public ForWeekEventUserControl()
         {
             InitializeComponent();
         }

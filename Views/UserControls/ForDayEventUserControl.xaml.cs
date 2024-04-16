@@ -24,5 +24,10 @@ namespace TimeCraft.Views.UserControls
         {
             InitializeComponent();
         }
+
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
