@@ -189,6 +189,9 @@
     <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ForDayEventUserControl.xaml.cs">
+      <DependentUpon>ForDayEventUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\CreateEditEventWindow.xaml.cs">
       <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
       <DependentUpon>YearlySchedulePage.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Pages\AuthorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ForDayEventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
