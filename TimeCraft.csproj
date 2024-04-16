@@ -179,6 +179,7 @@
     <Compile Include="ViewModels\Models\DatabaseModelsViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\Models\ServiceModelsViewModels\DataGridParticipantViewModel.cs" />
     <Compile Include="ViewModels\Pages\AuthorizationPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\DailySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
