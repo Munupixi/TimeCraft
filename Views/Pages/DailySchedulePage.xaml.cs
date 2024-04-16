@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TimeCraft.ViewModels.Pages;
 
 namespace TimeCraft
 {
@@ -7,9 +8,7 @@ namespace TimeCraft
         public DailySchedule()
         {
             InitializeComponent();
-
-            MainListView.Items.Clear();
-            //MainListView.Items.Add(new Task());
+            this.DataContext = new DailySchedulePageViewModel();
         }
     }
 }

@@ -12,12 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeCraft.ViewModels.UserControls;
 
 namespace TimeCraft.Views.UserControls
 {
-    /// <summary>
-    /// Логика взаимодействия для ForDayEventUserControl.xaml
-    /// </summary>
     public partial class ForDayEventUserControl : UserControl
     {
         public ForDayEventUserControl()
@@ -25,9 +23,13 @@ namespace TimeCraft.Views.UserControls
             InitializeComponent();
         }
 
-        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void UserControl_MouseLeftButtonDown(
+            object sender, MouseButtonEventArgs e)
         {
-
+            if (DataContext is ForDayEventUserControlViewModel viewModel)
+            {
+                viewModel.ExecuteOpen();
+            }
         }
     }
 }

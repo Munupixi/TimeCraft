@@ -10,5 +10,11 @@ namespace TimeCraft
             InitializeComponent();
             DataContext = new CreateEditEventWindowViewModel();
         }
+
+        public CreateEditEventWindow(Event _event)
+        {
+            InitializeComponent();
+            DataContext = new CreateEditEventWindowViewModel(_event);
+        }
     }
 }

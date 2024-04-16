@@ -7,11 +7,14 @@ namespace TimeCraft.ViewModels
     internal class CategoryViewModel : INotifyPropertyChanged
     {
         private Category _category;
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         public CategoryViewModel(Category category)
         {
             _category = category;
         }
+
         public static void CreateAllCategories()
         {
             Category[] categories = {
@@ -41,6 +44,7 @@ namespace TimeCraft.ViewModels
                 return db.Category.Select(c => c.Title).ToList();
             }
         }
+
         public static Category Get(int id)
         {
             using (DataBaseContent db = new DataBaseContent())
