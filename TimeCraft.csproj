@@ -169,6 +169,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\UserControls\ForDayEventUserControlViewModel.cs" />
     <Compile Include="Models\ServiceModels\DataGridParticipant.cs" />
     <Compile Include="Data\DataBaseContent.cs" />
     <Compile Include="Service\Activity.cs" />
@@ -323,7 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styles\" />
-    <Folder Include="ViewModels\UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
