@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -9,12 +10,16 @@ namespace TimeCraft.ViewModels
     internal class EventViewModel : Activity, INotifyPropertyChanged
     {
         private Event _event;
+        private DataBaseContent _content;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public EventViewModel(Event _event)
         {
             this._event = _event;
+            _content = new DataBaseContent();
         }
+
         public void Delete()
         {
             using (DataBaseContent db = new DataBaseContent())
@@ -111,12 +116,26 @@ namespace TimeCraft.ViewModels
             }
         }
 
+        public static List<Event> GetAll(int userId)
+        {
+            using (DataBaseContent db = new DataBaseContent())
+            {
+                return db.Event.Where(_event => _event.UserId == userId).ToList();
+            }
+        }
+
         public bool IsTitleUnique()
         {
             using (DataBaseContent db = new DataBaseContent())
             {
                 return !db.Event.Any(e => e.Title == _event.Title);
             }
+        }
+
+        public bool IsParticipant(int userId)
+        {
+            return ParticipantViewModel.GetAllParticipantByIdEvent(_event.EventId)
+                .Any(participant => participant.ParticipantId == userId);
         }
 
         public bool IsEventExists(int eventId)

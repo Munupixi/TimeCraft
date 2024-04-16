@@ -8,7 +8,9 @@ namespace TimeCraft.ViewModels
     internal class ParticipantViewModel : INotifyPropertyChanged
     {
         private Participant _participant;
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         public ParticipantViewModel(Participant participant)
         {
             _participant = participant;

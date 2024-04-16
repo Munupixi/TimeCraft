@@ -36,7 +36,13 @@ namespace TimeCraft.ViewModels.Pages
 
         public void UpdateProductsView()
         {
-            _events = _context.Event.ToList();
+            List<Event> userEvents = EventViewModel.GetAll(User.ActiveUser.UserId);
+
+            _events.AddRange(
+                _context.Event
+                .Where(e => new EventViewModel(e).IsParticipant(User.ActiveUser.UserId))
+                .Except(userEvents)
+                .ToList());
 
             _forDayEventUserControls.Clear();
             foreach (Event _event in _events)
