@@ -7,6 +7,11 @@ namespace TimeCraft
         public WeeklySchedule()
         {
             InitializeComponent();
+            MondayListView.Items.Add(new ForWeekEventUserControl());
+            MondayListView.Items.Add(new ForWeekEventUserControl());
+            MondayListView.Items.Add(new ForWeekEventUserControl());
+            MondayListView.Items.Add(new ForWeekEventUserControl());
+            MondayListView.Items.Add(new ForWeekEventUserControl());
         }
     }
 }

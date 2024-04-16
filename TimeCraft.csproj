@@ -189,6 +189,9 @@
     <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ForDayEventUserControl.xaml.cs">
+      <DependentUpon>ForDayEventUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\CreateEditEventWindow.xaml.cs">
       <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,9 @@
       <DependentUpon>DayForMonthEventUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseModels\Event.cs" />
+    <Compile Include="Views\UserControls\ForWeekEventUserControl.xaml.cs">
+      <DependentUpon>ForWeekEventUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Data\JsonManager.cs" />
     <Compile Include="Converters\LoginToColorConverter.cs" />
@@ -230,6 +236,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\ForDayEventUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\CreateEditEventWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -243,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\DayForMonthEventUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ForWeekEventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
