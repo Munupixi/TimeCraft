@@ -211,7 +211,7 @@
       <DependentUpon>ForWeekEventUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IEntity.cs" />
-    <Compile Include="Data\JsonManager.cs" />
+    <Compile Include="Data\DataJsonContent.cs" />
     <Compile Include="Converters\LoginToColorConverter.cs" />
     <Compile Include="Views\Pages\MonthlySchedulePage.xaml.cs">
       <DependentUpon>MonthlySchedulePage.xaml</DependentUpon>
