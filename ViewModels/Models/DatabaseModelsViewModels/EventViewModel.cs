@@ -1,9 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 
 namespace TimeCraft.ViewModels
 {
@@ -116,12 +114,44 @@ namespace TimeCraft.ViewModels
             }
         }
 
-        public static List<Event> GetAll(int userId)
+        public static List<Event> GetAllMine(int userId)
         {
             using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Event.Where(_event => _event.UserId == userId).ToList();
             }
+        }
+
+        public static List<Event> GetAllInvitedEvents(int userId)
+        {
+            List<Event> events = new List<Event>();
+            using (DataBaseContent db = new DataBaseContent())
+            {
+                foreach (Event e in db.Event.ToList())
+                {
+                    if (new EventViewModel(e).IsParticipant(userId) &&
+                        !GetAllMine(userId).Any(ev => ev.EventId == e.EventId))
+                    {
+                        events.Add(e);
+                    }
+                }
+            }
+            return events;
+        }
+
+        public static List<Event> GetAllMineAndInvited(int userId)
+        {
+            List<Event> mineAndInvitedEvents = new List<Event>();
+            mineAndInvitedEvents.AddRange(GetAllMine(userId));
+            mineAndInvitedEvents.AddRange(GetAllInvitedEvents(userId));
+            return mineAndInvitedEvents;
+        }
+
+        public static List<Event> GetAllMineAndInvitedByDate(int userId, DateTime date)
+        {
+            return GetAllMineAndInvited(userId)
+                .Where(e => e.StartDate <= date && e.EndDate >= date)
+                .ToList();
         }
 
         public bool IsTitleUnique()

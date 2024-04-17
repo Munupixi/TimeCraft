@@ -14,7 +14,6 @@
             <Setter Property="Background" Value="#FFEEEEEE" />
             <Setter Property="Foreground" Value="#333333" />
             <Setter Property="Margin" Value="5" />
-            <Setter Property="Height" Value="20" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -88,7 +87,7 @@
         </StackPanel>
 
         <StackPanel x:Name="NoSelectedTextStackPanel" Grid.Column="0" VerticalAlignment="Center" Grid.Row="1">
-            <TextBlock x:Name="NoSelectedTextTextBlock" Text="{Binding NoSelectedMessage}" FontSize="24" HorizontalAlignment="Center" Margin="10" />
+            <TextBlock x:Name="NoSelectedTextTextBlock" Text="Нет мероприятий на этот день" Visibility="{Binding NoSelectedMessageVisibility}" FontSize="24" HorizontalAlignment="Center" Margin="10" />
         </StackPanel>
 
         <Border Grid.Column="1" Background="#222222" Padding="10" Grid.Row="1">
