@@ -45,7 +45,7 @@ namespace TimeCraft.ViewModels.Pages
             TodayCommand = new RelayCommand(TodayExecute);
             NextCommand = new RelayCommand(NextExecute);
 
-            NoSelectedMessageVisibility = Visibility.Collapsed;
+            NoSelectedMessageVisibility = Visibility.Hidden;
 
             _context = new DataBaseContent();
             UpdateProductsView();
@@ -64,7 +64,7 @@ namespace TimeCraft.ViewModels.Pages
             }
             Events = _forDayEventUserControls;
             NoSelectedMessageVisibility =
-                Events.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                Events.Count == 0 ? Visibility.Visible : Visibility.Hidden;
         }
 
         public ObservableCollection<ForDayEventUserControl> Events
@@ -79,9 +79,11 @@ namespace TimeCraft.ViewModels.Pages
                 }
             }
         }
-        public Visibility NoSelectedMessageVisibility { get;  set; }
+
+        public Visibility NoSelectedMessageVisibility { get; set; }
         public string Date { get; set; }
         public string DayOfWeek { get; set; }
+
         public DateTime SelectedDate
         {
             get { return _selectedDate; }
@@ -94,6 +96,7 @@ namespace TimeCraft.ViewModels.Pages
                 }
             }
         }
+
         public string Search
         {
             get { return _search; }
