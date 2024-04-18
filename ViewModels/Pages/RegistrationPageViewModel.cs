@@ -21,6 +21,16 @@ namespace TimeCraft.ViewModels.Pages
         private bool isConfirmProgramPolicy = false;
         private string errorMessage = "";
 
+        public RegistrationPageViewModel()
+        {
+            RegistrationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
+            AuthorizationCommand = new RelayCommand(AuthorizationExecute);
+
+            _user = new User(UserViewModel.GetNewId(), "Логин", "Пароль", -1);
+            ageAsString = "Возраст";
+            _userViewModel = new UserViewModel(_user);
+        }
+
         public string ErrorMessage
         {
             get { return errorMessage; }
@@ -112,23 +122,6 @@ namespace TimeCraft.ViewModels.Pages
             }
         }
 
-        public RegistrationPageViewModel()
-        {
-            RegistrationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
-            AuthorizationCommand = new RelayCommand(AuthorizationExecute);
-
-            _user = new User(UserViewModel.GetNewId(), "Логин", "Пароль", 4);
-            _userViewModel = new UserViewModel(_user);
-        }
-
-        public RegistrationPageViewModel(User user)
-        {
-            RegistrationCommand = new RelayCommand(RegistrationExecute, CanRegistrationExecute);
-            AuthorizationCommand = new RelayCommand(AuthorizationExecute);
-
-            _user = user;
-        }
-
         private void AuthorizationExecute()
         {
             MainWindowViewModel.Frame.Content = new AuthorizationPage();
@@ -141,9 +134,19 @@ namespace TimeCraft.ViewModels.Pages
                 ErrorMessage = "Имя не может быть пустым";
                 return false;
             }
+            if (Name.Length < 3)
+            {
+                ErrorMessage = "Имя не может быть короче 3х символов";
+                return false;
+            }
+            if (Name.Length > 20)
+            {
+                ErrorMessage = "Имя не может быть длинее 20 символов";
+                return false;
+            }
             if (!UserViewModel.IsAgeCorrect(ageAsString))
             {
-                ErrorMessage = "Возраст некоректен";
+                ErrorMessage = "Вам должно быть не меньше 4 и не больше 120 лет";
                 return false;
             }
             else if (_user.Age != Convert.ToInt32(ageAsString))
@@ -151,14 +154,25 @@ namespace TimeCraft.ViewModels.Pages
                 _user.Age = Convert.ToInt32(ageAsString);
                 OnPropertyChanged("Age");
             }
+            if (Login.Length > 50)
+            {
+                ErrorMessage = "Логин не может быть длинее 50 символов";
+                return false;
+            }
             if (!_userViewModel.IsLoginCorrect())
             {
-                ErrorMessage = "Логин некоректен";
+                ErrorMessage = "Логин некоректен (Формат: XX@X.X)";
+                return false;
+            }
+            if (Login.Length > 20)
+            {
+                ErrorMessage = "Пароль не может быть длинее 20 символов";
                 return false;
             }
             if (!_userViewModel.IsPasswordCorrect())
             {
-                ErrorMessage = "Пароль некоректен";
+                ErrorMessage = "Пароль некоректен " +
+                    "(Не менее 6 символов. Из них минимум: 1 - специальный 1 - цифра";
                 return false;
             }
             if (Password != AgainPassword)

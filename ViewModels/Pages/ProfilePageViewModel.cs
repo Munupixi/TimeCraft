@@ -142,14 +142,20 @@ namespace TimeCraft.ViewModels.Pages
 
         private bool CanApllyExecute()
         {
-            if (string.IsNullOrEmpty(Name))
+            if (!_userViewModel.IsPasswordCorrect())
             {
-                ErrorMessage = "Имя не может быть пустым";
+                ErrorMessage = "Пароль некоректен " +
+                    "(Не менее 6 символов. Из них минимум: 1 - специальный 1 - цифра";
+                return false;
+            }
+            if (Password != AgainPassword)
+            {
+                ErrorMessage = "Пароли несовпадают";
                 return false;
             }
             if (!UserViewModel.IsAgeCorrect(ageAsString))
             {
-                ErrorMessage = "Возраст некоректен";
+                ErrorMessage = "Вам должно быть не меньше 4 и не больше 120 лет";
                 return false;
             }
             else if (_user.Age != Convert.ToInt32(ageAsString))
@@ -157,15 +163,47 @@ namespace TimeCraft.ViewModels.Pages
                 _user.Age = Convert.ToInt32(ageAsString);
                 OnPropertyChanged("Age");
             }
-            if (!_userViewModel.IsPasswordCorrect())
+
+            if (string.IsNullOrEmpty(Name))
             {
-                ErrorMessage = "Пароль некоректен";
+                ErrorMessage = "Имя не может быть пустым";
                 return false;
             }
-            if (Password != AgainPassword)
+            if (Name.Length < 3)
             {
-                ErrorMessage = "Пароли несовпадают";
+                ErrorMessage = "Имя не может быть короче 3х символов";
                 return false;
+            }
+            if (Name.Length > 20)
+            {
+                ErrorMessage = "Имя не может быть длинее 20 символов";
+                return false;
+            }
+            if (!string.IsNullOrEmpty(Surname))
+            {
+                if (Surname.Length < 3)
+                {
+                    ErrorMessage = "Фамилия не может состоять из 1ого или 2х сомволов";
+                    return false;
+                }
+                if (Surname.Length > 50)
+                {
+                    ErrorMessage = "Фамилия не может быть длинее 50 символов";
+                    return false;
+                }
+            }
+            if (!string.IsNullOrEmpty(Patronymic))
+            {
+                if (Patronymic.Length < 3)
+                {
+                    ErrorMessage = "Отчество не может состоять из 1ого или 2х сомволов";
+                    return false;
+                }
+                if (Patronymic.Length > 50)
+                {
+                    ErrorMessage = "Отчество не может быть длинее 50 символов";
+                    return false;
+                }
             }
             ErrorMessage = "";
             return true;
