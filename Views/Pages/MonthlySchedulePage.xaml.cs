@@ -2,9 +2,9 @@
 
 namespace TimeCraft
 {
-    public partial class MonthlySchedule : Page
+    public partial class MonthlySchedulePage : Page
     {
-        public MonthlySchedule()
+        public MonthlySchedulePage()
         {
             InitializeComponent();
         }

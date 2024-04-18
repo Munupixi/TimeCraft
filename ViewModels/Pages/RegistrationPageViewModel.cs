@@ -184,7 +184,7 @@ namespace TimeCraft.ViewModels.Pages
         {
             User.ActiveUser = _user;
             _userViewModel.Add();
-            MainWindowViewModel.Frame.Content = new WeeklySchedule();
+            MainWindowViewModel.Frame.Content = new WeeklySchedulePage();
         }
 
         protected void OnPropertyChanged(string propertyName)

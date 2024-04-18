@@ -2,9 +2,9 @@
 
 namespace TimeCraft
 {
-    public partial class WeeklySchedule : Page
+    public partial class WeeklySchedulePage : Page
     {
-        public WeeklySchedule()
+        public WeeklySchedulePage()
         {
             InitializeComponent();
             MondayListView.Items.Add(new ForWeekEventUserControl());

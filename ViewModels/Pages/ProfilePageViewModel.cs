@@ -19,11 +19,13 @@ namespace TimeCraft.ViewModels.Pages
         private UserViewModel _userViewModel;
 
         public ICommand CancelCommand { get; private set; }
-        public ICommand ApllyCommand { get; private set; }
+        public ICommand ApplyCommand { get; private set; }
         public ProfilePageViewModel(User user)
         {
             _user = user;
-            ApllyCommand = new RelayCommand(ApllyExecute, CanApllyExecute);
+            _userViewModel = new UserViewModel(_user);
+            ageAsString = user.Age.ToString();
+            ApplyCommand = new RelayCommand(ApplyExecute, CanApllyExecute);
             CancelCommand = new RelayCommand(CancelExecute);
         }
 
@@ -169,18 +171,18 @@ namespace TimeCraft.ViewModels.Pages
             return true;
         }
 
-        private void ApllyExecute()
+        private void ApplyExecute()
         {
             User.ActiveUser = _user;
             _userViewModel.Update();
-            MainWindowViewModel.Frame.Content = new WeeklySchedule();
+            MainWindowViewModel.Frame.Content = new WeeklySchedulePage();
         }
 
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             _userViewModel = new UserViewModel(_user);
-            ((RelayCommand)ApllyCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)ApplyCommand).RaiseCanExecuteChanged();
         }
 
     }

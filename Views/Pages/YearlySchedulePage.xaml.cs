@@ -5,9 +5,9 @@ namespace TimeCraft
     /// <summary>
     /// Логика взаимодействия для YearlySchedule.xaml
     /// </summary>
-    public partial class YearlySchedule : Page
+    public partial class YearlySchedulePage : Page
     {
-        public YearlySchedule()
+        public YearlySchedulePage()
         {
             InitializeComponent();
         }

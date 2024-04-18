@@ -101,7 +101,7 @@ namespace TimeCraft.ViewModels.Pages
                 } // must be delete
             } // must be delete
             User.ActiveUser = UserViewModel.Get(login);
-            MainWindowViewModel.Frame.Content = new DailySchedule();
+            MainWindowViewModel.Frame.Content = new DailySchedulePage();
             new CreateEditEventWindow().Show();
             new CreateEditTaskWindow().Show();
         }

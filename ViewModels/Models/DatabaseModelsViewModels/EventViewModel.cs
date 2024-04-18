@@ -146,6 +146,14 @@ namespace TimeCraft.ViewModels
             mineAndInvitedEvents.AddRange(GetAllInvitedEvents(userId));
             return mineAndInvitedEvents;
         }
+        public static List<Event> GetFilterEventsBySearch(List<Event> events, string search)
+        {
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                return events;
+            }
+            return events.Where(e => e.Title.Contains(search)).ToList();
+        }
 
         public static List<Event> GetAllMineAndInvitedByDate(int userId, DateTime date)
         {

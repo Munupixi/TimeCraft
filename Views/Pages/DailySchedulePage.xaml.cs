@@ -3,9 +3,9 @@ using TimeCraft.ViewModels.Pages;
 
 namespace TimeCraft
 {
-    public partial class DailySchedule : Page
+    public partial class DailySchedulePage : Page
     {
-        public DailySchedule()
+        public DailySchedulePage()
         {
             InitializeComponent();
             this.DataContext = new DailySchedulePageViewModel();

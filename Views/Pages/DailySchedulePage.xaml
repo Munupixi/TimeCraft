@@ -1,4 +1,4 @@
-﻿<Page x:Class="TimeCraft.DailySchedule"
+﻿<Page x:Class="TimeCraft.DailySchedulePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -86,14 +86,10 @@
             </Button>
         </StackPanel>
 
-        <StackPanel x:Name="NoSelectedTextStackPanel" Grid.Column="0" VerticalAlignment="Center" Grid.Row="1">
-            <TextBlock x:Name="NoSelectedTextTextBlock" Text="Нет мероприятий на этот день" Visibility="{Binding NoSelectedMessageVisibility}" FontSize="24" HorizontalAlignment="Center" Margin="10" />
-        </StackPanel>
-
         <Border Grid.Column="1" Background="#222222" Padding="10" Grid.Row="1">
             <Viewbox>
                 <StackPanel>
-                    <TextBox x:Name="SearchTextBox" Width="auto" Margin="10" Background="#444444" Foreground="White" Text="{Binding Search}" />
+                    <TextBox x:Name="SearchTextBox" Width="auto" Margin="10" Background="#444444" Foreground="White" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="auto">
                         <Button x:Name="PreviousButton" Content="&lt;" Background="#444444" Foreground="White" Margin="10" Width="15" Command="{Binding PreviousCommand}"/>
@@ -109,5 +105,8 @@
                 </StackPanel>
             </Viewbox>
         </Border>
+        <StackPanel x:Name="NoSelectedTextStackPanel" Grid.Column="0" VerticalAlignment="Center" Grid.Row="1">
+            <TextBlock x:Name="NoSelectedTextTextBlock" Text="Нет мероприятий на этот день" Visibility="{Binding NoSelectedMessageVisibility}" FontSize="24" HorizontalAlignment="Center" Margin="10" />
+        </StackPanel>
     </Grid>
 </Page>

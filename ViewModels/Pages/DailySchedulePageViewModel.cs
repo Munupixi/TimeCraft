@@ -21,10 +21,11 @@ namespace TimeCraft.ViewModels.Pages
         private List<Event> _events;
         private ObservableCollection<ForDayEventUserControl> _forDayEventUserControls = new ObservableCollection<ForDayEventUserControl>();
         private DateTime _selectedDate = DateTime.Now;
+        private string _search;
 
-        public ICommand WeeklyCommand { get; private set; }
-        public ICommand MonthlyCommand { get; private set; }
-        public ICommand YearlyCommand { get; private set; }
+        public ICommand WeeklyPageCommand { get; private set; }
+        public ICommand MonthlyPageCommand { get; private set; }
+        public ICommand YearlyPageCommand { get; private set; }
         public ICommand ProfileCommand { get; private set; }
         public ICommand SettingsCommand { get; private set; }
         public ICommand TaskListCommand { get; private set; }
@@ -34,17 +35,17 @@ namespace TimeCraft.ViewModels.Pages
 
         public DailySchedulePageViewModel()
         {
-            WeeklyCommand = new RelayCommand(NavigateToWeeklyPage);
-            MonthlyCommand = new RelayCommand(NavigateToMonthlyPage);
-            YearlyCommand = new RelayCommand(NavigateToYearlyPage);
+            WeeklyPageCommand = new RelayCommand(NavigateToWeeklyPage);
+            MonthlyPageCommand = new RelayCommand(NavigateToMonthlyPage);
+            YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
             ProfileCommand = new RelayCommand(NavigateProfilePage);
             SettingsCommand = new RelayCommand(NavigateToSettingsPage);
             TaskListCommand = new RelayCommand(NavigateToTaskListPage);
-            PreviousCommand = new RelayCommand(TodayExecute);
-            TodayCommand = new RelayCommand(PreviousExecute);
+            PreviousCommand = new RelayCommand(PreviousExecute);
+            TodayCommand = new RelayCommand(TodayExecute);
             NextCommand = new RelayCommand(NextExecute);
 
-            NoSelectedMessageVisibility = Visibility.Hidden;
+            NoSelectedMessageVisibility = Visibility.Collapsed;
 
             _context = new DataBaseContent();
             UpdateProductsView();
@@ -52,14 +53,18 @@ namespace TimeCraft.ViewModels.Pages
 
         public void UpdateProductsView()
         {
-            _events = EventViewModel.GetAllMineAndInvitedByDate(
-                User.ActiveUser.UserId, SelectedDate);
+            _events = EventViewModel.GetFilterEventsBySearch(
+                EventViewModel.GetAllMineAndInvitedByDate(
+                User.ActiveUser.UserId, SelectedDate),
+                Search);
             _forDayEventUserControls.Clear();
             foreach (Event _event in _events)
             {
                 _forDayEventUserControls.Add(new ForDayEventUserControl(_event));
             }
             Events = _forDayEventUserControls;
+            NoSelectedMessageVisibility =
+                Events.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public ObservableCollection<ForDayEventUserControl> Events
@@ -89,25 +94,37 @@ namespace TimeCraft.ViewModels.Pages
                 }
             }
         }
+        public string Search
+        {
+            get { return _search; }
+            set
+            {
+                if (_search != value)
+                {
+                    _search = value;
+                    OnPropertyChanged("Search");
+                }
+            }
+        }
 
         private void NavigateToWeeklyPage()
         {
-            throw new NotImplementedException();
+            MainWindowViewModel.Frame.Content = new WeeklySchedulePage();
         }
 
         private void NavigateToMonthlyPage()
         {
-            throw new NotImplementedException();
+            MainWindowViewModel.Frame.Content = new MonthlySchedulePage();
         }
 
         private void NavigateToYearlyPage()
         {
-            throw new NotImplementedException();
+            MainWindowViewModel.Frame.Content = new YearlySchedulePage();
         }
 
         private void NavigateProfilePage()
         {
-            throw new NotImplementedException();
+            MainWindowViewModel.Frame.Content = new ProfilePage(User.ActiveUser);
         }
 
         private void NavigateToSettingsPage()
@@ -122,17 +139,17 @@ namespace TimeCraft.ViewModels.Pages
 
         private void TodayExecute()
         {
-            throw new NotImplementedException();
+            SelectedDate = DateTime.Now;
         }
 
         private void PreviousExecute()
         {
-            throw new NotImplementedException();
+            SelectedDate = SelectedDate.AddDays(-1);
         }
 
         private void NextExecute()
         {
-            throw new NotImplementedException();
+            SelectedDate = SelectedDate.AddDays(+1);
         }
 
         protected void OnPropertyChanged(string propertyName)
