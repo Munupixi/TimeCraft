@@ -12,6 +12,7 @@ namespace TimeCraft.ViewModels
         private DataBaseContent _content;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public static event EventHandler EventsUpdated;
 
         public static event EventHandler EventsUpdated;
 
@@ -161,6 +162,13 @@ namespace TimeCraft.ViewModels
             }
             return events.Where(e => e.Title.Contains(search)).ToList();
         }
+        public static Dictionary<DayOfWeek, List<Event>> GetFilterEventsBySearch(Dictionary<DayOfWeek, List<Event>> eventsForWeek, string search)
+        {
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                return eventsForWeek;
+            }
+            var filteredEventsForWeek = new Dictionary<DayOfWeek, List<Event>>();
 
         public static Dictionary<DayOfWeek, List<Event>> GetFilterEventsBySearch(Dictionary<DayOfWeek, List<Event>> eventsForWeek, string search)
         {
@@ -184,6 +192,16 @@ namespace TimeCraft.ViewModels
             return GetAllMineAndInvited(userId)
                 .Where(e => e.StartDate <= date && e.EndDate >= date)
                 .ToList();
+        }
+        public static Dictionary<DayOfWeek, List<Event>> GetAllMineAndInvitedByDateForWeek(int userId, DateTime firstDayOfWeek)
+        {
+            Dictionary<DayOfWeek, List<Event>> eventsForWeek = new Dictionary<DayOfWeek, List<Event>>();
+            foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                eventsForWeek[dayOfWeek] = GetAllMineAndInvitedByDateForDay(userId, firstDayOfWeek);
+                firstDayOfWeek = firstDayOfWeek.AddDays(1);
+            }
+            return eventsForWeek;
         }
 
         public static Dictionary<DayOfWeek, List<Event>> GetAllMineAndInvitedByDateForWeek(int userId, DateTime firstDayOfWeek)
