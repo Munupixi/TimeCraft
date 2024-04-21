@@ -98,8 +98,6 @@
                     </StackPanel>
 
                     <StackPanel VerticalAlignment="Top" Margin="10">
-                        <TextBlock x:Name="DateTextBlock" Text="{Binding Date}" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" />
-                        <TextBlock x:Name="DayOfWeekTextBlock" Text="{Binding DayOfWeek}" Foreground="White" FontSize="20" HorizontalAlignment="Center" />
                         <Calendar x:Name="MainCalender" SelectedDate="{Binding SelectedDate}" Background="White" Foreground="White" Height="165" />
                     </StackPanel>
                 </StackPanel>

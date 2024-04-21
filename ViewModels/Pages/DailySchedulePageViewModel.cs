@@ -22,6 +22,7 @@ namespace TimeCraft.ViewModels.Pages
         private ObservableCollection<ForDayEventUserControl> _forDayEventUserControls = new ObservableCollection<ForDayEventUserControl>();
         private DateTime _selectedDate = DateTime.Now;
         private string _search;
+        private Visibility _noSelectedMessageVisibility;
 
         public ICommand WeeklyPageCommand { get; private set; }
         public ICommand MonthlyPageCommand { get; private set; }
@@ -65,6 +66,7 @@ namespace TimeCraft.ViewModels.Pages
             Events = _forDayEventUserControls;
             NoSelectedMessageVisibility =
                 Events.Count == 0 ? Visibility.Visible : Visibility.Hidden;
+  
         }
 
         public ObservableCollection<ForDayEventUserControl> Events
@@ -80,7 +82,18 @@ namespace TimeCraft.ViewModels.Pages
             }
         }
 
-        public Visibility NoSelectedMessageVisibility { get; set; }
+        public Visibility NoSelectedMessageVisibility
+        {
+            get { return _noSelectedMessageVisibility; }
+            set
+            {
+                if (_noSelectedMessageVisibility != value)
+                {
+                    _noSelectedMessageVisibility = value;
+                    OnPropertyChanged("NoSelectedMessageVisibility");
+                }
+            }
+        }
         public string Date { get; set; }
         public string DayOfWeek { get; set; }
 
