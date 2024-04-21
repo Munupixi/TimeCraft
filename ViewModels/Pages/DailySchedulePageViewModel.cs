@@ -48,14 +48,21 @@ namespace TimeCraft.ViewModels.Pages
 
             NoSelectedMessageVisibility = Visibility.Hidden;
 
+            EventViewModel.EventsUpdated += HandleEventsUpdated;
+
             _context = new DataBaseContent();
-            UpdateProductsView();
+            UpdateEventsView();
         }
 
-        public void UpdateProductsView()
+        private void HandleEventsUpdated(object sender, EventArgs e)
+        {
+            UpdateEventsView();
+        }
+
+        public void UpdateEventsView()
         {
             _events = EventViewModel.GetFilterEventsBySearch(
-                EventViewModel.GetAllMineAndInvitedByDate(
+                EventViewModel.GetAllMineAndInvitedByDateForDay(
                 User.ActiveUser.UserId, SelectedDate),
                 Search);
             _forDayEventUserControls.Clear();
@@ -171,7 +178,7 @@ namespace TimeCraft.ViewModels.Pages
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            UpdateProductsView();
+            UpdateEventsView();
         }
     }
 }

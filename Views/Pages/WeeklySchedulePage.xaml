@@ -112,7 +112,7 @@
 
             <!-- The ListView controls for the days would go here, make sure to set the Grid.Column property for each ListView -->
             <!-- For example: -->
-            <ListView x:Name="MondayListView" Grid.Column="0" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+            <ListView x:Name="MondayListView"  ItemsSource="{Binding MondayEvents}" Grid.Column="0" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
             <ListView x:Name="TuesdayListView" Grid.Column="1" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
             <ListView x:Name="WednesdayListView" Grid.Column="2" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
             <ListView x:Name="ThursdayListView" Grid.Column="3" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" />

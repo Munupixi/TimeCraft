@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
@@ -11,6 +12,8 @@ namespace TimeCraft.ViewModels
         private DataBaseContent _content;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public static event EventHandler EventsUpdated;
 
         public EventViewModel(Event _event)
         {
@@ -26,6 +29,7 @@ namespace TimeCraft.ViewModels
                 {
                     db.Event.Remove(_event);
                     db.SaveChanges();
+                    EventsUpdated?.Invoke(this, EventArgs.Empty);
                     return;
                 }
                 throw new Exception("Возникли проблемы с удалением мероприятия");
@@ -37,13 +41,13 @@ namespace TimeCraft.ViewModels
             using (DataBaseContent db = new DataBaseContent())
             {
                 Event _event = db.Event.Find(eventId);
-                if (_event != null)
+                if (_event == null)
                 {
-                    db.Event.Remove(_event);
-                    db.SaveChanges();
                     return;
                 }
-                throw new Exception("Возникли проблемы с удалением пользователя");
+                db.Event.Remove(_event);
+                db.SaveChanges();
+                EventsUpdated?.Invoke(null, EventArgs.Empty);
             }
         }
 
@@ -53,6 +57,7 @@ namespace TimeCraft.ViewModels
             {
                 db.Event.Add(_event);
                 db.SaveChanges();
+                EventsUpdated?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -63,6 +68,7 @@ namespace TimeCraft.ViewModels
                 try
                 {
                     db.Event.Update(_event);
+                    EventsUpdated?.Invoke(this, EventArgs.Empty);
                 }
                 catch
                 {
@@ -146,6 +152,7 @@ namespace TimeCraft.ViewModels
             mineAndInvitedEvents.AddRange(GetAllInvitedEvents(userId));
             return mineAndInvitedEvents;
         }
+
         public static List<Event> GetFilterEventsBySearch(List<Event> events, string search)
         {
             if (string.IsNullOrWhiteSpace(search))
@@ -155,11 +162,39 @@ namespace TimeCraft.ViewModels
             return events.Where(e => e.Title.Contains(search)).ToList();
         }
 
-        public static List<Event> GetAllMineAndInvitedByDate(int userId, DateTime date)
+        public static Dictionary<DayOfWeek, List<Event>> GetFilterEventsBySearch(Dictionary<DayOfWeek, List<Event>> eventsForWeek, string search)
+        {
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                return eventsForWeek;
+            }
+            var filteredEventsForWeek = new Dictionary<DayOfWeek, List<Event>>();
+
+            foreach (var kvp in eventsForWeek)
+            {
+                var filteredEvents = kvp.Value.Where(e => e.Title.Contains(search)).ToList();
+                filteredEventsForWeek.Add(kvp.Key, filteredEvents);
+            }
+
+            return filteredEventsForWeek;
+        }
+
+        public static List<Event> GetAllMineAndInvitedByDateForDay(int userId, DateTime date)
         {
             return GetAllMineAndInvited(userId)
                 .Where(e => e.StartDate <= date && e.EndDate >= date)
                 .ToList();
+        }
+
+        public static Dictionary<DayOfWeek, List<Event>> GetAllMineAndInvitedByDateForWeek(int userId, DateTime firstDayOfWeek)
+        {
+            Dictionary<DayOfWeek, List<Event>> eventsForWeek = new Dictionary<DayOfWeek, List<Event>>();
+            foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                eventsForWeek[dayOfWeek] = GetAllMineAndInvitedByDateForDay(userId, firstDayOfWeek);
+                firstDayOfWeek = firstDayOfWeek.AddDays(1);
+            }
+            return eventsForWeek;
         }
 
         public bool IsTitleUnique()
