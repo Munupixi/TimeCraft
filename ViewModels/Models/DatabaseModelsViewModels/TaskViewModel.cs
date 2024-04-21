@@ -11,6 +11,7 @@ namespace TimeCraft.ViewModels
         private Task _task;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public static event EventHandler TasksUpdated;
 
         public TaskViewModel(Task task)
         {
@@ -40,6 +41,7 @@ namespace TimeCraft.ViewModels
                 {
                     db.Task.Remove(_task);
                     db.SaveChanges();
+                    TasksUpdated?.Invoke(this, EventArgs.Empty);
                     return;
                 }
                 throw new Exception("Возникли проблемы с удалением напоминания");
@@ -55,6 +57,7 @@ namespace TimeCraft.ViewModels
                 {
                     db.Task.Remove(_task);
                     db.SaveChanges();
+                    TasksUpdated?.Invoke(this, EventArgs.Empty);
                     return;
                 }
                 throw new Exception("Возникли проблемы с удалением напоминания");
@@ -67,6 +70,7 @@ namespace TimeCraft.ViewModels
             {
                 db.Task.Add(_task);
                 db.SaveChanges();
+                TasksUpdated?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -77,6 +81,7 @@ namespace TimeCraft.ViewModels
                 try
                 {
                     db.Task.Update(_task);
+                    TasksUpdated?.Invoke(this, EventArgs.Empty);
                 }
                 catch
                 {

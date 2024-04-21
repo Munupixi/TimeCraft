@@ -169,6 +169,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\Pages\WeeklySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\UserControls\ForDayEventUserControlViewModel.cs" />
     <Compile Include="Models\ServiceModels\DataGridParticipant.cs" />
     <Compile Include="Data\DataBaseContent.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="ViewModels\Pages\DailySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
+    <Compile Include="ViewModels\UserControls\ForWeekEventUserControlViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditTaskWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />

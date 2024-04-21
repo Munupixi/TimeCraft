@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TimeCraft.ViewModels.Pages;
 
 namespace TimeCraft
 {
@@ -7,11 +8,7 @@ namespace TimeCraft
         public WeeklySchedulePage()
         {
             InitializeComponent();
-            MondayListView.Items.Add(new ForWeekEventUserControl());
-            MondayListView.Items.Add(new ForWeekEventUserControl());
-            MondayListView.Items.Add(new ForWeekEventUserControl());
-            MondayListView.Items.Add(new ForWeekEventUserControl());
-            MondayListView.Items.Add(new ForWeekEventUserControl());
+            this.DataContext = new WeeklySchedulePageViewModel();
         }
     }
 }

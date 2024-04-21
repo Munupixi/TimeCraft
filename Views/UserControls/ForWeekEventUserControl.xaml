@@ -15,9 +15,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBlock x:Name="StartTimeTextBlock" Grid.Row="0" Text="8:00" Foreground="White" FontSize="14" />
-            <TextBlock x:Name="EndTimeTextBlock" Grid.Row="1" Text="10:00" Foreground="White" FontSize="14" />
-            <TextBlock x:Name="TitleTextBlock" Grid.Row="2" Text="Название" Foreground="White" FontSize="16" FontWeight="Bold" TextWrapping="Wrap" />
+            <TextBlock x:Name="StartTimeTextBlock" Grid.Row="0" Text="{Binding StartTime}" Foreground="White" FontSize="14" />
+            <TextBlock x:Name="EndTimeTextBlock" Grid.Row="1" Text="{Binding EndTime}" Foreground="White" FontSize="14" />
+            <TextBlock x:Name="TitleTextBlock" Grid.Row="2" Text="{Binding Title}" Foreground="White" FontSize="16" FontWeight="Bold" TextWrapping="Wrap" />
         </Grid>
     </Border>
 </UserControl>
