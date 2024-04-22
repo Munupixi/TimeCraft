@@ -12,6 +12,7 @@ namespace TimeCraft.ViewModels
         private DataBaseContent _content;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public static event EventHandler EventsUpdated;
 
         public EventViewModel(Event _event)
@@ -184,6 +185,7 @@ namespace TimeCraft.ViewModels
                 .Where(e => e.StartDate <= date && e.EndDate >= date)
                 .ToList();
         }
+
         public static Dictionary<DayOfWeek, List<Event>> GetAllMineAndInvitedByDateForWeek(int userId, DateTime firstDayOfWeek)
         {
             Dictionary<DayOfWeek, List<Event>> eventsForWeek = new Dictionary<DayOfWeek, List<Event>>();
@@ -193,6 +195,19 @@ namespace TimeCraft.ViewModels
                 firstDayOfWeek = firstDayOfWeek.AddDays(1);
             }
             return eventsForWeek;
+        }
+
+        public static Dictionary<int, List<Event>> GetAllMineAndInvitedByDateForMonth(int userId, DateTime firstDayOfMonth)
+        {
+            Dictionary<int, List<Event>> eventsForMonth = new Dictionary<int, List<Event>>();
+
+            for (int day = 1; day <= DateTime.DaysInMonth(firstDayOfMonth.Year, firstDayOfMonth.Month); day++)
+            {
+                List<Event> eventsForDay = GetAllMineAndInvitedByDateForDay(userId, new DateTime(firstDayOfMonth.Year, firstDayOfMonth.Month, day));
+                eventsForMonth[day] = eventsForDay;
+            }
+
+            return eventsForMonth;
         }
 
         public bool IsTitleUnique()
