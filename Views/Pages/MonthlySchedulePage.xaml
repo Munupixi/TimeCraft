@@ -89,7 +89,19 @@
         </Grid>
 
         <UniformGrid Grid.Row="2" Columns="7" Rows="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
+            <ItemsControl ItemsSource="{Binding Events}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="5" Columns="7"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Grid.Row" Value="{Binding GridRow}" />
+                        <Setter Property="Grid.Column" Value="{Binding GridColumn}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+            </ItemsControl>
         </UniformGrid>
     </Grid>
 </Page>

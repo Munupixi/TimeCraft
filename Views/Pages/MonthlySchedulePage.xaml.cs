@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TimeCraft.ViewModels.Pages;
 
 namespace TimeCraft
 {
@@ -7,6 +8,7 @@ namespace TimeCraft
         public MonthlySchedulePage()
         {
             InitializeComponent();
+            this.DataContext = new MonthlySchedulePageViewModel();
         }
     }
 }

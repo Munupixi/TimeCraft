@@ -71,21 +71,10 @@ namespace TimeCraft.ViewModels.Pages
                 _forMonthEventUserControls.Add(day, new ForMonthEventUserControl(
                     new DateTime(_selectedYearAndMonth.Year, _selectedYearAndMonth.Month, day)));
             }
-
             YearAndMonth = $"{_selectedYearAndMonth.Year}, {_selectedYearAndMonth.Month}";
         }
 
-        public IEnumerable<ForMonthEventUserControl> Events
-        {
-            get { return _forMonthEventUserControls.Values; }
-            set
-            {
-                if (_forMonthEventUserControls != value)
-                {
-                    OnPropertyChanged("Events");
-                }
-            }
-        }
+        public IEnumerable<ForMonthEventUserControl> Events => _forMonthEventUserControls.Values;
 
         public string Search
         {
