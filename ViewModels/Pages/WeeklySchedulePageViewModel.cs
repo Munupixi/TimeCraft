@@ -240,7 +240,8 @@ namespace TimeCraft.ViewModels.Pages
 
         private void NextExecute()
         {
-            _selectedFirstDayOfWeek.AddDays(+ 7);
+            _selectedFirstDayOfWeek = _selectedFirstDayOfWeek.AddDays(+ 7);
+            OnPropertyChanged("Next");
         }
 
         protected void OnPropertyChanged(string propertyName)

@@ -89,41 +89,7 @@
         </Grid>
 
         <UniformGrid Grid.Row="2" Columns="7" Rows="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
-            <local:ForMonthEventUserControl />
+
         </UniformGrid>
     </Grid>
 </Page>
