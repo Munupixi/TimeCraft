@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TimeCraft.ViewModels.Windows;
+using TimeCraft.Views.UserControls;
 
 namespace TimeCraft.ViewModels.Pages
 {
@@ -72,6 +73,18 @@ namespace TimeCraft.ViewModels.Pages
             }
 
             YearAndMonth = $"{_selectedYearAndMonth.Year}, {_selectedYearAndMonth.Month}";
+        }
+
+        public IEnumerable<ForMonthEventUserControl> Events
+        {
+            get { return _forMonthEventUserControls.Values; }
+            set
+            {
+                if (_forMonthEventUserControls != value)
+                {
+                    OnPropertyChanged("Events");
+                }
+            }
         }
 
         public string Search
