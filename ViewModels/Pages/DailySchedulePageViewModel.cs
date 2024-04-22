@@ -20,7 +20,7 @@ namespace TimeCraft.ViewModels.Pages
         private DataBaseContent _context;
         private List<Event> _events;
         private ObservableCollection<ForDayEventUserControl> _forDayEventUserControls = new ObservableCollection<ForDayEventUserControl>();
-        private DateTime _selectedDate = DateTime.Now;
+        private DateTime _selectedDate;
         private string _search;
         private Visibility _noSelectedMessageVisibility;
 
@@ -36,6 +36,20 @@ namespace TimeCraft.ViewModels.Pages
 
         public DailySchedulePageViewModel()
         {
+            SetUp();
+            _selectedDate = DateTime.Now;
+            UpdateEventsView();
+        }
+
+        public DailySchedulePageViewModel(DateTime date)
+        {
+            SetUp();
+            _selectedDate = date;
+            UpdateEventsView();
+        }
+
+        private void SetUp()
+        {
             WeeklyPageCommand = new RelayCommand(NavigateToWeeklyPage);
             MonthlyPageCommand = new RelayCommand(NavigateToMonthlyPage);
             YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
@@ -46,12 +60,9 @@ namespace TimeCraft.ViewModels.Pages
             TodayCommand = new RelayCommand(TodayExecute);
             NextCommand = new RelayCommand(NextExecute);
 
-            NoSelectedMessageVisibility = Visibility.Hidden;
-
             EventViewModel.EventsUpdated += HandleEventsUpdated;
 
             _context = new DataBaseContent();
-            UpdateEventsView();
         }
 
         private void HandleEventsUpdated(object sender, EventArgs e)
@@ -73,7 +84,6 @@ namespace TimeCraft.ViewModels.Pages
             Events = _forDayEventUserControls;
             NoSelectedMessageVisibility =
                 Events.Count == 0 ? Visibility.Visible : Visibility.Hidden;
-  
         }
 
         public ObservableCollection<ForDayEventUserControl> Events
@@ -101,6 +111,7 @@ namespace TimeCraft.ViewModels.Pages
                 }
             }
         }
+
         public string Date { get; set; }
         public string DayOfWeek { get; set; }
 

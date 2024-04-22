@@ -184,6 +184,7 @@
     <Compile Include="ViewModels\Pages\DailySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
+    <Compile Include="ViewModels\UserControls\ForMonthEventUserControlViewModel.cs" />
     <Compile Include="ViewModels\UserControls\ForWeekEventUserControlViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditTaskWindowViewModel.cs" />
@@ -205,8 +206,8 @@
     <Compile Include="Views\Pages\DailySchedulePage.xaml.cs">
       <DependentUpon>DailySchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\DayForMonthEventUserControl.xaml.cs">
-      <DependentUpon>DayForMonthEventUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\ForMonthEventUserControl.xaml.cs">
+      <DependentUpon>ForMonthEventUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseModels\Event.cs" />
     <Compile Include="Views\UserControls\ForWeekEventUserControl.xaml.cs">
@@ -254,7 +255,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\DayForMonthEventUserControl.xaml">
+    <Page Include="Views\UserControls\ForMonthEventUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

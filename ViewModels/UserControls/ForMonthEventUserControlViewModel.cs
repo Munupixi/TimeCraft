@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TimeCraft.ViewModels.Windows;
+
+namespace TimeCraft.ViewModels.UserControls
+{
+    internal class ForMonthEventUserControlViewModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private DateTime _date;
+        private int _countEvents;
+        private DataBaseContent _context;
+
+        public ForMonthEventUserControlViewModel(DateTime date)
+        {
+            _context = new DataBaseContent();
+            _date = date;
+        }
+
+        public int Day
+        {
+            get { return _date.Day; }
+        }
+
+        public int CountEvents
+        {
+            get { return EventViewModel.GetAllMineAndInvitedByDateForDay(User.ActiveUser.UserId, _date).Count; }
+        }
+
+        public List<string> Events
+        {
+            get
+            {
+                return EventViewModel.GetAllMineAndInvitedByDateForDay(User.ActiveUser.UserId, _date).
+                    Select(e => e.Title).ToList();
+            }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        internal void ExecuteOpenDay()
+        {
+            MainWindowViewModel.Frame.Content = new DailySchedulePage(_date);
+        }
+
+        internal void ExecuteOpenEvent(Event _event)
+        {
+            new CreateEditEventWindow(_event).Show();
+        }
+    }
+}

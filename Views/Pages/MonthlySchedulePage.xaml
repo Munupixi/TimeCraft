@@ -88,10 +88,42 @@
             <TextBlock Grid.Column="6" Text="Вс" FontSize="16" TextAlignment="Center" />
         </Grid>
 
-        <UniformGrid Grid.Row="2" Columns="7" Rows="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <local:DayForMonthUserControl />
-
-            <!-- Add more DayForMonthUserControls as needed -->
+        <UniformGrid Grid.Row="2" Columns="7" Rows="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
+            <local:ForMonthEventUserControl />
         </UniformGrid>
     </Grid>
 </Page>

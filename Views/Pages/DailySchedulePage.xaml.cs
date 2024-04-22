@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using TimeCraft.ViewModels.Pages;
 
 namespace TimeCraft
@@ -9,6 +10,12 @@ namespace TimeCraft
         {
             InitializeComponent();
             this.DataContext = new DailySchedulePageViewModel();
+        }
+
+        public DailySchedulePage(DateTime date)
+        {
+            InitializeComponent();
+            this.DataContext = new DailySchedulePageViewModel(date);
         }
     }
 }
