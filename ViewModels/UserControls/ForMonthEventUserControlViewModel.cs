@@ -13,13 +13,41 @@ namespace TimeCraft.ViewModels.UserControls
         public event PropertyChangedEventHandler PropertyChanged;
 
         private DateTime _date;
-        private int _countEvents;
+        private List<Event> _events;
         private DataBaseContent _context;
+        private byte _row = 2;
+        private byte _column = 3;
 
         public ForMonthEventUserControlViewModel(DateTime date)
         {
             _context = new DataBaseContent();
             _date = date;
+            _events = EventViewModel.GetAllMineAndInvitedByDateForDay(User.ActiveUser.UserId, _date);
+        }
+        public byte Row
+        {
+            get { return _row; }
+            set
+            {
+                if (_row != value)
+                {
+                    _row = value;
+                    OnPropertyChanged("Row");
+                }
+            }
+        }
+
+        public byte Column
+        {
+            get { return _column; }
+            set
+            {
+                if (_column != value)
+                {
+                    _column = value;
+                    OnPropertyChanged("Column");
+                }
+            }
         }
 
         public int Day
@@ -29,15 +57,14 @@ namespace TimeCraft.ViewModels.UserControls
 
         public int CountEvents
         {
-            get { return EventViewModel.GetAllMineAndInvitedByDateForDay(User.ActiveUser.UserId, _date).Count; }
+            get { return _events.Count; }
         }
 
         public List<string> Events
         {
             get
             {
-                return EventViewModel.GetAllMineAndInvitedByDateForDay(User.ActiveUser.UserId, _date).
-                    Select(e => e.Title).ToList();
+                return _events.Select(e => e.Title).ToList();
             }
         }
 

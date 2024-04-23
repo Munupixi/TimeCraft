@@ -88,20 +88,37 @@
             <TextBlock Grid.Column="6" Text="Вс" FontSize="16" TextAlignment="Center" />
         </Grid>
 
-        <UniformGrid Grid.Row="2" Columns="7" Rows="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!--<UniformGrid Grid.Row="2" Columns="7" Rows="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ItemsControl ItemsSource="{Binding Events}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Rows="5" Columns="7"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemContainerStyle>
-                    <Style TargetType="ContentPresenter">
-                        <Setter Property="Grid.Row" Value="{Binding GridRow}" />
-                        <Setter Property="Grid.Column" Value="{Binding GridColumn}" />
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
             </ItemsControl>
-        </UniformGrid>
+        </UniformGrid>-->
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding Events}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="5" Columns="7"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Grid.Row" Value="{Binding Row}" />
+                    <Setter Property="Grid.Column" Value="{Binding Column}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
     </Grid>
 </Page>

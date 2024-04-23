@@ -16,7 +16,7 @@
             <!-- День месяца и количество мероприятий -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="{Binding Day}" Foreground="White" FontSize="14" FontWeight="Bold" />
-                <TextBlock Text="1 апреля (" Foreground="White" FontSize="13" />
+                <TextBlock Text="(" Foreground="White" FontSize="13" />
                 <TextBlock Text="{Binding CountEvents}" Foreground="White" FontSize="14" />
                 <TextBlock Text=")" Foreground="White" FontSize="14" />
             </StackPanel>
