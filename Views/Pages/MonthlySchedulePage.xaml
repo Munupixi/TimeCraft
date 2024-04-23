@@ -43,8 +43,8 @@
                     <TextBlock x:Name="DateTextBlock" Text="Март 2024" Foreground="#333333" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="10" />
                     <Button x:Name="PreviousButton" Content="&lt;" Width="20" />
                     <Button x:Name="TodayButton" Content="Сегодня" Width="auto" />
-                    <Button x:Name="NextButton" Content="&gt;" Width="20" />
-                    <TextBox x:Name="SearchTextBox" Width="100" Margin="10" />
+                    <Button x:Name="NextButton" Content="&gt;" Width="20" Command="{Binding NextCommand}"/>
+                    <TextBox x:Name="SearchTextBox" Width="100" Margin="10" Text="{Binding Search}"/>
                 </StackPanel>
 
                 <Button x:Name="DayButton" Content="День" />

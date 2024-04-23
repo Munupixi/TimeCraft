@@ -178,6 +178,22 @@ namespace TimeCraft.ViewModels
 
             return filteredEventsForWeek;
         }
+        public static Dictionary<int, List<Event>> GetFilterEventsBySearch(Dictionary<int, List<Event>> eventsForMonth, string search)
+        {
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                return eventsForMonth;
+            }
+            var filteredEventsForMonth = new Dictionary<int, List<Event>>();
+
+            foreach (var kvp in eventsForMonth)
+            {
+                var filteredEvents = kvp.Value.Where(e => e.Title.Contains(search)).ToList();
+                filteredEventsForMonth.Add(kvp.Key, filteredEvents);
+            }
+
+            return filteredEventsForMonth;
+        }
 
         public static List<Event> GetAllMineAndInvitedByDateForDay(int userId, DateTime date)
         {

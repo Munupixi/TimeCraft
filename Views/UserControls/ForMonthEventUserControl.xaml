@@ -16,21 +16,14 @@
             <!-- День месяца и количество мероприятий -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="{Binding Day}" Foreground="White" FontSize="14" FontWeight="Bold" />
-                <TextBlock Text="(" Foreground="White" FontSize="13" />
+                <TextBlock Text=" (" Foreground="White" FontSize="13" />
                 <TextBlock Text="{Binding CountEvents}" Foreground="White" FontSize="14" />
                 <TextBlock Text=")" Foreground="White" FontSize="14" />
             </StackPanel>
 
             <!-- Список мероприятий -->
-            <ListView x:Name="EventsListView" Grid.Row="1" Background="Transparent"
-                      BorderThickness="0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <!-- Здесь можно настроить отображение элементов списка -->
-                        <TextBlock Text="{Binding EventName}" Foreground="White" FontSize="10" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <ListView x:Name="EventsListView" ItemsSource="{Binding Events}" Grid.Row="1" Background="Transparent"
+                      BorderThickness="0"/>
         </Grid>
     </Border>
 </UserControl>

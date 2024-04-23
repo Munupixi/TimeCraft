@@ -60,8 +60,8 @@ namespace TimeCraft.ViewModels.Pages
 
         public void UpdateEventsView()
         {
-            _eventsForWeek = EventViewModel.GetAllMineAndInvitedByDateForWeek(
-                User.ActiveUser.UserId, _selectedFirstDayOfWeek);
+            _eventsForWeek = EventViewModel.GetFilterEventsBySearch(EventViewModel.GetAllMineAndInvitedByDateForWeek(
+                User.ActiveUser.UserId, _selectedFirstDayOfWeek), Search);
             _forWeekEventUserControls.Clear();
 
             foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
@@ -198,6 +198,14 @@ namespace TimeCraft.ViewModels.Pages
             }
         }
 
+        public int Monday => _selectedFirstDayOfWeek.Day;
+        public int Tuesday => _selectedFirstDayOfWeek.Day + 1;
+        public int Wednesday => _selectedFirstDayOfWeek.Day + 2;
+        public int Thursday => _selectedFirstDayOfWeek.Day + 3;
+        public int Friday => _selectedFirstDayOfWeek.Day + 4;
+        public int Saturday => _selectedFirstDayOfWeek.Day + 5;
+        public int Sunday => _selectedFirstDayOfWeek.Day + 6;
+
         private void NavigateToDailyPage()
         {
             MainWindowViewModel.Frame.Content = new DailySchedulePage();
@@ -231,11 +239,13 @@ namespace TimeCraft.ViewModels.Pages
         private void TodayExecute()
         {
             _selectedFirstDayOfWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
+            OnPropertyChanged("Today");
         }
 
         private void PreviousExecute()
         {
-            _selectedFirstDayOfWeek.AddDays(- 7);
+            _selectedFirstDayOfWeek = _selectedFirstDayOfWeek.AddDays(- 7);
+            OnPropertyChanged("Previous");
         }
 
         private void NextExecute()
