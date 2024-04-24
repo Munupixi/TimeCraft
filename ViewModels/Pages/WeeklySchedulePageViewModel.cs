@@ -19,7 +19,6 @@ namespace TimeCraft.ViewModels.Pages
         public event PropertyChangedEventHandler PropertyChanged;
 
         private DataBaseContent _context;
-        private Dictionary<DayOfWeek, List<Event>> _eventsForWeek;
         private Dictionary<DayOfWeek, ObservableCollection<ForWeekEventUserControl>> _forWeekEventUserControls =
             new Dictionary<DayOfWeek, ObservableCollection<ForWeekEventUserControl>>();
         private DateTime _selectedFirstDayOfWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
@@ -60,15 +59,15 @@ namespace TimeCraft.ViewModels.Pages
 
         public void UpdateEventsView()
         {
-            _eventsForWeek = EventViewModel.GetFilterEventsBySearch(EventViewModel.GetAllMineAndInvitedByDateForWeek(
-                User.ActiveUser.UserId, _selectedFirstDayOfWeek), Search);
             _forWeekEventUserControls.Clear();
 
             foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
             {
                 _forWeekEventUserControls.Add(dayOfWeek, new ObservableCollection<ForWeekEventUserControl>());
             }
-            foreach (KeyValuePair<DayOfWeek, List<Event>> eventsForDay in _eventsForWeek)
+            foreach (KeyValuePair<DayOfWeek, List<Event>> eventsForDay in EventViewModel.GetFilterEventsBySearch(
+                EventViewModel.GetAllMineAndInvitedByDateForWeek(
+                User.ActiveUser.UserId, _selectedFirstDayOfWeek), Search))
             {
                 foreach (Event _event in eventsForDay.Value)
                 {
@@ -96,7 +95,6 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Monday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Monday] = value;
-                    OnPropertyChanged("MondayEvents");
                 }
             }
         }
@@ -108,7 +106,6 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Tuesday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Tuesday] = value;
-                    OnPropertyChanged("TuesdayEvents");
                 }
             }
         }
@@ -120,7 +117,7 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Wednesday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Wednesday] = value;
-                    OnPropertyChanged("WednesdayEvents");
+                    OnPropertyChanged(nameof(WednesdayEvents));
                 }
             }
         }
@@ -132,7 +129,6 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Thursday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Thursday] = value;
-                    OnPropertyChanged("ThursdayEvents");
                 }
             }
         }
@@ -144,7 +140,6 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Friday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Friday] = value;
-                    OnPropertyChanged("FridayEvents");
                 }
             }
         }

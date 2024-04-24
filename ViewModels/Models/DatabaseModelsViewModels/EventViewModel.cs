@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
@@ -127,23 +126,38 @@ namespace TimeCraft.ViewModels
                 return db.Event.Where(_event => _event.UserId == userId).ToList();
             }
         }
-
         public static List<Event> GetAllInvitedEvents(int userId)
         {
-            List<Event> events = new List<Event>();
+            List<Event> invitedEvents = new List<Event>();
+            List<Event> mineEvents = GetAllMine(userId);
+
+            List<Event> events;
+            Dictionary<int, List<int>> participantsByEventId = new Dictionary<int, List<int>>();
             using (DataBaseContent db = new DataBaseContent())
             {
-                foreach (Event e in db.Event.ToList())
+                events = db.Event.ToList();
+                foreach (Event e in events)
                 {
-                    if (new EventViewModel(e).IsParticipant(userId) &&
-                        !GetAllMine(userId).Any(ev => ev.EventId == e.EventId))
-                    {
-                        events.Add(e);
-                    }
+                    participantsByEventId.Add(
+                        e.EventId, db.Participant
+                            .Where(p => p.IdEvent == e.EventId)
+                            .Select(p => p.IdUser)
+                            .ToList());
                 }
             }
-            return events;
+            foreach (Event e in events)
+            {
+                if (participantsByEventId[e.EventId].Contains(userId) &&
+                    !mineEvents.Any(ev => ev.EventId == e.EventId))
+                {
+                    invitedEvents.Add(e);
+                }
+            }
+
+            return invitedEvents;
         }
+
+
 
         public static List<Event> GetAllMineAndInvited(int userId)
         {
@@ -178,6 +192,7 @@ namespace TimeCraft.ViewModels
 
             return filteredEventsForWeek;
         }
+
         public static Dictionary<int, List<Event>> GetFilterEventsBySearch(Dictionary<int, List<Event>> eventsForMonth, string search)
         {
             if (string.IsNullOrWhiteSpace(search))
@@ -225,6 +240,7 @@ namespace TimeCraft.ViewModels
 
             return eventsForMonth;
         }
+
 
         public bool IsTitleUnique()
         {

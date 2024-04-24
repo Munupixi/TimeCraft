@@ -19,8 +19,6 @@ namespace TimeCraft.ViewModels.Pages
         public event PropertyChangedEventHandler PropertyChanged;
 
         private DataBaseContent _context;
-        private Dictionary<int, List<Event>> _eventsForMonth;
-
         private Dictionary<int, ForMonthEventUserControl> _forMonthEventUserControls =
             new Dictionary<int, ForMonthEventUserControl>();
 
@@ -63,9 +61,6 @@ namespace TimeCraft.ViewModels.Pages
 
         public void UpdateEventsView()
         {
-            _eventsForMonth = EventViewModel.GetFilterEventsBySearch(
-                EventViewModel.GetAllMineAndInvitedByDateForMonth(
-                User.ActiveUser.UserId, _selectedDate), Search);
             _forMonthEventUserControls.Clear();
 
             DateTime date = _selectedDate;
@@ -80,6 +75,7 @@ namespace TimeCraft.ViewModels.Pages
             }
             YearAndMonth = $"{_selectedDate.Year}, {_selectedDate.Month}";
         }
+
 
         public IEnumerable<ForMonthEventUserControl> Events => _forMonthEventUserControls.Values;
 
@@ -104,7 +100,6 @@ namespace TimeCraft.ViewModels.Pages
                 if (_yearAndMonth != value)
                 {
                     _yearAndMonth = value;
-                    OnPropertyChanged("YearAndMonth");
                 }
             }
         }
