@@ -52,9 +52,9 @@ namespace TimeCraft.ViewModels.UserControls
             MainWindowViewModel.Frame.Content = new DailySchedulePage(_date);
         }
 
-        internal void ExecuteOpenEvent(Event _event)
+        internal void ExecuteOpenEvent(int index)
         {
-            new CreateEditEventWindow(_event).Show();
+            new CreateEditEventWindow(_events[index]).Show();
         }
     }
 }

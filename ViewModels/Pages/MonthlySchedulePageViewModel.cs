@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using TimeCraft.ViewModels.UserControls;
 using TimeCraft.ViewModels.Windows;
 using TimeCraft.Views.UserControls;
 
@@ -19,8 +20,9 @@ namespace TimeCraft.ViewModels.Pages
         public event PropertyChangedEventHandler PropertyChanged;
 
         private DataBaseContent _context;
-        private Dictionary<int, ForMonthEventUserControl> _forMonthEventUserControls =
-            new Dictionary<int, ForMonthEventUserControl>();
+        private ForMonthEventUserControl[] _forMonthEventUserControls = new ForMonthEventUserControl[5 * 7];
+        //private Dictionary<int, ForMonthEventUserControl> _forMonthEventUserControls =
+        //    new Dictionary<int, ForMonthEventUserControl>();
 
         private DateTime _selectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
         private string _search;
@@ -50,6 +52,17 @@ namespace TimeCraft.ViewModels.Pages
 
             EventViewModel.EventsUpdated += HandleEventsUpdated;
 
+            DateTime date = _selectedDate;
+            while (date.DayOfWeek != DayOfWeek.Monday)
+            {
+                date = date.AddDays(-1);
+            }
+            for (int day = 0; day < _forMonthEventUserControls.Length; day++)
+            {
+                _forMonthEventUserControls[day] = new ForMonthEventUserControl(date);
+                date = date.AddDays(1);
+            }
+
             _context = new DataBaseContent();
             UpdateEventsView();
         }
@@ -61,23 +74,21 @@ namespace TimeCraft.ViewModels.Pages
 
         public void UpdateEventsView()
         {
-            _forMonthEventUserControls.Clear();
-
             DateTime date = _selectedDate;
             while (date.DayOfWeek != DayOfWeek.Monday)
             {
                 date = date.AddDays(-1);
             }
-            for (int day = 1; day <= 5 * 7; day++)
+            for (int day = 0; day < _forMonthEventUserControls.Length; day++)
             {
-                _forMonthEventUserControls.Add(day, new ForMonthEventUserControl(date));
+                _forMonthEventUserControls[day].Update(date);
                 date = date.AddDays(1);
             }
             YearAndMonth = $"{_selectedDate.Year}, {_selectedDate.Month}";
         }
 
 
-        public IEnumerable<ForMonthEventUserControl> Events => _forMonthEventUserControls.Values;
+        public IEnumerable<ForMonthEventUserControl> Events => _forMonthEventUserControls;
 
         public string Search
         {
@@ -150,6 +161,7 @@ namespace TimeCraft.ViewModels.Pages
         private void NextExecute()
         {
             _selectedDate = _selectedDate.AddMonths(+ 1);
+            OnPropertyChanged("Next");
         }
 
         protected void OnPropertyChanged(string propertyName)

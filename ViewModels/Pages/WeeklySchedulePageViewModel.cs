@@ -80,7 +80,6 @@ namespace TimeCraft.ViewModels.Pages
             int weekNumber = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(_selectedFirstDayOfWeek,
                 CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
             YearAndWeek = $"{_selectedFirstDayOfWeek.Year}, {weekNumber} неделя";
-
             //MondayEvents = _forWeekEventUserControls[DayOfWeek.Monday];
             //TuesdayEvents = _forWeekEventUserControls[DayOfWeek.Tuesday];
             //WednesdayEvents = _forWeekEventUserControls[DayOfWeek.Wednesday];
@@ -236,23 +235,36 @@ namespace TimeCraft.ViewModels.Pages
         {
             throw new NotImplementedException();
         }
+        private void UpdateDayProperties()
+        {
+            OnPropertyChanged(nameof(Monday));
+            OnPropertyChanged(nameof(Tuesday));
+            OnPropertyChanged(nameof(Wednesday));
+            OnPropertyChanged(nameof(Thursday));
+            OnPropertyChanged(nameof(Friday));
+            OnPropertyChanged(nameof(Saturday));
+            OnPropertyChanged(nameof(Sunday));
+        }
 
         private void TodayExecute()
         {
             _selectedFirstDayOfWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
             OnPropertyChanged("Today");
+            UpdateDayProperties();
         }
 
         private void PreviousExecute()
         {
             _selectedFirstDayOfWeek = _selectedFirstDayOfWeek.AddDays(- 7);
             OnPropertyChanged("Previous");
+            UpdateDayProperties();
         }
 
         private void NextExecute()
         {
             _selectedFirstDayOfWeek = _selectedFirstDayOfWeek.AddDays(+ 7);
             OnPropertyChanged("Next");
+            UpdateDayProperties();
         }
 
         protected void OnPropertyChanged(string propertyName)
