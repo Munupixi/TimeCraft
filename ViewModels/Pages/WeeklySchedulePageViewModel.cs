@@ -50,6 +50,10 @@ namespace TimeCraft.ViewModels.Pages
             EventViewModel.EventsUpdated += HandleEventsUpdated;
 
             _context = new DataBaseContent();
+            foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                _forWeekEventUserControls.Add(dayOfWeek, new ObservableCollection<ForWeekEventUserControl>());
+            }
             UpdateEventsView();
         }
         private void HandleEventsUpdated(object sender, EventArgs e)
@@ -59,11 +63,9 @@ namespace TimeCraft.ViewModels.Pages
 
         public void UpdateEventsView()
         {
-            _forWeekEventUserControls.Clear();
-
-            foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
+            foreach (var collection in _forWeekEventUserControls.Values)
             {
-                _forWeekEventUserControls.Add(dayOfWeek, new ObservableCollection<ForWeekEventUserControl>());
+                collection.Clear();
             }
             foreach (KeyValuePair<DayOfWeek, List<Event>> eventsForDay in EventViewModel.GetFilterEventsBySearch(
                 EventViewModel.GetAllMineAndInvitedByDateForWeek(
@@ -79,13 +81,13 @@ namespace TimeCraft.ViewModels.Pages
                 CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
             YearAndWeek = $"{_selectedFirstDayOfWeek.Year}, {weekNumber} неделя";
 
-            MondayEvents = _forWeekEventUserControls[DayOfWeek.Monday];
-            TuesdayEvents = _forWeekEventUserControls[DayOfWeek.Tuesday];
-            WednesdayEvents = _forWeekEventUserControls[DayOfWeek.Wednesday];
-            ThursdayEvents = _forWeekEventUserControls[DayOfWeek.Thursday];
-            FridayEvents = _forWeekEventUserControls[DayOfWeek.Friday];
-            SaturdayEvents = _forWeekEventUserControls[DayOfWeek.Saturday];
-            SundayEvents = _forWeekEventUserControls[DayOfWeek.Sunday];
+            //MondayEvents = _forWeekEventUserControls[DayOfWeek.Monday];
+            //TuesdayEvents = _forWeekEventUserControls[DayOfWeek.Tuesday];
+            //WednesdayEvents = _forWeekEventUserControls[DayOfWeek.Wednesday];
+            //ThursdayEvents = _forWeekEventUserControls[DayOfWeek.Thursday];
+            //FridayEvents = _forWeekEventUserControls[DayOfWeek.Friday];
+            //SaturdayEvents = _forWeekEventUserControls[DayOfWeek.Saturday];
+            //SundayEvents = _forWeekEventUserControls[DayOfWeek.Sunday];
         }
         public ObservableCollection<ForWeekEventUserControl> MondayEvents
         {
@@ -95,6 +97,7 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Monday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Monday] = value;
+                    OnPropertyChanged(nameof(MondayEvents));
                 }
             }
         }
@@ -106,6 +109,7 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Tuesday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Tuesday] = value;
+                    OnPropertyChanged(nameof(TuesdayEvents));
                 }
             }
         }
@@ -129,6 +133,7 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Thursday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Thursday] = value;
+                    OnPropertyChanged(nameof(ThursdayEvents));
                 }
             }
         }
@@ -140,6 +145,7 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Friday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Friday] = value;
+                    OnPropertyChanged(nameof(FridayEvents));
                 }
             }
         }
@@ -151,7 +157,7 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Saturday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Saturday] = value;
-                    OnPropertyChanged("SaturdayEvents");
+                    OnPropertyChanged(nameof(SaturdayEvents));
                 }
             }
         }
@@ -163,7 +169,7 @@ namespace TimeCraft.ViewModels.Pages
                 if (_forWeekEventUserControls[DayOfWeek.Sunday] != value)
                 {
                     _forWeekEventUserControls[DayOfWeek.Sunday] = value;
-                    OnPropertyChanged("SundayEvents");
+                    OnPropertyChanged(nameof(SundayEvents));
                 }
             }
         }
