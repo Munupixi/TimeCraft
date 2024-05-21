@@ -208,8 +208,20 @@
     <Compile Include="Views\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\InvitationsListPage.xaml.cs">
+      <DependentUpon>InvitationsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\TaskListPage.xaml.cs">
+      <DependentUpon>TaskListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ForDayEventUserControl.xaml.cs">
       <DependentUpon>ForDayEventUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\InvitationUserControl.xaml.cs">
+      <DependentUpon>InvitationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TaskUserControl.xaml.cs">
+      <DependentUpon>TaskUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\CreateEditEventWindow.xaml.cs">
       <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
@@ -255,7 +267,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\InvitationsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\TaskListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\ForDayEventUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\InvitationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\TaskUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -351,6 +379,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IconBack.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
