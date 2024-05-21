@@ -198,6 +198,12 @@
     <Compile Include="Views\UserControls\ForDayEventUserControl.xaml.cs">
       <DependentUpon>ForDayEventUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\InvitationUserControl.xaml.cs">
+      <DependentUpon>InvitationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TaskUserControl.xaml.cs">
+      <DependentUpon>TaskUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\CreateEditEventWindow.xaml.cs">
       <DependentUpon>CreateEditEventWindow.xaml</DependentUpon>
     </Compile>
@@ -251,6 +257,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ForDayEventUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\InvitationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\TaskUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
