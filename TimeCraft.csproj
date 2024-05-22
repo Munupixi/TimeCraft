@@ -186,6 +186,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\Pages\InvitationsListPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\MonthlySchedulePageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\TaskListPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\WeeklySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\YearlySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\UserControls\ForDayEventUserControlViewModel.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="ViewModels\UserControls\ForMonthEventUserControlViewModel.cs" />
     <Compile Include="ViewModels\UserControls\ForWeekEventUserControlViewModel.cs" />
     <Compile Include="ViewModels\UserControls\InvitationUserControlViewModel.cs" />
+    <Compile Include="ViewModels\UserControls\TaskUserControlViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditTaskWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />

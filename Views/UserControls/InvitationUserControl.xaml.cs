@@ -25,10 +25,6 @@ namespace TimeCraft.Views.UserControls
             {
                 AcceptButton.Visibility = Visibility.Hidden;
             }
-            else
-            {
-                DeclineButton.Visibility = Visibility.Hidden;
-            }
             DataContext = new InvitationUserControlViewModel(participant);
         }
     }

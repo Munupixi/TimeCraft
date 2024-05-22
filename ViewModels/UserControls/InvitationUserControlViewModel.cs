@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace TimeCraft.ViewModels.UserControls
@@ -64,6 +65,15 @@ namespace TimeCraft.ViewModels.UserControls
 
         internal void AcceptExecute()
         {
+            if (!new UserViewModel(User.ActiveUser).IsFreeTime(_event))
+            {
+                Event blockedEvent = EventViewModel.Get(_event.StartDate, _event.StartTime, _event.EndDate, _event.EndTime);
+                if (blockedEvent.EventId != _event.EventId)
+                {
+                    MessageBox.Show("Данные время у вас занято меропритием:\n" + blockedEvent.Title);
+                    return;
+                }
+            }
             _participant.IsAccepted = true;
             new ParticipantViewModel(_participant).Update();
         }
