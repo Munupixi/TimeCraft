@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -81,13 +82,13 @@ namespace TimeCraft.ViewModels
                 try
                 {
                     db.Task.Update(_task);
+                    db.SaveChanges();
                     TasksUpdated?.Invoke(this, EventArgs.Empty);
                 }
                 catch
                 {
                     throw new Exception("Неудалось сохранить изменения");
                 }
-                db.SaveChanges();
             }
         }
 
@@ -112,6 +113,13 @@ namespace TimeCraft.ViewModels
             using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Task.FirstOrDefault(t => t.Title == title);
+            }
+        }
+        public static List<Task> GetAll(int idUser)
+        {
+            using (DataBaseContent db = new DataBaseContent())
+            {
+                return db.Task.Where(t => t.UserId == idUser).ToList();
             }
         }
     }

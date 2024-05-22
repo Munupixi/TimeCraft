@@ -35,7 +35,7 @@ namespace TimeCraft.ViewModels.UserControls
 
         public string StartDate
         {
-            get { return _task.StartDate.ToString(); }
+            get { return _task.StartDate.ToString().Substring(0, _task.StartDate.ToString().Length - 7); }
         }
 
         public string StartTime
@@ -47,10 +47,20 @@ namespace TimeCraft.ViewModels.UserControls
         {
             get { return CategoryViewModel.Get(_task.CategoryId).Title; }
         }
+        public bool IsDone
+        {
+            get { return _task.IsDone; }
+            set { _task.IsDone = value; }
+        }
 
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public void IsDoneChanged()
+        {
+            _task.IsDone = !_task.IsDone;
+            new TaskViewModel(_task).Update();
         }
 
         internal void OpenExecute()

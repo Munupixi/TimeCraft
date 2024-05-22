@@ -32,3 +32,4 @@ namespace TimeCraft.Views.Pages
             }
         }
     }
+}

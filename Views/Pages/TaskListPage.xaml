@@ -31,9 +31,9 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="34*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -53,19 +53,19 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="SearchText" TextWrapping="Wrap" Grid.Column="1" Text="{Binding SearchText}"/>
-            <ComboBox x:Name="SortCategory" Grid.Column="3" ItemsSource="{Binding Categories}" SelectedIndex="{Binding Category}"/>
-            <DatePicker x:Name="DateFilter" Grid.Column="5" SelectedDate="{Binding Date}"/>
+            <TextBox x:Name="SearchText" TextWrapping="Wrap" Grid.Column="1" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker x:Name="DateFilter" Grid.Column="3" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Grid.Column="7" Content="Очистить" Command="{Binding ClearCommand}"/>
+            <CheckBox Grid.Column="5" Content="Выполненные" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsDone, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid Grid.Row="2">
             <ListView x:Name="MainListView" ItemsSource="{Binding Tasks}" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="MainListView_MouseDoubleClick">

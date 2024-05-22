@@ -24,7 +24,15 @@ namespace TimeCraft.Views.UserControls
         public TaskUserControl(Task _task)
         {
             InitializeComponent();
-            DataContext = new TaskUserControlViewModel(task);
+            DataContext = new TaskUserControlViewModel(_task);
+        }
+
+        private void IsDoneCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is TaskUserControlViewModel viewModel)
+            {
+                viewModel.IsDoneChanged();
+            }
         }
     }
 }

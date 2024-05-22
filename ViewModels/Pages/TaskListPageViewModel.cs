@@ -10,6 +10,7 @@ using System.Windows;
 using TimeCraft.ViewModels.Windows;
 using TimeCraft.Views.Pages;
 using TimeCraft.Views.UserControls;
+using GalaSoft.MvvmLight.Command;
 
 namespace TimeCraft.ViewModels.Pages
 {
@@ -18,83 +19,67 @@ namespace TimeCraft.ViewModels.Pages
         public event PropertyChangedEventHandler PropertyChanged;
 
         private DataBaseContent _context;
-        private List<Event> _events;
-        private ObservableCollection<ForDayEventUserControl> _forDayEventUserControls = new ObservableCollection<ForDayEventUserControl>();
-        private DateTime _selectedDate;
-        private string _search;
+        private ObservableCollection<Task> _tasks = new ObservableCollection<Task>();
+        private ObservableCollection<TaskUserControl> _taskUserControls = new ObservableCollection<TaskUserControl>();
+        private DateTime _date;
+        private string _search = "";
+        private bool _isDone;
         private Visibility _noSelectedMessageVisibility;
 
-        public ICommand WeeklyPageCommand { get; private set; }
-        public ICommand MonthlyPageCommand { get; private set; }
-        public ICommand YearlyPageCommand { get; private set; }
-        public ICommand ProfileCommand { get; private set; }
-        public ICommand InvitationListCommand { get; private set; }
-        public ICommand TaskListCommand { get; private set; }
-        public ICommand PreviousCommand { get; private set; }
-        public ICommand TodayCommand { get; private set; }
-        public ICommand NextCommand { get; private set; }
+        public ICommand ClearCommand { get; private set; }
 
-        public DailySchedulePageViewModel()
+        public TaskListPageViewModel()
         {
-            SetUp();
-            _selectedDate = DateTime.Now;
-            UpdateEventsView();
-        }
+            ClearCommand = new RelayCommand(ClearExecute);
 
-        public DailySchedulePageViewModel(DateTime date)
-        {
-            SetUp();
-            _selectedDate = date;
-            UpdateEventsView();
-        }
-
-        private void SetUp()
-        {
-            WeeklyPageCommand = new RelayCommand(NavigateToWeeklyPage);
-            MonthlyPageCommand = new RelayCommand(NavigateToMonthlyPage);
-            YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
-            ProfileCommand = new RelayCommand(NavigateProfilePage);
-            InvitationListCommand = new RelayCommand(NavigateToInvitationListPage);
-            TaskListCommand = new RelayCommand(NavigateToTaskListPage);
-            PreviousCommand = new RelayCommand(PreviousExecute);
-            TodayCommand = new RelayCommand(TodayExecute);
-            NextCommand = new RelayCommand(NextExecute);
-
-            EventViewModel.EventsUpdated += HandleEventsUpdated;
+            TaskViewModel.TasksUpdated += HandleTasksUpdated;
 
             _context = new DataBaseContent();
+            _tasks = new ObservableCollection<Task>(TaskViewModel.GetAll(User.ActiveUser.UserId));
+
+            UpdateTasksView();
         }
 
-        private void HandleEventsUpdated(object sender, EventArgs e)
+        private void HandleTasksUpdated(object sender, EventArgs e)
         {
-            UpdateEventsView();
+            UpdateTasksView();
         }
 
-        public void UpdateEventsView()
+        public void UpdateTasksView()
         {
-            _events = EventViewModel.GetFilterEventsBySearch(
-                EventViewModel.GetAllMineAndInvitedByDateForDay(
-                User.ActiveUser.UserId, SelectedDate),
-                Search);
-            _forDayEventUserControls.Clear();
-            foreach (Event _event in _events)
+            _tasks = new ObservableCollection<Task>(TaskViewModel.GetAll(User.ActiveUser.UserId));
+            _taskUserControls.Clear();
+            foreach (Task _task in _tasks)
             {
-                _forDayEventUserControls.Add(new ForDayEventUserControl(_event));
+                if (!_task.Title.ToLower().Contains(Search.ToLower()))
+                {
+                    continue;
+                }
+                if (Date != _task.StartDate && Date != new DateTime(1, 1, 1))
+                {
+                    continue;
+                }
+                if (!IsDone && _task.IsDone == true)
+                {
+                    continue;
+                }
+                _taskUserControls.Add(new TaskUserControl(_task));
             }
-            Events = _forDayEventUserControls;
+
+            Tasks = _taskUserControls;
             NoSelectedMessageVisibility =
-                Events.Count == 0 ? Visibility.Visible : Visibility.Hidden;
+                _tasks.Count == 0 ? Visibility.Visible : Visibility.Hidden;
         }
 
-        public ObservableCollection<ForDayEventUserControl> Events
+        public ObservableCollection<TaskUserControl> Tasks
         {
-            get { return _forDayEventUserControls; }
+            get { return _taskUserControls; }
             set
             {
-                if (_forDayEventUserControls != value)
+                if (_taskUserControls != value)
                 {
-                    _forDayEventUserControls = value;
-                    OnPropertyChanged("Events");
+                    _taskUserControls = value;
+                    OnPropertyChanged("Tasks");
                 }
             }
         }
@@ -112,22 +97,6 @@ namespace TimeCraft.ViewModels.Pages
             }
         }
 
-        public string Date { get; set; }
-        public string DayOfWeek { get; set; }
-
-        public DateTime SelectedDate
-        {
-            get { return _selectedDate; }
-            set
-            {
-                if (_selectedDate != value)
-                {
-                    _selectedDate = value;
-                    OnPropertyChanged("SelectedDate");
-                }
-            }
-        }
-
         public string Search
         {
             get { return _search; }
@@ -141,58 +110,48 @@ namespace TimeCraft.ViewModels.Pages
             }
         }
 
-        private void NavigateToWeeklyPage()
+        public DateTime Date
         {
-            MainWindowViewModel.Frame.Content = new WeeklySchedulePage();
+            get { return _date; }
+            set
+            {
+                if (_date != value)
+                {
+                    _date = value;
+                    OnPropertyChanged("Date");
+                }
+            }
         }
 
-        private void NavigateToMonthlyPage()
+        public bool IsDone
         {
-            MainWindowViewModel.Frame.Content = new MonthlySchedulePage();
+            get { return _isDone; }
+            set
+            {
+                if (_isDone != value)
+                {
+                    _isDone = value;
+                    OnPropertyChanged("IsDone");
+                }
+            }
         }
 
-        private void NavigateToYearlyPage()
+        public void ClearExecute()
         {
-            MainWindowViewModel.Frame.Content = new YearlySchedulePage();
+            Search = String.Empty;
+            Date = new DateTime(1, 1, 1);
+            IsDone = false;
         }
 
-        private void NavigateProfilePage()
+        public void ExecuteCreateTask()
         {
-            MainWindowViewModel.Frame.Content = new ProfilePage(User.ActiveUser);
-        }
-
-        private void NavigateToTaskListPage()
-        {
-            MainWindowViewModel.Frame.Content = new TaskListPage();
-        }
-        private void NavigateToInvitationListPage()
-        {
-            MainWindowViewModel.Frame.Content = new InvitationsListPage();
-        }
-
-        private void TodayExecute()
-        {
-            SelectedDate = DateTime.Now;
-        }
-
-        private void PreviousExecute()
-        {
-            SelectedDate = SelectedDate.AddDays(-1);
-        }
-
-        private void NextExecute()
-        {
-            SelectedDate = SelectedDate.AddDays(+1);
-        }
-        public void ExecuteCreateEvent()
-        {
-            new CreateEditEventWindow(SelectedDate).Show();
+            new CreateEditTaskWindow().Show();
         }
 
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            UpdateEventsView();
+            UpdateTasksView();
         }
     }
 }

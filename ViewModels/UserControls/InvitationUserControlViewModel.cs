@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -40,7 +41,7 @@ namespace TimeCraft.ViewModels.UserControls
 
         public string StartDate
         {
-            get { return _event.StartDate.ToString(); }
+            get { return _event.StartDate.ToString().Substring(0, _event.StartDate.ToString().Length - 7); }
         }
 
         public string StartTime
