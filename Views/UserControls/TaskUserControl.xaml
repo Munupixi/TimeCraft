@@ -14,21 +14,19 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
                 <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="5*"/>
-                        <RowDefinition Height="11*"/>
-                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25*"/>
-                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox Content="Выполнено" IsChecked="{Binding IsDone}"/>
+                    <Button Grid.Column="1" Content="Открыть" Command="{Binding OpenCommand}" Grid.Row="1" Margin="10,10,10,10"/>
+                    <Button Content="Удалить" Margin="10,10,10,10" Command="{Binding DeleteCommand}"/>
                 </Grid>
+                <CheckBox Content="Выполнено" IsChecked="{Binding IsDone}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>

@@ -2,7 +2,7 @@
 
 namespace TimeCraft
 {
-    internal class Task : Activity
+    public class Task : Activity
     {
         private const string DateFormat = "yyyy-MM-dd";
         private const string timeFormat = "HH:mm";

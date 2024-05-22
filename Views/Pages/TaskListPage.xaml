@@ -38,7 +38,6 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="133*"/>
-                <ColumnDefinition Width="27*"/>
             </Grid.ColumnDefinitions>
             <TextBlock TextWrapping="Wrap" Text="Задачи" FontSize="36" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock.RenderTransform>
@@ -50,47 +49,35 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="14*"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="14*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Button Grid.Column="2"  Grid.Row="1" Command="{Binding BackCommand}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Images/IconBack.png" Stretch="Uniform"/>
-                    </Button.Background>
-                </Button>
-                <Button Content="Добавить" Grid.Row="1" Command="{Binding AddTask}"/>
-            </Grid>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="59*"/>
-                <ColumnDefinition Width="128*"/>
-                <ColumnDefinition Width="51*"/>
-                <ColumnDefinition Width="128*"/>
-                <ColumnDefinition Width="51*"/>
-                <ColumnDefinition Width="128*"/>
-                <ColumnDefinition Width="275*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="SourceText" TextWrapping="Wrap" Grid.Column="1" Text="{Binding SourceText}"/>
-            <ComboBox x:Name="SortCategory" Grid.Column="3" Text="{Binding SortCategory}"/>
-            <DatePicker x:Name="DateFilter" Grid.Column="5" Text="{Binding DateFilter}"/>
+            <TextBox x:Name="SearchText" TextWrapping="Wrap" Grid.Column="1" Text="{Binding SearchText}"/>
+            <ComboBox x:Name="SortCategory" Grid.Column="3" ItemsSource="{Binding Categories}" SelectedIndex="{Binding Category}"/>
+            <DatePicker x:Name="DateFilter" Grid.Column="5" SelectedDate="{Binding Date}"/>
+            <Button Grid.Column="7" Content="Очистить" Command="{Binding ClearCommand}"/>
         </Grid>
         <Grid Grid.Row="2">
-            <ListView >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
+            <ListView x:Name="MainListView" ItemsSource="{Binding Tasks}" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="MainListView_MouseDoubleClick">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
             </ListView>
+            <StackPanel x:Name="NoSelectedTextStackPanel" Grid.Column="0" VerticalAlignment="Center" Grid.Row="1">
+                <TextBlock x:Name="NoSelectedTextTextBlock" Text="Задач нет" Visibility="{Binding NoSelectedMessageVisibility}" FontSize="24" HorizontalAlignment="Center" Margin="10" />
+            </StackPanel>
         </Grid>
 
     </Grid>

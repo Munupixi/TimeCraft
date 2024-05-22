@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeCraft.ViewModels.UserControls;
 
 namespace TimeCraft.Views.UserControls
 {
@@ -20,9 +21,10 @@ namespace TimeCraft.Views.UserControls
     /// </summary>
     public partial class TaskUserControl : UserControl
     {
-        public TaskUserControl()
+        public TaskUserControl(Task _task)
         {
             InitializeComponent();
+            DataContext = new TaskUserControlViewModel(task);
         }
     }
 }

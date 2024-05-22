@@ -12,17 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeCraft.ViewModels.Pages;
 
 namespace TimeCraft.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для TaskListPage.xaml
-    /// </summary>
     public partial class TaskListPage : Page
     {
         public TaskListPage()
         {
             InitializeComponent();
+            this.DataContext = new TaskListPageViewModel();
+        }
+
+        private void MainListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (DataContext is TaskListPageViewModel viewModel)
+            {
+                viewModel.ExecuteCreateTask();
+            }
         }
     }
-}

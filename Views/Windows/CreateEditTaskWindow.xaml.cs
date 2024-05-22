@@ -10,5 +10,10 @@ namespace TimeCraft
             InitializeComponent();
             DataContext = new CreateEditTaskWindowViewModel();
         }
+        public CreateEditTaskWindow(Task task)
+        {
+            InitializeComponent();
+            DataContext = new CreateEditTaskWindowViewModel(task);
+        }
     }
 }
