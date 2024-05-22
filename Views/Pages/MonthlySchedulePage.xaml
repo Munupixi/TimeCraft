@@ -61,6 +61,13 @@
                         <Image Source="/Images/clipboard.png" Stretch="Fill" />
                     </Button.Content>
                 </Button>
+                <Button x:Name="InvivationsButton" Command="{Binding InvitationListCommand}" Content="Приглашения" Margin="5" Height="30" Background="White" BorderBrush="#00000000" Width="30">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Image Source="/Views/Pages/Invitation.png" Stretch="Fill" Width="20" Height="20" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
         </Viewbox>
 

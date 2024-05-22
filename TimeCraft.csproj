@@ -186,6 +186,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\Pages\MonthlySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\WeeklySchedulePageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\YearlySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\UserControls\ForDayEventUserControlViewModel.cs" />
     <Compile Include="Models\ServiceModels\DataGridParticipant.cs" />
     <Compile Include="Data\DataBaseContent.cs" />
@@ -382,6 +383,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\IconBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pages\Invitation.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -31,6 +31,7 @@ namespace TimeCraft.ViewModels.Pages
         public ICommand YearlyPageCommand { get; private set; }
         public ICommand ProfileCommand { get; private set; }
         public ICommand TaskListCommand { get; private set; }
+        public ICommand InvitationListCommand { get; private set; }
         public ICommand PreviousCommand { get; private set; }
         public ICommand TodayCommand { get; private set; }
         public ICommand NextCommand { get; private set; }
@@ -42,6 +43,7 @@ namespace TimeCraft.ViewModels.Pages
             YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
             ProfileCommand = new RelayCommand(NavigateProfilePage);
             TaskListCommand = new RelayCommand(NavigateToTaskListPage);
+            InvitationListCommand = new RelayCommand(NavigateToInvitationListPage);
             PreviousCommand = new RelayCommand(PreviousExecute);
             TodayCommand = new RelayCommand(TodayExecute);
             NextCommand = new RelayCommand(NextExecute);
@@ -228,6 +230,10 @@ namespace TimeCraft.ViewModels.Pages
         private void NavigateToTaskListPage()
         {
             MainWindowViewModel.Frame.Content = new TaskListPage();
+        }
+        private void NavigateToInvitationListPage()
+        {
+            MainWindowViewModel.Frame.Content = new InvitationsListPage();
         }
         private void UpdateDayProperties()
         {

@@ -49,11 +49,10 @@
             <StackPanel Orientation="Horizontal" Background="White" HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
 
-                    <TextBlock x:Name="DateTextBlock" Text="{Binding YearAndWeek}" Foreground="#333" FontSize="18" FontWeight="Bold" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <TextBlock x:Name="DateTextBlock" Text="{Binding Year}" Foreground="#333" FontSize="18" FontWeight="Bold" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <Button x:Name="PreviousButton" Command="{Binding PreviousCommand}" Content="&lt;" Margin="5" Height="30" Width="30" />
                     <Button x:Name="TodayButton" Command="{Binding TodayCommand}" Content="Сегодня" Margin="5" Width="70" Height="30" />
                     <Button x:Name="NextButton" Command="{Binding NextCommand}" Content="&gt;" Margin="5" Width="30" Height="30" />
-                    <TextBox x:Name="SearchTextBox" Text="{Binding Search}"  Width="200" Margin="10" Height="30" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
@@ -76,6 +75,13 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    <Button x:Name="InvivationsButton" Command="{Binding InvitationListCommand}" Content="Приглашения" Margin="5" Height="30" Background="White" BorderBrush="#00000000" Width="30">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Image Source="/Views/Pages/Invitation.png" Stretch="Fill" Width="20" Height="20" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
             </StackPanel>
         </Viewbox>
@@ -91,41 +97,41 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Viewbox>
-                <Calendar x:Name="JanuaryCalendar" IsEnabled="False" MouseDoubleClick="JanuaryCalendar_MouseDoubleClick" />
+            <Viewbox MouseDown="JanuaryCalendar_MouseDoubleClick">
+                <Calendar x:Name="JanuaryCalendar"  IsEnabled="False" DisplayDate="{Binding January, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="1">
-                <Calendar x:Name="FebruaryCalendar" IsEnabled="False" MouseDoubleClick="FebruaryCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="1" MouseDown="FebruaryCalendar_MouseDoubleClick">
+                <Calendar x:Name="FebruaryCalendar" IsEnabled="False" DisplayDate="{Binding February, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="2">
-                <Calendar x:Name="MarchCalendar" IsEnabled="False" MouseDoubleClick="MarchCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="2" MouseDown="MarchCalendar_MouseDoubleClick">
+                <Calendar x:Name="MarchCalendar" IsEnabled="False" DisplayDate="{Binding March, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="3">
-                <Calendar x:Name="AprilCalendar" IsEnabled="False" MouseDoubleClick="AprilCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="3" MouseDown="AprilCalendar_MouseDoubleClick">
+                <Calendar x:Name="AprilCalendar" IsEnabled="False" DisplayDate="{Binding April, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Row="1">
-                <Calendar x:Name="MayCalendar" IsEnabled="False" MouseDoubleClick="MayCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Row="1" MouseDown="MayCalendar_MouseDoubleClick">
+                <Calendar x:Name="MayCalendar" IsEnabled="False" DisplayDate="{Binding May, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="1" Grid.Row="1" IsEnabled="False">
-                <Calendar IsEnabled="False" x:Name="JuneCalendar" MouseDoubleClick="JuneCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="1" Grid.Row="1" MouseDown="JuneCalendar_MouseDoubleClick">
+                <Calendar IsEnabled="False" x:Name="JuneCalendar" DisplayDate="{Binding June, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="2" Grid.Row="1" IsEnabled="False">
-                <Calendar x:Name="JulyCalendar" MouseDoubleClick="JulyCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="2" Grid.Row="1" MouseDown="JulyCalendar_MouseDoubleClick">
+                <Calendar x:Name="JulyCalendar" IsEnabled="False" DisplayDate="{Binding July, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="3" Grid.Row="1" IsEnabled="False">
-                <Calendar x:Name="AugustCalendar" MouseDoubleClick="AugustCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="3" Grid.Row="1" MouseDown="AugustCalendar_MouseDoubleClick">
+                <Calendar x:Name="AugustCalendar" IsEnabled="False" DisplayDate="{Binding August, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="3" Grid.Row="2" IsEnabled="False">
-                <Calendar x:Name="SeptemberCalendar" MouseDoubleClick="SeptemberCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Row="2" MouseDown="SeptemberCalendar_MouseDoubleClick">
+                <Calendar x:Name="SeptemberCalendar" IsEnabled="False" DisplayDate="{Binding September, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="2" Grid.Row="2" IsEnabled="False">
-                <Calendar x:Name="OctoberCalendar" MouseDoubleClick="OctoberCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="1" Grid.Row="2" MouseDown="OctoberCalendar_MouseDoubleClick">
+                <Calendar x:Name="OctoberCalendar" IsEnabled="False" DisplayDate="{Binding October, Mode=OneWay}"/>
             </Viewbox>
-            <Viewbox Grid.Column="1" Grid.Row="2" IsEnabled="False">
-                <Calendar x:Name="NovemberCalendar" MouseDoubleClick="NovemberCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="2" Grid.Row="2" MouseDown="NovemberCalendar_MouseDoubleClick">
+                <Calendar x:Name="NovemberCalendar" DisplayDate="{Binding November, Mode=OneWay}" IsEnabled="False"/>
             </Viewbox>
-            <Viewbox Grid.Row="2">
-                <Calendar x:Name="DecemberCalendar" IsEnabled="False" MouseDoubleClick="DecemberCalendar_MouseDoubleClick"/>
+            <Viewbox Grid.Column="3" Grid.Row="2" MouseDown="DecemberCalendar_MouseDoubleClick">
+                <Calendar x:Name="DecemberCalendar" IsEnabled="False" DisplayDate="{Binding December, Mode=OneWay}"/>
             </Viewbox>
         </Grid>
     </Grid>

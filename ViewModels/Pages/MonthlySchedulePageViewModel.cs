@@ -34,23 +34,48 @@ namespace TimeCraft.ViewModels.Pages
         public ICommand YearlyPageCommand { get; private set; }
         public ICommand ProfileCommand { get; private set; }
         public ICommand TaskListCommand { get; private set; }
+        public ICommand InvitationListCommand { get; private set; }
         public ICommand PreviousCommand { get; private set; }
         public ICommand TodayCommand { get; private set; }
         public ICommand NextCommand { get; private set; }
 
-        public MonthlySchedulePageViewModel()
+        private void SetUp()
         {
             DailyPageCommand = new RelayCommand(NavigateToDailyPage);
             WeeklyPageCommand = new RelayCommand(NavigateToWeeklyPage);
             YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
             ProfileCommand = new RelayCommand(NavigateProfilePage);
             TaskListCommand = new RelayCommand(NavigateToTaskListPage);
+            InvitationListCommand = new RelayCommand(NavigateToInvitationListPage);
             PreviousCommand = new RelayCommand(PreviousExecute);
             TodayCommand = new RelayCommand(TodayExecute);
             NextCommand = new RelayCommand(NextExecute);
 
             EventViewModel.EventsUpdated += HandleEventsUpdated;
+        }
+        public MonthlySchedulePageViewModel()
+        {
+            SetUp();
 
+            DateTime date = _selectedDate;
+            while (date.DayOfWeek != DayOfWeek.Monday)
+            {
+                date = date.AddDays(-1);
+            }
+            for (int day = 0; day < _forMonthEventUserControls.Length; day++)
+            {
+                _forMonthEventUserControls[day] = new ForMonthEventUserControl(date);
+                date = date.AddDays(1);
+            }
+
+            _context = new DataBaseContent();
+            UpdateEventsView();
+        }
+        public MonthlySchedulePageViewModel(DateTime selectedDate)
+        {
+            SetUp();
+
+            _selectedDate = selectedDate;
             DateTime date = _selectedDate;
             while (date.DayOfWeek != DayOfWeek.Monday)
             {
@@ -139,6 +164,10 @@ namespace TimeCraft.ViewModels.Pages
         {
             MainWindowViewModel.Frame.Content = new TaskListPage();
         }
+        private void NavigateToInvitationListPage()
+        {
+            MainWindowViewModel.Frame.Content = new InvitationsListPage();
+        }
 
         private void TodayExecute()
         {
@@ -151,6 +180,7 @@ namespace TimeCraft.ViewModels.Pages
         private void PreviousExecute()
         {
             _selectedDate = _selectedDate.AddMonths(- 1);
+            OnPropertyChanged("Previous");
         }
 
         private void NextExecute()
