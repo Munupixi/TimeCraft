@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TimeCraft
 {
-    internal class Participant
+    public class Participant
     {
         public int ParticipantId { get; set; }
         public int IdEvent { get; set; }

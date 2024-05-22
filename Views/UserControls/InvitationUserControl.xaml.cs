@@ -12,17 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeCraft.ViewModels.UserControls;
 
 namespace TimeCraft.Views.UserControls
 {
-    /// <summary>
-    /// Логика взаимодействия для InvitationUserControl.xaml
-    /// </summary>
     public partial class InvitationUserControl : UserControl
     {
-        public InvitationUserControl()
+        public InvitationUserControl(Participant participant)
         {
             InitializeComponent();
+            if (participant.IsAccepted)
+            {
+                AcceptButton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                DeclineButton.Visibility = Visibility.Hidden;
+            }
+            DataContext = new InvitationUserControlViewModel(participant);
         }
     }
 }

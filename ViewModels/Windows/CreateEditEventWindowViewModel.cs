@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace TimeCraft.ViewModels.Windows
 
         private bool isEdit = false;
 
-        private ObservableCollection<DataGridParticipant> addParticipants =
-            new ObservableCollection<DataGridParticipant>();
+        private List<DataGridParticipant> addParticipants =
+            new List<DataGridParticipant>();
 
         private ObservableCollection<string> categories;
 
@@ -63,6 +64,7 @@ namespace TimeCraft.ViewModels.Windows
             SetUp();
             isEdit = true;
             this._event = _event;
+            this.addParticipants = DataGridParticipantViewModel.ConvertParticipants(ParticipantViewModel.GetAllParticipantByIdEvent(_event.EventId));
             _eventViewModel = new EventViewModel(_event);
         }
 
@@ -251,7 +253,7 @@ namespace TimeCraft.ViewModels.Windows
             get { return Enum.GetValues(typeof(DressCodeEnum)); }
         }
 
-        public ObservableCollection<DataGridParticipant> AddParticipants
+        public List<DataGridParticipant> AddParticipants
         {
             get { return addParticipants; }
             set
@@ -359,7 +361,7 @@ namespace TimeCraft.ViewModels.Windows
 
         private void ClearParticipantsExecute()
         {
-            AddParticipants = new ObservableCollection<DataGridParticipant>();
+            AddParticipants = new List<DataGridParticipant>();
         }
 
         private void DeleteParticipantExecute(object participant)

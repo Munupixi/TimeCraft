@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimeCraft.Views.UserControls"
              mc:Ignorable="d" Height="105" Width="415">
-    <Border Background="#7B4D7E" CornerRadius="10" Padding="10" Margin="0,0,0,-15">
+    <Border Background="#7B4D7E" CornerRadius="10" Padding="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -16,11 +16,12 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock TextWrapping="Wrap" Text="{Binding Title}"/>
                 <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="{Binding StartDate}"/>
                 <TextBlock Grid.Row="2" TextWrapping="Wrap" Text="{Binding StartTime}"/>
+                <TextBlock Grid.Row="3" TextWrapping="Wrap" Text="{Binding Role}"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
@@ -40,9 +41,9 @@
                         <RowDefinition Height="8*"/>
                         <RowDefinition Height="26*"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Column="1" Content="Принять" Background="White" FontFamily="Arial Black"/>
-                    <Button Grid.Column="1" Content="Отказать" Grid.Row="2" Background="White" FontFamily="Arial Black"/>
-                    <Button Grid.Column="1" Content="Открыть" Background="White" FontFamily="Arial Black" Grid.Row="4"/>
+                    <Button Grid.Column="1" x:Name="AcceptButton" Content="Принять" FontFamily="Arial Black" Command="{Binding AcceptCommand}"/>
+                    <Button Grid.Column="1"  x:Name="DeclineButton" Content="Отказать" Grid.Row="2" FontFamily="Arial Black"  Command="{Binding DeclineCommand}"/>
+                    <Button Grid.Column="1"  x:Name="OpenButton" Content="Открыть" FontFamily="Arial Black" Grid.Row="4" Command="{Binding OpenCommand}"/>
                 </Grid>
             </Grid>
 

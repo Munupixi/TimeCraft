@@ -184,6 +184,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\Pages\InvitationsListPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\MonthlySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\WeeklySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\YearlySchedulePageViewModel.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="ViewModels\Pages\RegistrationPageViewModel.cs" />
     <Compile Include="ViewModels\UserControls\ForMonthEventUserControlViewModel.cs" />
     <Compile Include="ViewModels\UserControls\ForWeekEventUserControlViewModel.cs" />
+    <Compile Include="ViewModels\UserControls\InvitationUserControlViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditEventWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\CreateEditTaskWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />
@@ -378,9 +380,7 @@
   <ItemGroup>
     <Resource Include="Images\settings.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Styles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\IconBack.png" />
   </ItemGroup>

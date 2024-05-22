@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeCraft.ViewModels;
+using TimeCraft.ViewModels.Pages;
+using TimeCraft.ViewModels.UserControls;
+using TimeCraft.Views.UserControls;
 
 namespace TimeCraft.Views.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для InvitationsListPage.xaml
-    /// </summary>
     public partial class InvitationsListPage : Page
     {
+
         public InvitationsListPage()
         {
             InitializeComponent();
+            this.DataContext = new InvitationsListPageViewModel();
         }
     }
 }

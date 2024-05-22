@@ -10,6 +10,7 @@ namespace TimeCraft.ViewModels
         private Participant _participant;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public static event EventHandler ParticipantsUpdated;
 
         public ParticipantViewModel(Participant participant)
         {
@@ -32,6 +33,7 @@ namespace TimeCraft.ViewModels
             {
                 db.Participant.Add(_participant);
                 db.SaveChanges();
+                ParticipantsUpdated?.Invoke(null, EventArgs.Empty);
             }
         }
 
@@ -42,12 +44,29 @@ namespace TimeCraft.ViewModels
                 try
                 {
                     db.Participant.Update(_participant);
+                    db.SaveChanges();
+                    ParticipantsUpdated?.Invoke(null, EventArgs.Empty);
                 }
                 catch
                 {
                     throw new Exception("Неудалось сохранить изменения");
                 }
-                db.SaveChanges();
+            }
+        }
+        public void Delete()
+        {
+            using (DataBaseContent db = new DataBaseContent())
+            {
+                try
+                {
+                    db.Participant.Remove(_participant);
+                    db.SaveChanges();
+                    ParticipantsUpdated?.Invoke(null, EventArgs.Empty);
+                }
+                catch
+                {
+                    throw new Exception("Неудалось сохранить изменения");
+                }
             }
         }
 
@@ -64,6 +83,13 @@ namespace TimeCraft.ViewModels
             using (DataBaseContent db = new DataBaseContent())
             {
                 return db.Participant.Where(p => p.IdEvent == idEvent).ToList();
+            }
+        }
+        public static List<Participant> GetAllParticipantByIdUser(int idUser)
+        {
+            using (DataBaseContent db = new DataBaseContent())
+            {
+                return db.Participant.Where(p => p.IdUser == idUser).ToList();
             }
         }
     }
