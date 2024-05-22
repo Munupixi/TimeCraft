@@ -11,6 +11,7 @@ using TimeCraft.ViewModels.Windows;
 using TimeCraft.Views.UserControls;
 using GalaSoft.MvvmLight.Command;
 using System.Globalization;
+using TimeCraft.Views.Pages;
 
 namespace TimeCraft.ViewModels.Pages
 {
@@ -29,7 +30,6 @@ namespace TimeCraft.ViewModels.Pages
         public ICommand MonthlyPageCommand { get; private set; }
         public ICommand YearlyPageCommand { get; private set; }
         public ICommand ProfileCommand { get; private set; }
-        public ICommand SettingsCommand { get; private set; }
         public ICommand TaskListCommand { get; private set; }
         public ICommand PreviousCommand { get; private set; }
         public ICommand TodayCommand { get; private set; }
@@ -41,7 +41,6 @@ namespace TimeCraft.ViewModels.Pages
             MonthlyPageCommand = new RelayCommand(NavigateToMonthlyPage);
             YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
             ProfileCommand = new RelayCommand(NavigateProfilePage);
-            SettingsCommand = new RelayCommand(NavigateToSettingsPage);
             TaskListCommand = new RelayCommand(NavigateToTaskListPage);
             PreviousCommand = new RelayCommand(PreviousExecute);
             TodayCommand = new RelayCommand(TodayExecute);
@@ -226,14 +225,9 @@ namespace TimeCraft.ViewModels.Pages
             MainWindowViewModel.Frame.Content = new ProfilePage(User.ActiveUser);
         }
 
-        private void NavigateToSettingsPage()
-        {
-            throw new NotImplementedException();
-        }
-
         private void NavigateToTaskListPage()
         {
-            throw new NotImplementedException();
+            MainWindowViewModel.Frame.Content = new TaskListPage();
         }
         private void UpdateDayProperties()
         {
@@ -265,6 +259,33 @@ namespace TimeCraft.ViewModels.Pages
             _selectedFirstDayOfWeek = _selectedFirstDayOfWeek.AddDays(+ 7);
             OnPropertyChanged("Next");
             UpdateDayProperties();
+        }
+        public void ExecuteCreateEvent(DayOfWeek dayOfWeek)
+        {
+            switch (dayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    new CreateEditEventWindow(_selectedFirstDayOfWeek).Show();
+                    break;
+                case DayOfWeek.Tuesday:
+                    new CreateEditEventWindow(_selectedFirstDayOfWeek.AddDays(1)).Show();
+                    break;
+                case DayOfWeek.Wednesday:
+                    new CreateEditEventWindow(_selectedFirstDayOfWeek.AddDays(2)).Show();
+                    break;
+                case DayOfWeek.Thursday:
+                    new CreateEditEventWindow(_selectedFirstDayOfWeek.AddDays(3)).Show();
+                    break;
+                case DayOfWeek.Friday:
+                    new CreateEditEventWindow(_selectedFirstDayOfWeek.AddDays(4)).Show();
+                    break;
+                case DayOfWeek.Saturday:
+                    new CreateEditEventWindow(_selectedFirstDayOfWeek.AddDays(5)).Show();
+                    break;
+                case DayOfWeek.Sunday:
+                    new CreateEditEventWindow(_selectedFirstDayOfWeek.AddDays(6)).Show();
+                    break;
+            }
         }
 
         protected void OnPropertyChanged(string propertyName)

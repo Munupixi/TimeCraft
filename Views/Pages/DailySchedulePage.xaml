@@ -45,7 +45,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Панель для кнопок вверху -->
-        <ListView x:Name="MainListView" ItemsSource="{Binding Events}" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <ListView x:Name="MainListView" ItemsSource="{Binding Events}" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="MainListView_MouseDoubleClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MainListView}" />
@@ -67,13 +67,6 @@
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Image Source="/Images/profile_icon.png" Stretch="Fill" Width="20" Height="20" />
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button x:Name="SettingsButton" Command="{Binding SettingsCommand}" Content="Настройки" Margin="5" Height="20" Background="White" BorderBrush="#00000000">
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Image Source="/Images/settings.png" Stretch="Fill" Width="20" Height="20" />
                     </ControlTemplate>
                 </Button.Template>
             </Button>

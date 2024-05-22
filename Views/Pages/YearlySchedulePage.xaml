@@ -44,16 +44,40 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="White">
-            <TextBlock Text="2024" FontSize="24" FontWeight="Bold" Foreground="Black" Margin="10" />
-            <Button Content="&lt;" Style="{StaticResource RoundedButtonStyle}" />
-            <Button Content="Сегодня" Style="{StaticResource RoundedButtonStyle}" />
-            <Button Content="&gt;" Style="{StaticResource RoundedButtonStyle}" />
-            <Button Content="День" Style="{StaticResource RoundedButtonStyle}" Margin="0,0,2,0" />
-            <Button Content="Неделя" Style="{StaticResource RoundedButtonStyle}" Margin="2" />
-            <Button Content="Месяц" Style="{StaticResource RoundedButtonStyle}" Margin="2" />
-            <Button Content="Год" Style="{StaticResource RoundedButtonStyle}" Margin="2,0,0,0" />
-        </StackPanel>
+        <Viewbox Grid.Row="0" Stretch="UniformToFill">
+            <StackPanel Orientation="Horizontal" Background="White" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                    <TextBlock x:Name="DateTextBlock" Text="{Binding YearAndWeek}" Foreground="#333" FontSize="18" FontWeight="Bold" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Button x:Name="PreviousButton" Command="{Binding PreviousCommand}" Content="&lt;" Margin="5" Height="30" Width="30" />
+                    <Button x:Name="TodayButton" Command="{Binding TodayCommand}" Content="Сегодня" Margin="5" Width="70" Height="30" />
+                    <Button x:Name="NextButton" Command="{Binding NextCommand}" Content="&gt;" Margin="5" Width="30" Height="30" />
+                    <TextBox x:Name="SearchTextBox" Text="{Binding Search}"  Width="200" Margin="10" Height="30" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+                    <Button x:Name="DayButton" Command="{Binding DailyPageCommand}" Content="День" Margin="5" Height="30" />
+                    <Button x:Name="WeekButton" Command="{Binding WeeklyPageCommand}" Content="Неделя" Margin="5" Height="30" />
+                    <Button x:Name="MonthButton" Command="{Binding MontlyPageCommand}" Content="Месяц" Margin="5" Height="30" />
+                    <Button x:Name="YearButton" Command="{Binding YearlyPageCommand}" Content="Год" Margin="5" Height="30" />
+
+                    <Button x:Name="ProfileButton" Command="{Binding ProfileCommand}" Content="Профиль" Margin="5" Height="30" Background="#FFEEEEEE" BorderBrush="#00000000" Width="30">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Image Source="/Images/profile_icon.png" Stretch="Fill" Width="20" Height="20" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="TasksButton" Command="{Binding TaskListCommand}" Content="Список задач" Margin="5" Height="30" Background="White" BorderBrush="#00000000" Width="30">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Image Source="/Images/clipboard.png" Stretch="Fill" Width="20" Height="20" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
 
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">

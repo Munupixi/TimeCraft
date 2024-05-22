@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:TimeCraft"
              mc:Ignorable="d"
-             d:DesignHeight="75" d:DesignWidth="75">
+             d:DesignHeight="75" d:DesignWidth="75"
+             MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
     <Border Background="#7B4D7E" CornerRadius="10" Padding="10"
             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid>

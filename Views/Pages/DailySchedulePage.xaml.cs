@@ -17,5 +17,13 @@ namespace TimeCraft
             InitializeComponent();
             this.DataContext = new DailySchedulePageViewModel(date);
         }
+
+        private void MainListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (DataContext is DailySchedulePageViewModel viewModel)
+            {
+                viewModel.ExecuteCreateEvent();
+            }
+        }
     }
 }

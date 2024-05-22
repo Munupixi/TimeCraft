@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using TimeCraft.ViewModels.Windows;
 
 namespace TimeCraft
@@ -15,6 +16,11 @@ namespace TimeCraft
         {
             InitializeComponent();
             DataContext = new CreateEditEventWindowViewModel(_event);
+        }
+        public CreateEditEventWindow(DateTime selectedDate)
+        {
+            InitializeComponent();
+            DataContext = new CreateEditEventWindowViewModel(selectedDate);
         }
     }
 }

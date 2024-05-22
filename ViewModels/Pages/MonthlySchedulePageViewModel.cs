@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using TimeCraft.ViewModels.UserControls;
 using TimeCraft.ViewModels.Windows;
+using TimeCraft.Views.Pages;
 using TimeCraft.Views.UserControls;
 
 namespace TimeCraft.ViewModels.Pages
@@ -32,7 +33,6 @@ namespace TimeCraft.ViewModels.Pages
         public ICommand WeeklyPageCommand { get; private set; }
         public ICommand YearlyPageCommand { get; private set; }
         public ICommand ProfileCommand { get; private set; }
-        public ICommand SettingsCommand { get; private set; }
         public ICommand TaskListCommand { get; private set; }
         public ICommand PreviousCommand { get; private set; }
         public ICommand TodayCommand { get; private set; }
@@ -44,7 +44,6 @@ namespace TimeCraft.ViewModels.Pages
             WeeklyPageCommand = new RelayCommand(NavigateToWeeklyPage);
             YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
             ProfileCommand = new RelayCommand(NavigateProfilePage);
-            SettingsCommand = new RelayCommand(NavigateToSettingsPage);
             TaskListCommand = new RelayCommand(NavigateToTaskListPage);
             PreviousCommand = new RelayCommand(PreviousExecute);
             TodayCommand = new RelayCommand(TodayExecute);
@@ -135,14 +134,9 @@ namespace TimeCraft.ViewModels.Pages
             MainWindowViewModel.Frame.Content = new ProfilePage(User.ActiveUser);
         }
 
-        private void NavigateToSettingsPage()
-        {
-            throw new NotImplementedException();
-        }
-
         private void NavigateToTaskListPage()
         {
-            throw new NotImplementedException();
+            MainWindowViewModel.Frame.Content = new TaskListPage();
         }
 
         private void TodayExecute()

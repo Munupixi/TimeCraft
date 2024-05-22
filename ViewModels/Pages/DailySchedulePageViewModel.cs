@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TimeCraft.ViewModels.Windows;
+using TimeCraft.Views.Pages;
 using TimeCraft.Views.UserControls;
 
 namespace TimeCraft.ViewModels.Pages
@@ -54,7 +55,6 @@ namespace TimeCraft.ViewModels.Pages
             MonthlyPageCommand = new RelayCommand(NavigateToMonthlyPage);
             YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
             ProfileCommand = new RelayCommand(NavigateProfilePage);
-            SettingsCommand = new RelayCommand(NavigateToSettingsPage);
             TaskListCommand = new RelayCommand(NavigateToTaskListPage);
             PreviousCommand = new RelayCommand(PreviousExecute);
             TodayCommand = new RelayCommand(TodayExecute);
@@ -161,14 +161,9 @@ namespace TimeCraft.ViewModels.Pages
             MainWindowViewModel.Frame.Content = new ProfilePage(User.ActiveUser);
         }
 
-        private void NavigateToSettingsPage()
-        {
-            throw new NotImplementedException();
-        }
-
         private void NavigateToTaskListPage()
         {
-            throw new NotImplementedException();
+            MainWindowViewModel.Frame.Content = new TaskListPage();
         }
 
         private void TodayExecute()
@@ -184,6 +179,10 @@ namespace TimeCraft.ViewModels.Pages
         private void NextExecute()
         {
             SelectedDate = SelectedDate.AddDays(+1);
+        }
+        public void ExecuteCreateEvent()
+        {
+            new CreateEditEventWindow(SelectedDate).Show();
         }
 
         protected void OnPropertyChanged(string propertyName)

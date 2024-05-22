@@ -67,13 +67,13 @@ namespace TimeCraft.ViewModels
                 try
                 {
                     db.Event.Update(_event);
+                    db.SaveChanges();
                     EventsUpdated?.Invoke(this, EventArgs.Empty);
                 }
                 catch
                 {
                     throw new Exception("Неудалось сохранить изменения");
                 }
-                db.SaveChanges();
             }
         }
 

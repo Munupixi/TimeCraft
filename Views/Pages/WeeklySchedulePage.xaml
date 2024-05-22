@@ -60,13 +60,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button x:Name="SettingsButton" Command="{Binding SettingsCommand}" Content="Настройки" Margin="5" Height="30" Background="White" BorderBrush="#00000000" Width="30">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Image Source="/Images/settings.png" Stretch="Fill" Width="20" Height="20" />
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
                     <Button x:Name="TasksButton" Command="{Binding TaskListCommand}" Content="Список задач" Margin="5" Height="30" Background="White" BorderBrush="#00000000" Width="30">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -112,49 +105,49 @@
             </Grid.ColumnDefinitions>
 
 
-            <ListView x:Name="MondayListView"  ItemsSource="{Binding MondayEvents}" Grid.Column="0" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="MondayListView"  ItemsSource="{Binding MondayEvents}" Grid.Column="0" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="MondayListView_MouseDoubleClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=MondayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="TuesdayListView" ItemsSource="{Binding TuesdayEvents}" Grid.Column="1" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="TuesdayListView" ItemsSource="{Binding TuesdayEvents}" Grid.Column="1" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="TuesdayListView_MouseDoubleClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=TuesdayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="WednesdayListView" ItemsSource="{Binding WednesdayEvents}" Grid.Column="2" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="WednesdayListView" ItemsSource="{Binding WednesdayEvents}" Grid.Column="2" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="WednesdayListView_MouseDoubleClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=WednesdayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="ThursdayListView" ItemsSource="{Binding ThursdayEvents}" Grid.Column="3" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="ThursdayListView" ItemsSource="{Binding ThursdayEvents}" Grid.Column="3" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="ThursdayListView_MouseDoubleClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=ThursayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="FridayListView" ItemsSource="{Binding FridayEvents}" Grid.Column="4" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="FridayListView" ItemsSource="{Binding FridayEvents}" Grid.Column="4" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="FridayListView_MouseDoubleClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=FridayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="SaturdayListView" ItemsSource="{Binding SaturdayEvents}" Grid.Column="5" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="SaturdayListView" ItemsSource="{Binding SaturdayEvents}" Grid.Column="5" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="SaturdayListView_MouseDoubleClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=SaturdayListView}" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <ListView x:Name="SundayListView" ItemsSource="{Binding SundayEvents}" Grid.Column="6" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView x:Name="SundayListView" ItemsSource="{Binding SundayEvents}" Grid.Column="6" BorderThickness="2" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="SundayListView_MouseDoubleClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Vertical" Width="{Binding ActualWidth, ElementName=SundayListView}" />

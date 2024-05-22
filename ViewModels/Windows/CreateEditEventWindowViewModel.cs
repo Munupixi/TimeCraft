@@ -47,7 +47,17 @@ namespace TimeCraft.ViewModels.Windows
             TimeSpan.Parse((DateTime.Now).ToString("HH:mm")));
             _eventViewModel = new EventViewModel(_event);
         }
-
+        public CreateEditEventWindowViewModel(DateTime selectedDate)
+        {
+            SetUp();
+            this._event = new Event(EventViewModel.GetNewId(),
+            "Новое мероприятие", User.ActiveUser.UserId, "Описание",
+            selectedDate.Date,
+            TimeSpan.Parse((selectedDate).ToString("HH:mm")),
+            selectedDate.AddDays(1),
+            TimeSpan.Parse((selectedDate).ToString("HH:mm")));
+            _eventViewModel = new EventViewModel(_event);
+        }
         public CreateEditEventWindowViewModel(Event _event)
         {
             SetUp();
@@ -326,9 +336,12 @@ namespace TimeCraft.ViewModels.Windows
             //при условии редактирования.
             if (!new UserViewModel(User.ActiveUser).IsFreeTime(_event))
             {
-                ErrorMessage = "Данные время у вас занято меропритием:\n" +
-                    EventViewModel.Get(_event.StartDate, _event.StartTime, _event.EndDate, _event.EndTime).Title;
-                return false;
+                Event blockedEvent = EventViewModel.Get(_event.StartDate, _event.StartTime, _event.EndDate, _event.EndTime);
+                if (blockedEvent.EventId != _event.EventId)
+                {
+                    ErrorMessage = "Данные время у вас занято меропритием:\n" + blockedEvent.Title;
+                    return false;
+                }
             }
             ErrorMessage = string.Empty;
             return true;
