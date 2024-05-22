@@ -301,7 +301,7 @@ namespace TimeCraft.ViewModels.Windows
             foreach (DataGridParticipant addParticipant in AddParticipants)
             {
                 new ParticipantViewModel(new Participant(ParticipantViewModel.GetNewId(), _event.EventId,
-                    User.ActiveUser.UserId, false, addParticipant.Role)).Add();
+                    UserViewModel.Get(addParticipant.Login).UserId, false, addParticipant.Role)).Add();
             }
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
         }
