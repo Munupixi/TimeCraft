@@ -46,7 +46,7 @@
                 </StackPanel>
             </UniformGrid>
 
-            <Label Content="{Binding ErrorMessage}" Foreground="Red"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label Content="{Binding ErrorMessage}" Foreground="Red"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="500" Grid.ColumnSpan="2" Margin="0,5,0,0"/>
 
 
             <StackPanel x:Name="ButtonsStackPanel" Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">

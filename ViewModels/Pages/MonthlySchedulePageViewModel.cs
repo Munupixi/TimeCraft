@@ -83,7 +83,7 @@ namespace TimeCraft.ViewModels.Pages
                 _forMonthEventUserControls[day].Update(date);
                 date = date.AddDays(1);
             }
-            YearAndMonth = $"{_selectedDate.Year}, {_selectedDate.Month}";
+            YearAndMonth = $"{date.Year}, {date.Month} месяц";
         }
 
 
@@ -110,6 +110,7 @@ namespace TimeCraft.ViewModels.Pages
                 if (_yearAndMonth != value)
                 {
                     _yearAndMonth = value;
+                    OnPropertyChanged("YearAndMonth");
                 }
             }
         }

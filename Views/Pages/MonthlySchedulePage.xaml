@@ -40,23 +40,23 @@
         <Viewbox Grid.Row="0" Stretch="Uniform">
             <StackPanel Orientation="Horizontal" Background="#FFFFFF" HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
-                    <TextBlock x:Name="DateTextBlock" Text="Март 2024" Foreground="#333333" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="10" />
-                    <Button x:Name="PreviousButton" Content="&lt;" Width="20" />
-                    <Button x:Name="TodayButton" Content="Сегодня" Width="auto" />
+                    <TextBlock x:Name="DateTextBlock" Foreground="#333333" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="10" Text="{Binding YearAndMonth}"/>
+                    <Button x:Name="PreviousButton" Content="&lt;" Width="20" Command="{Binding PreviousCommand}"/>
+                    <Button x:Name="TodayButton" Content="Сегодня" Width="auto" Command="{Binding TodayCommand}" />
                     <Button x:Name="NextButton" Content="&gt;" Width="20" Command="{Binding NextCommand}"/>
                     <TextBox x:Name="SearchTextBox" Width="100" Margin="10" Text="{Binding Search}"/>
                 </StackPanel>
 
-                <Button x:Name="DayButton" Content="День" />
-                <Button x:Name="WeekButton" Content="Неделя" />
+                <Button x:Name="DayButton" Content="День" Command="{Binding DailyPageCommand}" />
+                <Button x:Name="WeekButton" Content="Неделя" Command="{Binding WeeklyPageCommand}" />
                 <Button x:Name="MonthButton" Content="Месяц" />
-                <Button x:Name="YearButton" Content="Год" />
-                <Button x:Name="ProfileButton" Margin="5" Height="20" Width="20" Background="#00000000" BorderBrush="#00000000">
+                <Button x:Name="YearButton" Content="Год" Command="{Binding YearlyPageCommand}"/>
+                <Button x:Name="ProfileButton" Margin="5" Height="20" Width="20" Background="#00000000" BorderBrush="#00000000" Command="{Binding ProfileCommand}">
                     <Button.Content>
                         <Image Source="/Images/profile_icon.png" Stretch="Fill" />
                     </Button.Content>
                 </Button>
-                <Button x:Name="TasksButton" Margin="5" Height="20" Width="20" Background="#00000000" BorderBrush="#00000000">
+                <Button x:Name="TasksButton" Margin="5" Height="20" Width="20" Background="#00000000" BorderBrush="#00000000" Command="{Binding TaskListCommand}">
                     <Button.Content>
                         <Image Source="/Images/clipboard.png" Stretch="Fill" />
                     </Button.Content>

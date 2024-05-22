@@ -17,22 +17,12 @@ namespace TimeCraft
             DataContext = new ForMonthEventUserControlViewModel(date);
         }
 
-        //private void UserControl_MouseLeftButtonDown(
-        //    object sender, MouseButtonEventArgs e)
-        //{
-        //    if (DataContext is ForMonthEventUserControlViewModel viewModel)   // Нажатие на дату чтобы откарылосб расписание на выбранный день
-        //    {
-        //        viewModel.ExecuteOpenDay();
-        //    }
-        //}
-
-        //private void нажатиеНаЭлементВlistView(
-        //    object sender, MouseButtonEventArgs e)
-        //{
-        //    if (DataContext is ForMonthEventUserControlViewModel viewModel)  // Нажатие на событие чтобы открылось редактирование события
-        //    {
-        //        viewModel.ExecuteOpenEvent(sender);
-        //    }
-        //}
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is ForMonthEventUserControlViewModel viewModel)   // Нажатие на дату чтобы откарылосб расписание на выбранный день
+            {
+                viewModel.ExecuteOpenDay();
+            }
+        }
     }
 }
