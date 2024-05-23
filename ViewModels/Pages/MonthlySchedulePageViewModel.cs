@@ -174,18 +174,21 @@ namespace TimeCraft.ViewModels.Pages
         {
             if (_selectedDate != new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1))
             {
+                MessageBox.Show("Подождите, операция выполняется.\nВ среднем это занимает 30 секунд");
                 _selectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             }
         }
 
         private void PreviousExecute()
         {
+            MessageBox.Show("Подождите, операция выполняется.\nВ среднем это занимает 30 секунд");
             _selectedDate = _selectedDate.AddMonths(- 1);
             OnPropertyChanged("Previous");
         }
 
         private void NextExecute()
         {
+            MessageBox.Show("Подождите, операция выполняется.\nВ среднем это занимает 30 секунд");
             _selectedDate = _selectedDate.AddMonths(+ 1);
             OnPropertyChanged("Next");
         }

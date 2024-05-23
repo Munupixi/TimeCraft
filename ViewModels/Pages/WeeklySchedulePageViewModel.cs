@@ -249,6 +249,7 @@ namespace TimeCraft.ViewModels.Pages
 
         private void TodayExecute()
         {
+            MessageBox.Show("Подождите, операция выполняется.\nВ среднем это занимает 5 секунд");
             _selectedFirstDayOfWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
             OnPropertyChanged("Today");
             UpdateDayProperties();
@@ -256,6 +257,7 @@ namespace TimeCraft.ViewModels.Pages
 
         private void PreviousExecute()
         {
+            MessageBox.Show("Подождите, операция выполняется.\nВ среднем это занимает 5 секунд");
             _selectedFirstDayOfWeek = _selectedFirstDayOfWeek.AddDays(- 7);
             OnPropertyChanged("Previous");
             UpdateDayProperties();
@@ -263,6 +265,7 @@ namespace TimeCraft.ViewModels.Pages
 
         private void NextExecute()
         {
+            MessageBox.Show("Подождите, операция выполняется.\nВ среднем это занимает 5 секунд");
             _selectedFirstDayOfWeek = _selectedFirstDayOfWeek.AddDays(+ 7);
             OnPropertyChanged("Next");
             UpdateDayProperties();
