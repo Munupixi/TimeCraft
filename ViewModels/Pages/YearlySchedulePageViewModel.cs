@@ -17,7 +17,7 @@ namespace TimeCraft.ViewModels.Pages
 
         public ICommand DailyPageCommand { get; private set; }
         public ICommand WeeklyPageCommand { get; private set; }
-        public ICommand MonthlyPageCommand { get; private set; }
+        public ICommand MontlyPageCommand { get; private set; }
         public ICommand ProfileCommand { get; private set; }
         public ICommand TaskListCommand { get; private set; }
         public ICommand InvitationListCommand { get; private set; }
@@ -29,7 +29,7 @@ namespace TimeCraft.ViewModels.Pages
         {
             DailyPageCommand = new RelayCommand(NavigateToDailyPage);
             WeeklyPageCommand = new RelayCommand(NavigateToWeeklyPage);
-            MonthlyPageCommand = new RelayCommand(NavigateToMonthlyPage);
+            MontlyPageCommand = new RelayCommand(NavigateToMonthlyPage);
             ProfileCommand = new RelayCommand(NavigateProfilePage);
             TaskListCommand = new RelayCommand(NavigateToTaskListPage);
             InvitationListCommand = new RelayCommand(NavigateToInvitationListPage);
