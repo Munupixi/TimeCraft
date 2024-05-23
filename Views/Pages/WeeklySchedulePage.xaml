@@ -50,7 +50,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
                     <Button x:Name="DayButton" Command="{Binding DailyPageCommand}" Content="День" Margin="5" Height="30" />
                     <Button x:Name="WeekButton" Command="{Binding WeeklyPageCommand}" Content="Неделя" Margin="5" Height="30" />
-                    <Button x:Name="MonthButton" Command="{Binding MontlyPageCommand}" Content="Месяц" Margin="5" Height="30" />
+                    <Button x:Name="MonthButton" Command="{Binding MonthlyPageCommand}" Content="Месяц" Margin="5" Height="30" />
                     <Button x:Name="YearButton" Command="{Binding YearlyPageCommand}" Content="Год" Margin="5" Height="30" />
 
                     <Button x:Name="ProfileButton" Command="{Binding ProfileCommand}" Content="Профиль" Margin="5" Height="30" Background="#FFEEEEEE" BorderBrush="#00000000" Width="30">
