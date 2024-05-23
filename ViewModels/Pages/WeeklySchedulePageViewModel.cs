@@ -201,12 +201,12 @@ namespace TimeCraft.ViewModels.Pages
         }
 
         public int Monday => _selectedFirstDayOfWeek.Day;
-        public int Tuesday => _selectedFirstDayOfWeek.Day + 1;
-        public int Wednesday => _selectedFirstDayOfWeek.Day + 2;
-        public int Thursday => _selectedFirstDayOfWeek.Day + 3;
-        public int Friday => _selectedFirstDayOfWeek.Day + 4;
-        public int Saturday => _selectedFirstDayOfWeek.Day + 5;
-        public int Sunday => _selectedFirstDayOfWeek.Day + 6;
+        public int Tuesday => _selectedFirstDayOfWeek.AddDays(1).Day;
+        public int Wednesday => _selectedFirstDayOfWeek.AddDays(2).Day;
+        public int Thursday => _selectedFirstDayOfWeek.AddDays(3).Day;
+        public int Friday => _selectedFirstDayOfWeek.AddDays(4).Day;
+        public int Saturday => _selectedFirstDayOfWeek.AddDays(5).Day;
+        public int Sunday => _selectedFirstDayOfWeek.AddDays(6).Day;
 
         private void NavigateToDailyPage()
         {
