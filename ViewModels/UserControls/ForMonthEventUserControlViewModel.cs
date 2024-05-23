@@ -54,6 +54,11 @@ namespace TimeCraft.ViewModels.UserControls
 
         internal void ExecuteOpenEvent(int index)
         {
+            if (_event.UserId != User.ActiveUser.UserId)
+            {
+                new CreateEditEventWindow(_events[index], true).Show();
+                return;
+            }
             new CreateEditEventWindow(_events[index]).Show();
         }
     }
