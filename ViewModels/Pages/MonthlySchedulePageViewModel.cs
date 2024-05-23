@@ -41,6 +41,7 @@ namespace TimeCraft.ViewModels.Pages
 
         private void SetUp()
         {
+            MessageBox.Show("Подождите, операция выполняется.\nВ среднем это занимает 30 секунд");
             DailyPageCommand = new RelayCommand(NavigateToDailyPage);
             WeeklyPageCommand = new RelayCommand(NavigateToWeeklyPage);
             YearlyPageCommand = new RelayCommand(NavigateToYearlyPage);
