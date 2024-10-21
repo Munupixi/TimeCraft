@@ -363,6 +363,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Documents\Diagrams\Инфологическая_схемаTimeCraft_V8 %281%29.vsdx" />
+    <None Include="Documents\Diagrams\Схема_Классов\Схема_Классов_TimeCraft.drawio" />
+    <None Include="Documents\Diagrams\Схема_последовательности\схема_последовательности_создания_мероприятия_TimeCraft.drawio" />
+    <None Include="Documents\Diagrams\Схема_прецедентов\схема_прецедентов_TimeCraft.drawio" />
+    <None Include="Documents\Diagrams\Схема_прецедентов\СхемаПрецедентовTimeCraftV1.vsdx" />
+    <None Include="Documents\Documents\DataTimeCraft.xlsx" />
+    <None Include="Documents\Documents\АтрибутикаTimeCraft_V2 %281%29.xlsx" />
+    <None Include="Documents\Documents\Описание предметной области TimeCraft V12 %281%29.docx" />
+    <None Include="Documents\Documents\Техническое задание TimeCraft V9.docx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -388,6 +397,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Pages\Invitation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documents\Diagrams\Схема_Классов\Схема_Классов_TimeCraft.jpg" />
+    <Resource Include="Documents\Diagrams\Схема_последовательности\схема_последовательности_создания_мероприятия_TimeCraft.jpg" />
+    <Resource Include="Documents\Diagrams\Схема_прецедентов\схема_прецедентов_TimeCraft.jpg" />
+    <Resource Include="Documents\Cods\Old_DataBase_Code.txt" />
+    <Content Include="Documents\Cods\Old_TimeCraft.sql" />
+    <Content Include="Documents\Cods\Timecraft.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

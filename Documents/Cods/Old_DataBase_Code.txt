@@ -1,0 +1,99 @@
+  internal class DataBaseManager
+  {
+      private string server;
+      private string port;
+      private string dataBase;
+      private string user;
+      private string password;
+      private string connection;
+
+      public DataBaseManager(string server, string port, string dataBase, string user, string password)
+      {
+          this.server = server;
+          this.port = port;
+          this.dataBase = dataBase;
+          this.user = user;
+          this.password = password;
+          this.connection = $"Server={server}; Port={port}; Database={dataBase}; User ID={user}; Password={password}";
+      }
+
+      public DataTable GetData(string table)
+      {
+          DataTable dataTable = new DataTable();
+
+          using (MySqlConnection connection = new MySqlConnection(this.connection))
+          {
+              try
+              {
+                  connection.Open();
+                  string sqlQuery = $"SELECT * FROM {table};";
+
+                  using (MySqlCommand command = new MySqlCommand(sqlQuery, connection))
+                  {
+                      using (MySqlDataReader reader = command.ExecuteReader())
+                      {
+                          dataTable.Load(reader);
+                      }
+                  }
+              }
+              catch (Exception ex)
+              {
+                  MessageBox.Show($"Ошибка: {ex.Message}");
+              }
+          }
+
+          return dataTable;
+      }
+
+      //    public static void DisplayDataFromTables()
+      //    {
+      //        using (MySqlConnection connection = new MySqlConnection(connectionString))
+      //        {
+      //            try
+      //            {
+      //                connection.Open();
+
+      //                string sqlQuery = "SELECT * FROM User; SELECT * FROM Category; SELECT * FROM Task; SELECT * FROM Event; SELECT * FROM Participant;";
+      //                using (MySqlCommand command = new MySqlCommand(sqlQuery, connection))
+      //                {
+      //                    using (MySqlDataReader reader = command.ExecuteReader())
+      //                    {
+      //                        DataTable userTable = new DataTable();
+      //                        userTable.Load(reader);
+      //                        DisplayDataInMessageBox(userTable, "User");
+
+      //                        DataTable categoryTable = new DataTable();
+      //                        categoryTable.Load(reader);
+      //                        DisplayDataInMessageBox(categoryTable, "Category");
+      //                    }
+      //                }
+      //            }
+      //            catch (Exception ex)
+      //            {
+      //                MessageBox.Show($"Ошибка: {ex.Message}");
+      //            }
+      //        }
+      //    }
+
+      //    private static void DisplayDataInMessageBox(DataTable dataTable, string tableName)
+      //    {
+      //        MessageBox.Show($"Данные из таблицы {tableName}:\n\n{GetTableAsString(dataTable)}");
+      //    }
+
+      //    private static string GetTableAsString(DataTable table)
+      //    {
+      //        string result = "";
+
+      //        foreach (DataRow row in table.Rows)
+      //        {
+      //            foreach (DataColumn col in table.Columns)
+      //            {
+      //                result += $"{col.ColumnName}: {row[col]}, ";
+      //            }
+      //            result += "\n";
+      //        }
+
+      //        return result;
+      //    }
+      //}
+  }
