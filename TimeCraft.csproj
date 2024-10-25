@@ -373,6 +373,7 @@
     <None Include="Documents\Documents\Описание предметной области TimeCraft V12 %281%29.docx" />
     <None Include="Documents\Documents\Техническое задание TimeCraft V9.docx" />
     <None Include="Documents\Tests\Iron_Io_Test_Cases %285%29.xlsx" />
+    <None Include="Documents\Tests\WPFModernVerticalMenu_Usability_Tests.xlsx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
