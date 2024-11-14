@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace TimeCraft.ViewModels
 {
-    internal class UserViewModel : INotifyPropertyChanged
+    public class UserViewModel : INotifyPropertyChanged
     {
         private User _user;
 
@@ -16,6 +16,9 @@ namespace TimeCraft.ViewModels
         {
             _user = user;
         }
+
+      
+
         public bool IsLoginCorrect()
         {
             string login = _user.Login;
@@ -106,12 +109,18 @@ namespace TimeCraft.ViewModels
 
         public void Add()
         {
+            if (!IsLoginCorrect())
+            {
+                throw new InvalidOperationException("Логин некорректен.");
+            }
+
             using (DataBaseContent db = new DataBaseContent())
             {
                 db.User.Add(_user);
                 db.SaveChanges();
             }
         }
+
 
         public void Update()
         {

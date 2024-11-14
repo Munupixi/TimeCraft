@@ -18,6 +18,11 @@ namespace TimeCraft.ViewModels
         {
             _task = task;
         }
+
+        public TaskViewModel()
+        {
+        }
+
         public static bool IsEndDateCorrect(DateTime startDate, string startTime, DateTime endDate, string endTime, short? repeat)
         {
             return true;
@@ -67,6 +72,12 @@ namespace TimeCraft.ViewModels
 
         public void Add()
         {
+            if (string.IsNullOrWhiteSpace(_task.Title))
+                throw new InvalidOperationException("Заголовок задачи не может быть пустым.");
+
+            if (_task.CategoryId <= 0)
+                throw new InvalidOperationException("Идентификатор категории должен быть положительным.");
+
             using (DataBaseContent db = new DataBaseContent())
             {
                 db.Task.Add(_task);
@@ -74,6 +85,8 @@ namespace TimeCraft.ViewModels
                 TasksUpdated?.Invoke(this, EventArgs.Empty);
             }
         }
+
+
 
         public void Update()
         {
