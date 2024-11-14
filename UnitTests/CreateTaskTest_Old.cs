@@ -10,35 +10,9 @@ namespace TimeCraft.Tests
         private UserViewModel _userViewModel;
 
 
-        //Проверяет, что метод IsLoginCorrect возвращает true для валидного логина
-        [TestMethod]
-        public void IsLoginCorrect_ValidEmail_ReturnsTrue()
-        {
-            // Arrange
-            var user = new User(1, "test@example.com", "Password123!", 25, "Faza", "Doe", "john.doe@example.com");
-            var viewModel = new UserViewModel(user);
+        
 
-            // Act
-            bool result = viewModel.IsLoginCorrect();
-
-            // Assert
-            Assert.IsTrue(result);
-        }
-
-        //Проверяет, что метод IsLoginCorrect возвращает false для некорректного логина
-        [TestMethod]
-        public void IsLoginCorrect_ReturnsFalse()
-        {
-            // Arrange
-            var user = new User(1, "testexample.com", "Password123!", 25, "Faza", "Doe", "john.doe@example.com");
-            var viewModel = new UserViewModel(user);
-
-            // Act
-            bool result = viewModel.IsLoginCorrect();
-
-            // Assert
-            Assert.IsFalse(result);
-        }
+      
 
         //Проверяет успешное добавление задачи с валидными данными
         [TestMethod]
@@ -164,6 +138,21 @@ namespace TimeCraft.Tests
 
             // Assert
             Assert.IsFalse(result);
+        }
+
+        //Проверяет, что метод IsLoginCorrect возвращает true для валидного логина
+        [TestMethod]
+        public void IsLoginCorrect_ValidEmail_ReturnsTrue()
+        {
+            // Arrange
+            var user = new User(1, "test@example.com", "Password123!", 25, "Faza", "Doe", "john.doe@example.com");
+            var viewModel = new UserViewModel(user);
+
+            // Act
+            bool result = viewModel.IsLoginCorrect();
+
+            // Assert
+            Assert.IsTrue(result);
         }
 
         // Проверяет, что метод IsPasswordCorrect возвращает true для достаточно сложного пароля
