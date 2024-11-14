@@ -10,6 +10,7 @@ namespace TimeCraft.Tests
         private UserViewModel _userViewModel;
 
 
+        //Проверяет, что метод IsLoginCorrect возвращает true для валидного логина
         [TestMethod]
         public void IsLoginCorrect_ValidEmail_ReturnsTrue()
         {
@@ -24,6 +25,7 @@ namespace TimeCraft.Tests
             Assert.IsTrue(result);
         }
 
+        //Проверяет, что метод IsLoginCorrect возвращает false для некорректного логина
         [TestMethod]
         public void IsLoginCorrect_ReturnsFalse()
         {
@@ -38,6 +40,7 @@ namespace TimeCraft.Tests
             Assert.IsFalse(result);
         }
 
+        //Проверяет успешное добавление задачи с валидными данными
         [TestMethod]
         public void Add_ValidTask_AddsTaskSuccessfully()
         {
@@ -69,6 +72,8 @@ namespace TimeCraft.Tests
 
             
         }
+
+        // Проверяет, что при добавлении задачи с некорректным categoryId выбрасывается InvalidOperationException
         [TestMethod]
         public void Add_InvalidTaskData_ThrowsInvalidOperationException()
         {
@@ -95,6 +100,7 @@ namespace TimeCraft.Tests
             Assert.ThrowsException<InvalidOperationException>(() => taskViewModelInvalidCategoryId.Add());
         }
 
+        //Проверяет, что пользователь с уникальным логином и валидными данными успешно добавлен
         [TestMethod]
         public void Register_ValidUser_Success()
         {
@@ -122,7 +128,7 @@ namespace TimeCraft.Tests
             Assert.AreEqual(newUser.Age, addedUser.Age);
         }
 
-
+        // Проверяет, что при регистрации с некорректным логином выбрасывается исключение
 
         [TestMethod]
         public void Register_InvalidLogin_ThrowsException()
@@ -144,8 +150,8 @@ namespace TimeCraft.Tests
             Assert.ThrowsException<InvalidOperationException>(() => _userViewModel.Add(),
                 "Ожидалось исключение при попытке регистрации с некорректным логином.");
         }
-        
 
+        // Проверяет, что метод IsLoginCorrect возвращает false для логина в неверном формате
         [TestMethod]
         public void Login_IncorrectFormat_ReturnsFalse()
         {
@@ -160,6 +166,7 @@ namespace TimeCraft.Tests
             Assert.IsFalse(result);
         }
 
+        // Проверяет, что метод IsPasswordCorrect возвращает true для достаточно сложного пароля
         [TestMethod]
         public void Password_StrongEnough_ReturnsTrue()
         {
@@ -174,6 +181,7 @@ namespace TimeCraft.Tests
             Assert.IsTrue(result);
         }
 
+        // Проверяет, что метод IsPasswordCorrect возвращает false для слабого пароля
         [TestMethod]
         public void Password_Weak_ReturnsFalse()
         {
@@ -188,6 +196,7 @@ namespace TimeCraft.Tests
             Assert.IsFalse(result);
         }
 
+        // Проверяет, что метод IsAgeCorrect возвращает true для возраста в допустимом диапазоне
         [TestMethod]
         public void Age_Valid_ReturnsTrue()
         {
@@ -202,6 +211,7 @@ namespace TimeCraft.Tests
             Assert.IsTrue(result);
         }
 
+        // Проверяет, что метод IsAgeCorrect возвращает false для возраста, выходящего за допустимый диапазон
         [TestMethod]
         public void Age_Invalid_ReturnsFalse()
         {
