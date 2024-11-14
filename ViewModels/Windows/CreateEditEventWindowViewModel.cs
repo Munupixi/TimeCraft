@@ -21,7 +21,7 @@ namespace TimeCraft.ViewModels.Windows
 
         private ObservableCollection<string> categories;
 
-        private Event _event;
+        public Event _event;
 
         private EventViewModel _eventViewModel;
 
@@ -306,7 +306,7 @@ namespace TimeCraft.ViewModels.Windows
             Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
         }
 
-        private bool CanCreateExecute()
+        public bool CanCreateExecute()
         {
             if (!Event.IsTimeCorrect(StartTime) || !Event.IsTimeCorrect(EndTime) ||
                 !Event.IsStartDateCorrect(StartDate) ||

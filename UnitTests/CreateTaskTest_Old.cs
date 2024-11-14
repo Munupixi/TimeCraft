@@ -5,7 +5,7 @@ using TimeCraft.ViewModels;
 namespace TimeCraft.Tests
 {
     [TestClass]
-    public class CreateTaskTest
+    public class CreateTaskTest_Old
     {
         private UserViewModel _userViewModel;
 

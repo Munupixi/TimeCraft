@@ -20,7 +20,7 @@ namespace TimeCraft.ViewModels.Windows
 
         private ObservableCollection<string> categories;
 
-        private Task _task;
+        public Task _task;
 
         private TaskViewModel _taskViewModel;
 
@@ -245,10 +245,14 @@ namespace TimeCraft.ViewModels.Windows
             {
                 _taskViewModel.Add();
             }
-            Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();
+            var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+            if (activeWindow != null)
+            {
+                activeWindow.Close();
+            }
         }
 
-        private bool CanCreateExecute()
+        public bool CanCreateExecute()
         {
             if (!Task.IsTimeCorrect(StartTime) ||
             !Task.IsTimeCorrect(EndTime) ||

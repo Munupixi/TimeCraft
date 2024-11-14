@@ -127,7 +127,7 @@ namespace TimeCraft.ViewModels.Pages
             MainWindowViewModel.Frame.Content = new AuthorizationPage();
         }
 
-        private bool CanRegistrationExecute()
+        public bool CanRegistrationExecute()
         {
             if (string.IsNullOrEmpty(Name))
             {
@@ -194,7 +194,7 @@ namespace TimeCraft.ViewModels.Pages
             return true;
         }
 
-        private void RegistrationExecute()
+        public void RegistrationExecute()
         {
             User.ActiveUser = _user;
             _userViewModel.Add();

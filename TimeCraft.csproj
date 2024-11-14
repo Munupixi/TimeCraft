@@ -248,7 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Tests\CreateTaskTest.cs" />
+    <Compile Include="UnitTests\CreateEventTests.cs" />
+    <Compile Include="UnitTests\CreateTaskTests.cs" />
+    <Compile Include="UnitTests\CreateTaskTest_Old.cs" />
+    <Compile Include="UnitTests\RegistrationTests.cs" />
     <Compile Include="ViewModels\Pages\InvitationsListPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\MonthlySchedulePageViewModel.cs" />
     <Compile Include="ViewModels\Pages\TaskListPageViewModel.cs" />
