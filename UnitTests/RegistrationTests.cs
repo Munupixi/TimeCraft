@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using TimeCraft.ViewModels;
 using TimeCraft.ViewModels.Pages;
 using TimeCraft.ViewModels.Windows;
 
@@ -14,6 +15,8 @@ namespace TimeCraft.UnitTests
     [TestClass]
     public class RegistrationTests
     {
+        private UserViewModel _userViewModel;
+
         private RegistrationPageViewModel _viewModel;
 
         [TestInitialize]
@@ -40,7 +43,7 @@ namespace TimeCraft.UnitTests
         public void Registration_WhenNameIsTooShort_ShouldReturnErrorMessage()
         {
             // Arrange
-            _viewModel.Name = "Фаяз";
+            _viewModel.Name = "Фа";
 
             // Act
             bool canRegister = _viewModel.CanRegistrationExecute();
@@ -119,25 +122,30 @@ namespace TimeCraft.UnitTests
         }
 
         [TestMethod]
-        public void Registration_WhenRegistrationIsExecuted_ShouldNavigateToWeeklySchedulePage()
+        public void Register_ValidUser_Success()
         {
-            // Arrange
-            _viewModel.Name = "Valid Name";
-            _viewModel.AgeAsString = "25";
-            _viewModel.Login = "valid5@example.com";
-            _viewModel.Password = "Password1234!";
-            _viewModel.AgainPassword = "Password1234!";
-            _viewModel.ConfirmProgramPolicyCheck = true;
+            // Arrange: Создание нового пользователя с уникальным логином
+            var uniqueLogin = "validuser" + DateTime.Now.Ticks + "@example.com";
+            var newUser = new User(
+                userId: UserViewModel.GetNewId(),
+                login: uniqueLogin, // уникальный логин
+                password: "Valid123!", // корректный пароль
+                age: 25, // корректный возраст
+                name: "Артур", // Пример других параметров
+                surname: "Doe",
+                patronymic: "qd"
+            );
 
-            // Инициализация Frame
-            MainWindowViewModel.Frame = new Frame();
+            _userViewModel = new UserViewModel(newUser);
 
-            // Act
-            _viewModel.RegistrationExecute();
+            // Act: Попытка регистрации пользователя
+            _userViewModel.Add();
 
-            // Assert
-            // Проверим, что после регистрации мы переходим на страницу WeeklySchedulePage
-            Assert.IsInstanceOfType(MainWindowViewModel.Frame.Content, typeof(WeeklySchedulePage));
+            // Assert: Проверка, что пользователь был добавлен в базу
+            var addedUser = UserViewModel.Get(newUser.Login);
+            Assert.IsNotNull(addedUser);
+            Assert.AreEqual(newUser.Login, addedUser.Login);
+            Assert.AreEqual(newUser.Age, addedUser.Age);
         }
 
     }

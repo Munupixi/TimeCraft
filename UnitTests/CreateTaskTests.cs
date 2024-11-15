@@ -30,7 +30,7 @@ namespace TimeCraft.UnitTests
             var task = taskViewModel._task;
 
             task.Title = "Test Task";
-            task.Description = "Описание.";
+            task.Description = "Описание задачи";
             task.StartDate = DateTime.Now.AddDays(1);
             task.StartTime = TimeSpan.Parse("08:00");
             task.EndDate = DateTime.Now.AddDays(1).AddHours(2);
@@ -44,7 +44,7 @@ namespace TimeCraft.UnitTests
             var savedTask = _dbContext.Task.FirstOrDefault(t => t.Title == task.Title);
             Assert.IsNotNull(savedTask, "Задача не сохранена.");
             Assert.AreEqual("Test Task", savedTask.Title, "Название не походит.");
-            Assert.AreEqual("Описание.", savedTask.Description, "Описание не подходит.");
+            Assert.AreEqual("Описание задачи", savedTask.Description, "Описание не подходит.");
         }
 
         [TestMethod]

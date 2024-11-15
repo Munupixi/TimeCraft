@@ -75,32 +75,7 @@ namespace TimeCraft.Tests
         }
 
         //Проверяет, что пользователь с уникальным логином и валидными данными успешно добавлен
-        [TestMethod]
-        public void Register_ValidUser_Success()
-        {
-            // Arrange: Создание нового пользователя с уникальным логином
-            var uniqueLogin = "validuser" + DateTime.Now.Ticks + "@example.com";
-            var newUser = new User(
-                userId: UserViewModel.GetNewId(),
-                login: uniqueLogin, // уникальный логин
-                password: "Valid123!", // корректный пароль
-                age: 25, // корректный возраст
-                name: "Артур", // Пример других параметров
-                surname: "Doe",
-                patronymic: "qd"
-            );
-
-            _userViewModel = new UserViewModel(newUser);
-
-            // Act: Попытка регистрации пользователя
-            _userViewModel.Add();
-
-            // Assert: Проверка, что пользователь был добавлен в базу
-            var addedUser = UserViewModel.Get(newUser.Login);
-            Assert.IsNotNull(addedUser);
-            Assert.AreEqual(newUser.Login, addedUser.Login);
-            Assert.AreEqual(newUser.Age, addedUser.Age);
-        }
+        
 
         // Проверяет, что при регистрации с некорректным логином выбрасывается исключение
 

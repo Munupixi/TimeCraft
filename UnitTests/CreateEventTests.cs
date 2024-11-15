@@ -115,9 +115,9 @@ namespace TimeCraft.UnitTests
         {
             // Arrange
             var viewModel = new CreateEditEventWindowViewModel();
-            viewModel.Title = "Valid Event";
-            viewModel.StartTime = "10:00";
-            viewModel.EndTime = "12:00";
+            viewModel.Title = "Valid Event1";
+            viewModel.StartTime = "20:00";
+            viewModel.EndTime = "22:00";
             viewModel.StartDate = DateTime.Now.AddDays(1);
             viewModel.EndDate = DateTime.Now.AddDays(1).AddHours(2);
             viewModel._event.CategoryId = 1;
