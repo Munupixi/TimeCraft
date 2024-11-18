@@ -101,7 +101,7 @@ namespace TimeCraft.UnitTests
             eventModel.CategoryId = 1; 
 
             // act
-            viewModel.CreateCommand.Execute(null);
+            viewModel.CreateExecute();
 
             // Assert
             var savedEvent = _dbContext.Event.FirstOrDefault(e => e.Title == eventModel.Title);

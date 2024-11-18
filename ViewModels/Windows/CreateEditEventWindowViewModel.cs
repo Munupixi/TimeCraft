@@ -287,7 +287,7 @@ namespace TimeCraft.ViewModels.Windows
         public ICommand ClearParticipantsCommand { get; private set; }
         public ICommand DeleteParticipantCommand { get; private set; }
 
-        private void CreateExecute()
+        public void CreateExecute()
         {
             if (isEdit)
             {

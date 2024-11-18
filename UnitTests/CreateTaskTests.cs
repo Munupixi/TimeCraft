@@ -29,21 +29,21 @@ namespace TimeCraft.UnitTests
             var taskViewModel = new CreateEditTaskWindowViewModel();
             var task = taskViewModel._task;
 
-            task.Title = "Test Task";
+            task.Title = "Test Task10";
             task.Description = "Описание задачи";
-            task.StartDate = DateTime.Now.AddDays(1);
+            task.StartDate = DateTime.Now.AddDays(5);
             task.StartTime = TimeSpan.Parse("08:00");
-            task.EndDate = DateTime.Now.AddDays(1).AddHours(2);
+            task.EndDate = DateTime.Now.AddDays(5).AddHours(2);
             task.EndTime = TimeSpan.Parse("10:00");
             task.CategoryId = 1;
 
             // Act
-            taskViewModel.CreateCommand.Execute(null);
+            taskViewModel.CreateCommand.Execute();
 
             // Assert
             var savedTask = _dbContext.Task.FirstOrDefault(t => t.Title == task.Title);
             Assert.IsNotNull(savedTask, "Задача не сохранена.");
-            Assert.AreEqual("Test Task", savedTask.Title, "Название не походит.");
+            Assert.AreEqual("Test Task10", savedTask.Title, "Название не походит.");
             Assert.AreEqual("Описание задачи", savedTask.Description, "Описание не подходит.");
         }
 
